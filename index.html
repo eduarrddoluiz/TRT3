@@ -155,7 +155,7 @@ function compute(items, sessions, cfg, today){
     return {it,idx,key:k,sess,U,last,first,qTot,aTot,pHist,AA,M,N,AS,AB,AC,AD,conf,pri,peso,idxP,AT,st:stOf(it,U),ativo:(U>0||!!it.d0),variacao,plan:null};
   });
   /* nivelamento: no máximo N assuntos por dia; ativos primeiro, estoque preenche as vagas */
-  const doneKeys=new Set(sessions.filter(s=>dn(s.d)===today).map(s=>keyOf(s.m,s.a,s.s)));
+  const doneKeys=new Set(sessions.filter(s=>dn(s.d)===today&&!s.auto).map(s=>keyOf(s.m,s.a,s.s)));  /* sessões automáticas do app de questões contam no Painel, mas não consomem a cota diária de assuntos */
   const doneToday=doneKeys.size;
   const cap=new Map(); const capOf=d=>cap.has(d)?cap.get(d):Math.max(0,cfg.limite-(d===today?doneToday:0));
   const take=(r,from)=>{ let d=from; while(capOf(d)<=0) d++; cap.set(d,capOf(d)-1); r.plan=d; };
@@ -222,6 +222,7 @@ function localDb(){
   const KEY='trt3_tecnico_db_v1';let store;
   const load=()=>{try{const o=JSON.parse(localStorage.getItem(KEY)||'null');if(o&&o.docs)return o}catch(e){}return null};
   const persist=()=>{try{localStorage.setItem(KEY,JSON.stringify(store))}catch(e){throw e}};
+  const fresh=()=>{const o=load();if(o)store=o};   /* o app de questões também grava aqui: reler antes de gravar evita sobrescrever o trabalho dele */
   store=load();
   if(!store){store={docs:{}};store.docs['app/assuntos']={items:SEED.items};store.docs['app/config']=SEED.cfg;store.docs['app/horas']={meta:1000,prova:''};persist()}
   localStorage.setItem(KEY+'_t','1');
@@ -229,7 +230,8 @@ function localDb(){
   const docSn=p=>({exists:p in store.docs,data:()=>JSON.parse(JSON.stringify(store.docs[p]||{})),id:p.split('/').pop()});
   const colSn=c=>({docs:Object.keys(store.docs).filter(k=>k.startsWith(c+'/')&&k.indexOf('/',c.length+1)<0).map(k=>({id:k.slice(c.length+1),data:()=>JSON.parse(JSON.stringify(store.docs[k]))}))});
   const fire=()=>subs.slice().forEach(s=>{try{s.fn(s.col?colSn(s.key):docSn(s.key))}catch(e){console.error(e)}});
-  const mk=p=>({set:async d=>{store.docs[p]=JSON.parse(JSON.stringify(d));persist();fire()},delete:async()=>{delete store.docs[p];persist();fire()},get:async()=>docSn(p),
+  window.addEventListener('storage',e=>{if(e.key===KEY){const o=load();if(o){store=o;fire()}}});
+  const mk=p=>({set:async d=>{fresh();store.docs[p]=JSON.parse(JSON.stringify(d));persist();fire()},delete:async()=>{fresh();delete store.docs[p];persist();fire()},get:async()=>docSn(p),
     onSnapshot:fn=>{const s={fn,col:false,key:p};subs.push(s);Promise.resolve().then(()=>fn(docSn(p)));return()=>{subs.splice(subs.indexOf(s),1)}}});
   return{doc:p=>mk(p),collection:c=>({doc:id=>mk(c+'/'+id),onSnapshot:fn=>{const s={fn,col:true,key:c};subs.push(s);Promise.resolve().then(()=>fn(colSn(c)));return()=>{subs.splice(subs.indexOf(s),1)}}})}
 }
@@ -298,7 +300,7 @@ function vHoje(){
   const d=new Date(t*864e5);
   let h=`<h1>Hoje</h1><div class="sub">${WD[d.getUTCDay()]}, ${fdi(iso(t))} · ${done} de ${lim} assuntos feitos</div>
   <div class="bar" style="margin:12px 0 14px"><i style="width:${Math.min(100,done/lim*100)}%;background:var(--ok)"></i></div>`;
-  h+=planoHojeCard()+hrsMini()+atrasoBanner();
+  h+=planoHojeCard()+qzMini()+hrsMini()+atrasoBanner();
   h+=`<div class="tiles"><div class="tile"><div class="n">${list.length}</div><div class="l">Para revisar</div></div><div class="tile"><div class="n" style="color:${P.kpi.atrasados?'var(--alta)':'inherit'}">${P.kpi.atrasados}</div><div class="l">Atrasados</div></div></div>`;
   h+=`<h2>Revisar hoje</h2>`;
   h+=list.length?list.map(r=>card(r)).join(''):`<div class="empty">${done>=lim?'Meta do dia cumprida. 🎉':'Nada agendado para hoje. As revisões de 24h, 7 e 30 dias aparecem aqui a partir do dia em que você marcar “Estudei hoje” em um tópico da aba Edital ou registrar questões.'}</div>`;
@@ -530,6 +532,8 @@ function vMais(){
   <h2>Edital de referência</h2><div class="card"><div class="sub">TRT da 3ª Região (MG) · Técnico Judiciário, Área Administrativa, cobrança de nível Técnico. Base: Anexo II do Edital 01/2022 (172 tópicos). Banca de referência provisória: FUMARC. Edital novo ainda não publicado (previsão de 2027, cadastro de reserva). Quando sair, peça no chat a comparação com esta base e a adaptação de tópicos, pesos e banca.</div><div class="sub" style="margin-top:8px">Os tópicos marcados com ⚠ na aba Edital podem ter mudado desde 2022. Os pesos de 1 a 5 são inferência minha a partir da prova de 2022; ajuste em cada tópico.</div></div>
   <details style="margin-top:22px"><summary style="cursor:pointer;font-weight:700;font-size:17px">Ajustes avançados (opcional)</summary><div class="card" style="margin-top:10px">${CF.map(([k,l])=>`<label>${l}</label><input type="number" step="any" value="${S.cfg[k]}" onchange="setCfg('${k}',this.value)">`).join('')}
   <label>Escada de revisão (dias, separados por vírgula)</label><input value="${S.cfg.escada.join(',')}" onchange="setEsc(this.value)"><div class="sub" style="margin-top:8px">Escada fixa 24h, 7 e 30 dias a partir da data de estudo. Revisão boa (acima do % mínimo) sobe um degrau; ruim desce dois; abaixo do % de reinício volta a 1 dia. Os multiplicadores de acerto e peso ficam em 1 e não alteram os intervalos. Sessões com menos de 3 questões se somam à próxima.</div></div></details>
+  <h2>App de questões</h2><div class="card"><div class="sub">Questões diárias com revisão espaçada: o que você acerta volta mais tarde, o que erra volta amanhã. Só aparecem tópicos que você já iniciou aqui, e os acertos e erros entram no seu Painel.</div>
+  <div class="row" style="margin-top:10px"><a class="btn p" href="questoes/" style="text-decoration:none;display:inline-flex;align-items:center">Abrir questões</a></div><div class="sub" style="margin-top:8px">Esse app tem backup próprio, na aba Mais dele.</div></div>
   <h2>Exportar</h2><div class="card"><div class="sub">Baixe as suas sessões de questões em CSV.</div>
   <div class="row" style="margin-top:10px;flex-wrap:wrap"><button class="btn" onclick="expCsv()">Baixar sessões (CSV)</button></div>
 </div>
@@ -606,6 +610,11 @@ async function rotTog(ds,i){S.rot=S.rot||{};const cur={...(S.rot[ds]||{})};cur['
 function planoHojeCard(){return '<div style="margin-top:12px">'+rotDayCard(T())+'</div>'}
 function atrasoBanner(){const l=M.rows.filter(r=>r.ativo&&r.AT!=null&&r.AT<0).sort((a,b)=>a.AT-b.AT);if(!l.length)return '';
   return `<div class="card" style="border-color:var(--alta)"><div class="tag" style="color:var(--alta)">Revisões atrasadas (${l.length})</div>`+l.slice(0,4).map(r=>`<div class="hist row sp" onclick="openSel(${r.idx})" style="cursor:pointer"><div class="grow"><b>${esc(r.it.s)}</b><div class="sub">${esc(r.it.m)} · prevista em ${fd(r.AS)}</div></div><span style="color:var(--alta);font-weight:600">${-r.AT}d</span></div>`).join('')+(l.length>4?`<div class="sub" style="margin-top:6px">+ ${l.length-4} na aba Edital (filtro “A revisar”).</div>`:'')+`<div class="sub" style="margin-top:6px">O app distribui o atraso em até ${S.cfg.limite} assuntos por dia. Não precisa compensar tudo de uma vez.</div></div>`}
+/* atalho para o app de questões (lê só o contador de hoje; o app dele guarda os dados em outra chave) */
+function qzMini(){let n=0,k=0,meta=30,tem=false;
+  try{const o=JSON.parse(localStorage.getItem('trt3_questoes_v1')||'null');if(o&&Array.isArray(o.hist)){tem=true;const t=T();for(let i=o.hist.length-1;i>=0;i--){const h=o.hist[i];if(h.d<t)break;if(h.d===t){n++;k+=h.ok}}meta=(o.cfg&&+o.cfg.meta)||30}}catch(e){}
+  return `<a class="card row sp" href="questoes/" style="text-decoration:none;color:inherit"><div><b>Questões de hoje</b><div class="sub">${tem?`${n} de ${meta} respondidas${n?' · acerto '+Math.round(k/n*100)+'%':''}`:'Revisão espaçada: o que você acerta volta mais tarde'}</div></div><span class="btn s p">Abrir</span></a>`}
+window.addEventListener('storage',e=>{if(e.key==='trt3_questoes_v1'&&S.ready)bgRender()});
 function flashCard(){const t=T();let dots='';for(let i=6;i>=0;i--){const d=iso(t-i),ok=S.flash&&S.flash[d];dots+=`<span class="cic-dot ${ok?'ok':''}" title="${fdi(d)}"></span>`}
   const ok=S.flash&&S.flash[iso(t)];
   return `<div class="card row sp" style="margin-top:10px"><div><b>Anki (fechamento)</b><div class="row" style="gap:4px;margin-top:4px">${dots}</div></div><button class="btn s ${ok?'':'p'}" onclick="flashToggle()">${ok?'Feito hoje ✓':'Marcar hoje'}</button></div>`}

@@ -5,11 +5,47 @@ App de estudo para o concurso do **TRT da 3ª Região (MG), Técnico Judiciário
 Tudo roda no navegador, sem servidor. Os dados ficam no `localStorage` do aparelho e do navegador em que você usa o app.
 
 ## Importante: seus dados
-- Cada navegador/aparelho tem seus próprios dados. Para mudar de aparelho ou fazer cópia de segurança, use **Mais → Backup** (exportar e restaurar).
+- Cada navegador/aparelho tem seus próprios dados. Para mudar de aparelho ou fazer cópia de segurança, use **Mais → Backup** (exportar e restaurar). Cada app (estudo e questões) tem o seu backup.
 - Limpar os dados do site apaga o progresso. Faça backup de vez em quando.
 
 ## Instalar como atalho
-Abra o endereço no Chrome ou Edge e use **Instalar app** (ícone na barra de endereço). Ele ganha ícone próprio e abre em janela, inclusive offline.
+Abra o endereço no Chrome ou Edge e use **Instalar app** (ícone na barra de endereço). Ele ganha ícone próprio e abre em janela, inclusive offline. O app de questões (`/questoes/`) é instalado separadamente, com ícone verde.
+
+## Questões (`questoes/`)
+App de questões com revisão espaçada, no mesmo site e integrado ao app de estudo (mesmos dados do navegador).
+
+- **Fila do dia:** revisões vencidas (as erradas primeiro) e, depois, questões novas das duas matérias do dia, até a meta (30 por padrão, ajustável).
+- **Revisão:** acertou, a questão avança um degrau e volta em 3, 7, 15, 30, 60 e 120 dias; errou, volta amanhã e a escada recomeça. Não há botão de “fácil/difícil”. Assuntos em que você acerta muito ganham intervalos maiores, e os intervalos respeitam a data da prova (definida na aba Horas do app de estudo).
+- **Liberação:** só aparecem questões de tópicos que você já iniciou no app de estudo, ou que liberou à mão em Banco → Tópicos liberados. Estudar a Lei 8.112 em Direito Administrativo libera também o espelho dela em Legislação.
+- **Nível automático:** básico, intermediário e avançado, por disciplina, conforme seu acerto.
+- **Integração:** cada resposta entra no Painel do app de estudo como sessão “Questões” (uma por dia e por tópico). Essas sessões não consomem a cota diária de assuntos.
+- **Treino livre:** filtros por disciplina, assunto, nível, situação (não resolvidas, erradas, vencidas, marcadas) e origem.
+- **Importar questões:** Banco → Importar questões. Cole no modelo abaixo (ou um JSON) e confira a disciplina e o tópico do edital de cada uma. O app não consulta nenhum site: você copia o que quiser guardar.
+
+```
+Disciplina: Noções de Direito Constitucional
+Assunto: Direitos individuais e coletivos
+Nível: 2
+Enunciado: Texto da questão.
+A) primeira alternativa
+B) segunda alternativa
+C) terceira alternativa
+D) quarta alternativa
+E) quinta alternativa
+Gabarito: C
+Comentário: explicação opcional
+Fonte: opcional
+---
+Disciplina: Língua Portuguesa
+Enunciado: Questão de Certo ou Errado, sem alternativas.
+Gabarito: Certo
+```
+
+### Banco de questões do app
+As questões originais ficam em `questoes/bancos/*.json` (listadas em `questoes/bancos/index.json`). Cada uma tem:
+`id`, `t` (id do tópico do edital, como `t042`), `n` (nível 1 a 3), `e` (enunciado), `x` (texto-base, opcional), `a` (5 alternativas), `g` (índice da correta, começando em 0), `c` (comentário, com `{A}` a `{E}` no lugar das letras, porque as alternativas são embaralhadas na tela), `b` (dica de base legal, opcional), `v` (1 = texto legal conferido em fonte oficial, 0 = não conferido) e `fx` (1 = não embaralhar).
+
+As questões foram escritas especificamente para este estudo e podem conter erros. Use ⚑ para marcar uma suspeita e confira sempre o texto da lei.
 
 ## Simulados
 Coloque arquivos `.json` em `simulados/` e liste os nomes em `simulados/index.json` (`{"arquivos":["sim01.json"]}`).
