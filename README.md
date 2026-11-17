@@ -43,14 +43,16 @@ Gabarito: Certo
 
 ### Banco de questões do app
 As questões originais ficam em `questoes/bancos/*.json` (listadas em `questoes/bancos/index.json`). Cada uma tem:
-`id`, `t` (id do tópico do edital, como `t042`), `n` (nível 1 a 3), `e` (enunciado), `x` (texto-base, opcional), `a` (5 alternativas), `g` (índice da correta, começando em 0), `c` (comentário, com `{A}` a `{E}` no lugar das letras, porque as alternativas são embaralhadas na tela), `b` (dica de base legal, opcional), `v` (1 = texto legal conferido em fonte oficial, 0 = não conferido), `src` (origem: tema recorrente nas provas anteriores que inspirou a questão, opcional) e `fx` (1 = não embaralhar).
+`id`, `t` (id do tópico do edital, como `t042`), `n` (nível 1 a 3), `e` (enunciado), `x` (texto-base, opcional), `a` (5 alternativas), `g` (índice da correta, começando em 0), `c` (comentário, com `{A}` a `{E}` no lugar das letras, porque as alternativas são embaralhadas na tela), `b` (dica de base legal, opcional), `v` (1 = texto legal conferido em cópia do texto da lei, 0 = não conferido), `src` (origem: tema recorrente nas provas anteriores que inspirou a questão, opcional) e `fx` (1 = não embaralhar).
 
 As questões foram escritas especificamente para este estudo e podem conter erros. Use ⚑ para marcar uma suspeita e confira sempre o texto da lei.
 
 #### Lote 1 e lote 2
 - **Lote 1** (`lp`, `info`, `cf`, `adm`, `leg`, `dt`, `dpt`): 88 questões escritas a partir do Anexo II do Edital 01/2022.
 - **Lote 2** (`lote2.json`): 205 questões originais, escritas depois de ler provas de Técnico Judiciário – Área Administrativa de TRTs (2020 em diante) e de abrir os editais recentes. Cada prova foi tratada como um mapa de temas: as questões **não copiam** enunciados nem alternativas de prova; o campo `src` registra o tema recorrente e as provas em que ele apareceu (por exemplo, "FCC 2022: TRT5, TRT9…"). Quando o tema veio de uma lista de temas sem a questão exata, o `src` diz isso.
-- Nas questões jurídicas do lote 2, `v: 0` significa que o artigo e a versão da lei estão indicados em `b`, mas o texto não foi conferido em fonte oficial nesta rodada. Confirme no texto da lei antes de decorar. As que forem conferidas passam a `v: 1`.
+- Nas questões jurídicas do lote 2, `v: 1` significa que o artigo foi conferido em 17/11/2026 em cópia do texto da lei (a data e a lei conferida aparecem no fim da base legal, em `b`). O site do Planalto não abriu para a ferramenta que usei, então a conferência foi feita em cópias do texto da lei hospedadas em outros sites (CGU, Senado, órgãos públicos e sites de terceiros que reproduzem o texto do Planalto); para súmulas e temas, no enunciado publicado em sites do STF, do STJ e jurídicos. Não é a conferência no Planalto: na dúvida, abra o texto oficial.
+- `v: 0` significa que o artigo e a versão da lei estão indicados em `b`, mas o texto não foi conferido nesta rodada. Confirme no texto da lei antes de decorar.
+- CLT: a conferência usou o texto original das Leis 13.467/2017 (reforma trabalhista) e 14.442/2022 (teletrabalho). Os artigos que esses textos não reproduzem (férias, adicionais, rescisão, prescrição de menores, boa parte do processo) continuam com `v: 0`, e eventuais alterações da CLT posteriores a essas leis não foram pesquisadas. Os artigos da Constituição sobre a Justiça do Trabalho (art. 114) também seguem sem conferência.
 - Limites: não encontrei o PDF da prova do cargo em todos os 24 TRTs (o levantamento, com as lacunas, está no documento "Provas e editais dos TRTs (2020–2026)"). Quando a lista de temas veio de resumo da prova, e não do PDF lido por inteiro, os temas por prova são aproximados.
 
 ## Simulados

@@ -233,7 +233,7 @@ function renderSolve(){const R=S.run,ov=$('#ov');if(!R){ov.innerHTML='';return}
     h+=`<div class="fb ${A.ok?'ok':'er'}">${A.ok?'Você acertou! ✓':'Você errou. Gabarito: '+gl}<div class="sub">${esc(msg)}</div></div>
     <div class="sim-com"><b>Comentário</b>\n${qTxt(q,inv)}</div>
     ${q.b?`<div class="sub" style="margin-top:8px">${fmt(q.b)}</div>`:''}
-    ${q.v===1?`<div class="sub" style="margin-top:6px;color:var(--ok)">✓ Texto legal conferido em fonte oficial.</div>`:q.v===0?`<div class="warn">⚠ Base legal escrita sem conferência no texto oficial nesta rodada. Confirme no texto da lei antes de decorar.</div>`:''}
+    ${q.v===1?`<div class="sub" style="margin-top:6px;color:var(--ok)">✓ Texto legal conferido em cópia do texto da lei (data e fonte na base legal acima).</div>`:q.v===0?`<div class="warn">⚠ Base legal escrita sem conferência no texto oficial nesta rodada. Confirme no texto da lei antes de decorar.</div>`:''}
     ${q.src?`<div class="sub" style="margin-top:6px">Fonte: ${esc(q.src)}</div>`:''}
     <label>Anotação sua (opcional)</label><textarea onchange="saveNota('${q.id}',this.value)" placeholder="Ex.: pegadinha, artigo para decorar…">${esc(D.nota[q.id]||'')}</textarea>
     <div class="row wr" style="margin-top:12px"><button class="btn s ${D.flag[q.id]?'d':''}" onclick="toggleFlag('${q.id}')">${D.flag[q.id]?'⚑ Problema marcado':'⚑ Marcar problema'}</button></div>
@@ -438,7 +438,7 @@ function vMais(){const c=cfg(),fl=Object.keys(D.flag).length,pr=provaDay(),lk=Ob
   <h2>Backup</h2><div class="card"><div class="row wr"><button class="btn p grow" onclick="expBackup()">Baixar backup</button><label class="btn grow" style="margin:0;text-align:center;color:var(--ink)">Restaurar backup<input type="file" accept="application/json,.json" hidden onchange="impBackup(this)"></label></div>
   <div class="sub" style="margin-top:8px">Guarda respostas, calendário de revisão, anotações e questões importadas. Os dados do app de estudo têm backup próprio. Faça um por semana.</div></div>
   <h2>Qualidade das questões</h2><div class="card"><div class="sub">As questões do app são originais, escritas para este estudo, e podem ter erros. Use ⚑ para marcar uma questão suspeita. Há ${fl} marcada${fl===1?'':'s'}.</div>${fl?`<button class="btn s" style="margin-top:8px" onclick="copyFlags()">Copiar lista das marcadas</button>`:''}
-  <div class="sub" style="margin-top:8px">A base legal vem com aviso quando não foi conferida em fonte oficial. Confirme sempre no texto da lei.</div></div>
+  <div class="sub" style="margin-top:8px">A base legal vem com aviso quando o artigo não foi conferido no texto da lei, e com um selo quando foi. Confirme sempre no texto da lei.</div></div>
   <div class="sub" style="margin:16px 0 6px">Questões TRT3 Técnico · versão 1</div>`}
 function setC(k,v){if(k==='meta'||k==='novasMin'||k==='maxRev'){v=Math.max(0,Math.round(+v)||0);if(k!=='novasMin'&&v<5)v=5}D.cfg[k]=v;save();render()}
 function setLad(v){if(v==='x')return;D.cfg.lad=LADS[v];save();render()}
