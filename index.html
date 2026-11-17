@@ -1,0 +1,844 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#1565c0"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icons/icon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="icons/icon-192.png">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px)}*{box-sizing:border-box}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Revisão TRT3 Técnico</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Schibsted+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef6f4;--card:#fff;--ink:#112a3a;--mut:#58707f;--line:#d3e4e2;--acc:#1565c0;--acc-ink:#fff;--alta:#d6403a;--media:#d98a14;--ok:#12905a;--neu:#8497a3;--soft:#e1f0fa;--shadow:0 1px 2px rgba(10,40,50,.07)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0c1a22;--card:#13262f;--ink:#e5f1f3;--mut:#93aab5;--line:#233f4b;--acc:#5aa9ff;--acc-ink:#07131c;--alta:#ff6b63;--media:#f0a63a;--ok:#3ccf8e;--neu:#7a919d;--soft:#193446;--shadow:none}}
+:root[data-theme="dark"]{--bg:#0c1a22;--card:#13262f;--ink:#e5f1f3;--mut:#93aab5;--line:#233f4b;--acc:#5aa9ff;--acc-ink:#07131c;--alta:#ff6b63;--media:#f0a63a;--ok:#3ccf8e;--neu:#7a919d;--soft:#193446;--shadow:none}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 'IBM Plex Sans',system-ui,sans-serif;font-variant-numeric:tabular-nums;padding-bottom:calc(76px + env(safe-area-inset-bottom))}
+.wrap{max-width:680px;margin:0 auto;padding:max(16px,env(safe-area-inset-top)) max(16px,env(safe-area-inset-right)) 16px max(16px,env(safe-area-inset-left))}
+h1,h2,h3{font-family:'Schibsted Grotesk',sans-serif;margin:0;letter-spacing:-.01em}
+h1{font-size:26px;font-weight:800}h2{font-size:17px;font-weight:700;margin:22px 0 10px}
+.sub{color:var(--mut);font-size:13px;margin-top:2px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:13px 14px;margin-bottom:10px;box-shadow:var(--shadow)}
+.row{display:flex;gap:10px;align-items:center}.sp{justify-content:space-between}.grow{flex:1;min-width:0}
+.tag{font-size:11.5px;font-weight:600;color:var(--mut);text-transform:uppercase;letter-spacing:.04em}
+.ttl{font-family:'Schibsted Grotesk',sans-serif;font-weight:700;font-size:16.5px;line-height:1.25;margin:2px 0}
+.badge{display:inline-block;font-size:11.5px;font-weight:600;padding:2px 8px;border-radius:99px;border:1px solid currentColor;white-space:nowrap}
+.b-alta{color:var(--alta)}.b-media{color:var(--media)}.b-ok{color:var(--ok)}.b-neu{color:var(--neu)}
+.meta{display:flex;flex-wrap:wrap;gap:4px 14px;color:var(--mut);font-size:13px;margin-top:6px}
+.meta b{color:var(--ink);font-weight:600}
+.btn{appearance:none;border:1px solid var(--line);background:var(--card);color:var(--ink);font:600 14px 'IBM Plex Sans',sans-serif;padding:10px 14px;border-radius:10px;cursor:pointer;min-height:42px}
+.btn.p{background:var(--acc);color:var(--acc-ink);border-color:var(--acc)}.btn.s{min-height:34px;padding:6px 12px;font-size:13px}.btn.d{color:var(--alta)}
+.tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.tiles.t3{grid-template-columns:repeat(3,1fr)}
+.tile{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.tile .n{font-family:'Schibsted Grotesk',sans-serif;font-weight:800;font-size:26px;line-height:1.1}.tile.big .n{font-size:30px}
+.tile .l{font-size:11.5px;color:var(--mut);text-transform:uppercase;letter-spacing:.04em;font-weight:600}
+.bar{height:8px;border-radius:99px;background:var(--line);overflow:hidden}.bar i{display:block;height:100%;border-radius:99px}
+label{display:block;font-size:12.5px;font-weight:600;color:var(--mut);margin:12px 0 4px}
+input,select,textarea{width:100%;font:16px 'IBM Plex Sans',sans-serif;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px;min-height:44px}
+input:focus,select:focus,textarea:focus,.btn:focus-visible{outline:2px solid var(--acc);outline-offset:1px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+nav{position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:1px solid var(--line);display:flex;padding:6px max(8px,env(safe-area-inset-right)) calc(6px + env(safe-area-inset-bottom)) max(8px,env(safe-area-inset-left));z-index:5}
+nav button{flex:1;appearance:none;border:0;background:none;color:var(--mut);font:600 11.5px 'IBM Plex Sans',sans-serif;padding:6px 2px;display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer;min-height:48px;border-radius:10px}
+nav button svg{width:22px;height:22px}nav button.on{color:var(--acc)}
+.pv{background:var(--soft);border-radius:12px;padding:12px 14px;margin-top:14px}
+.pv .big{font-family:'Schibsted Grotesk',sans-serif;font-size:28px;font-weight:800}
+table{width:100%;border-collapse:collapse;font-size:14px}th{font-size:11.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--mut);text-align:right;padding:6px 4px;font-weight:600}th:first-child,td:first-child{text-align:left}
+td{padding:9px 4px;border-top:1px solid var(--line);text-align:right}td:first-child{font-weight:500}
+.sheet{position:fixed;inset:0;background:rgba(10,14,24,.5);z-index:10;display:flex;align-items:flex-end;justify-content:center}
+.sheet>div{background:var(--bg);width:100%;max-width:680px;max-height:92vh;overflow:auto;border-radius:18px 18px 0 0;padding:16px max(16px,env(safe-area-inset-right)) calc(20px + env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left))}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(88px + env(safe-area-inset-bottom));background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:99px;font-size:14px;z-index:20;max-width:90vw}
+.hist{font-size:13px;border-top:1px solid var(--line);padding:7px 0}
+.empty{color:var(--mut);text-align:center;padding:26px 8px}
+.msg{background:var(--soft);border-radius:12px;padding:14px;margin:12px 0}
+.cic-next{border-color:var(--acc);box-shadow:0 0 0 1px var(--acc) inset}
+.cic-venc{margin-top:12px;padding-top:8px;border-top:1px solid var(--line)}
+.cic-hint{margin-top:6px;font-size:12.5px;font-weight:600;color:var(--acc)}
+.cic-fontes{margin-top:8px;font-size:13.5px;display:grid;gap:3px}
+.cic-modo{margin-top:8px;font-size:13px;color:var(--acc);font-weight:600}
+.cic-seq{display:flex;flex-wrap:wrap;gap:5px}
+.cic-chip{font-size:11.5px;font-weight:600;padding:3px 7px;border-radius:7px;border:1px solid var(--line);color:var(--mut);background:var(--card)}
+.cic-chip.ok{background:var(--ok);border-color:var(--ok);color:var(--card)}
+.cic-chip.cur{border-color:var(--acc);color:var(--acc);box-shadow:0 0 0 1px var(--acc) inset}
+.cic-dot{width:12px;height:12px;border-radius:50%;border:1.5px solid var(--line);display:inline-block}
+.cic-dot.ok{background:var(--ok);border-color:var(--ok)}
+.cic-bars{display:flex;align-items:flex-end;gap:6px;height:120px;padding-bottom:22px}
+.cic-bar{flex:1;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;position:relative;min-width:0}
+.cic-bar i{display:block;width:100%;max-width:26px;border-radius:5px 5px 0 0}
+.cic-bar span{position:absolute;bottom:-19px;font-size:11px;color:var(--mut)}
+nav button{font-size:9.5px;padding:6px 0}
+.sim-bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:4;background:var(--bg);padding:8px 0 10px;margin-bottom:6px;border-bottom:1px solid var(--line)}
+.sim-timer{font-family:'Schibsted Grotesk',sans-serif;font-weight:800;font-size:20px}
+.sim-enun{white-space:pre-wrap;margin-top:8px;font-size:15.5px;line-height:1.5}
+.sim-alts{display:grid;gap:8px;margin-top:12px}
+.sim-alt{appearance:none;display:flex;gap:10px;align-items:flex-start;text-align:left;width:100%;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:10px 12px;font:15px/1.4 'IBM Plex Sans',sans-serif;cursor:pointer}
+.sim-alt.on{border-color:var(--acc);background:var(--soft);box-shadow:0 0 0 1px var(--acc) inset}
+.sim-alt.ro{cursor:default}.sim-alt.gab{border-color:var(--ok);box-shadow:0 0 0 1px var(--ok) inset}.sim-alt.err{border-color:var(--alta);box-shadow:0 0 0 1px var(--alta) inset}
+.sim-l{font-weight:700;min-width:18px}
+.sim-grid{display:grid;grid-template-columns:repeat(10,1fr);gap:4px}
+.sim-n{appearance:none;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:7px;font:600 12px 'IBM Plex Sans',sans-serif;padding:6px 0;cursor:pointer;min-width:0}
+.sim-n.ok{background:var(--acc);border-color:var(--acc);color:var(--acc-ink)}.sim-n.mk{box-shadow:0 0 0 2px var(--media) inset}.sim-n.cur{outline:2px solid var(--ink);outline-offset:1px}
+.sim-tx{margin-top:10px;border:1px solid var(--line);border-radius:10px;padding:8px 12px;background:var(--bg)}
+.sim-tx summary{cursor:pointer;font-weight:600}.sim-corpo{white-space:pre-wrap;margin-top:8px;line-height:1.55}
+.sim-com{background:var(--soft);border-radius:10px;padding:10px 12px;margin-top:10px;font-size:14px;line-height:1.5}
+.btn[disabled]{opacity:.45}
+</style>
+<div class="wrap" id="app"><div class="empty">Carregando…</div></div>
+<nav id="nav"></nav><div id="ov"></div><div id="toast"></div>
+<script>
+/* ===== MOTOR (mesmas regras da planilha) ===== */
+const DAY = 864e5;
+function dn(iso){ if(!iso) return null; const p=iso.split('-'); return Math.floor(Date.UTC(+p[0],+p[1]-1,+p[2])/DAY); }
+function iso(n){ const d=new Date(n*DAY); return d.getUTCFullYear()+'-'+String(d.getUTCMonth()+1).padStart(2,'0')+'-'+String(d.getUTCDate()).padStart(2,'0'); }
+function todayNum(){ const t=new Date(); return Math.floor(Date.UTC(t.getFullYear(),t.getMonth(),t.getDate())/DAY); }
+function keyOf(m,a,s){ return ((m||'')+'|'+(a||'')+'|'+(s||'')).toLowerCase().replace(/\s+/g,' ').trim(); }
+const DEFAULT_CFG = {limite:4,minAmostra:5,minLadder:3,altaPct:0.7,consPct:0.85,janela:7,escada:[1,7,30],degExtra:0,fAcAlto:1,fAcMed:1,fAcBaixo:1,fPeso5:1,fPeso4:1,fPeso3:1,fPeso12:1,pctZera:0.5,pctAlto:0.9,pctMed:0.8,dataPadrao:'2026-11-13',wRecente:0.6,prior:0.3,forca:10,qtdEq:5,satErro:0.5,horizonte:30,atrasoSat:14,urgVenc:0.85,ptsErro:50,ptsUrg:35,ptsPeso:15,minSubir:0.7,ativosFrente:true,pesosV2:1};
+
+/* escada adaptativa: degraus 1-3-7-14-30 (+60) ajustados pelo acerto e pelo peso.
+   - ponto de partida: o histórico do cadastro (questões anteriores ao app) já posiciona o assunto num degrau;
+   - revisão boa sobe um degrau; ruim desce dois; abaixo de pctZera volta ao início;
+   - amostra pequena mantém o degrau, mas soma com as próximas sessões até chegar ao mínimo de questões;
+   - degrau extra só para acerto alto (>= pctAlto) em assunto de peso até 3. */
+function fPeso(peso,cfg){peso=+peso||3;return peso>=5?cfg.fPeso5:peso>=4?cfg.fPeso4:peso>=3?cfg.fPeso3:cfg.fPeso12}
+function fAc(pct,cfg){return pct>=cfg.pctAlto?cfg.fAcAlto:pct>=cfg.pctMed?cfg.fAcMed:cfg.fAcBaixo}
+function degInicial(hist,cfg){return hist&&hist.v0!=null?+hist.v0:-1}
+function intervalo(V,pct,conf,peso,cfg){const E=cfg.escada,top=E.length-1;const base=V>top?cfg.degExtra:E[Math.max(0,Math.min(V,top))];
+  return Math.max(1,Math.round(base*fPeso(peso,cfg)*(conf&&pct!=null?fAc(pct,cfg):1)))}
+function ladder(list, cfg, peso, hist){
+  const top=cfg.escada.length-1; let V=Math.min(degInicial(hist,cfg),top), bq=0, ba=0;
+  return list.map(s=>{
+    const q=+s.q||0, pct=q>0?(+s.ac||0)/q:0;
+    bq+=q; ba+=+s.ac||0;                       /* soma as amostras pequenas até atingir o mínimo */
+    const conf=bq>=(cfg.minLadder||cfg.minAmostra), pp=bq>0?ba/bq:0;
+    const boa=conf&&pp>=cfg.minSubir, ruim=conf&&pp<cfg.minSubir;
+    if(boa){ V+=1; const max=(cfg.degExtra>0&&pp>=cfg.pctAlto&&(+peso||3)<=3)?top+1:top; V=Math.min(V,max); }
+    else if(ruim) V=pp<cfg.pctZera?0:Math.max(0,V-2);
+    let interval=intervalo(V,pp,conf,peso,cfg);
+    if(conf){bq=0;ba=0}
+    return Object.assign({},s,{pct,boa,ruim,V,interval,next:dn(s.d)+interval});
+  });
+}
+function stOf(it,U){const ck=it.ck||[];if(it.st==='conc'||(ck.length===4&&ck.every(Boolean)))return 'conc';if(it.st==='nao'&&!U)return 'nao';if(it.st==='est'||ck.some(Boolean)||U>0||it.d0)return 'est';return 'nao'}
+function sortSess(a,b){ return dn(a.d)-dn(b.d) || (a.n||0)-(b.n||0); }
+function round1(x){ return Math.round(x*10)/10; }
+
+function compute(items, sessions, cfg, today){
+  const byKey=new Map();
+  for(const s of sessions){ const k=keyOf(s.m,s.a,s.s); if(!byKey.has(k)) byKey.set(k,[]); byKey.get(k).push(s); }
+  const known=new Set(items.map(i=>keyOf(i.m,i.a,i.s)));
+  const orphan=sessions.filter(s=>!known.has(keyOf(s.m,s.a,s.s)));
+  const rows=items.map((it,idx)=>{
+    const k=keyOf(it.m,it.a,it.s);
+    const X0=+it.q0||0, hist={q:X0>0?X0:(it.p0!=null?cfg.minAmostra:0),p:X0>0?(+it.a0||0)/X0:(it.p0==null?null:+it.p0),v0:it.v0};
+    const sess=ladder((byKey.get(k)||[]).slice().sort(sortSess),cfg,it.peso,hist);
+    const U=sess.length, last=U?sess[U-1]:null, first=U?sess[0]:null;
+    const qSes=sess.reduce((t,s)=>t+(+s.q||0),0), aSes=sess.reduce((t,s)=>t+(+s.ac||0),0);
+    const X=+it.q0||0, Y=+it.a0||0;
+    const qTot=qSes+X, aTot=aSes+Y;
+    const pInf=(it.p0==null)?null:+it.p0;
+    const pHist=qTot>0?aTot/qTot:pInf;
+    const AA=(X+qSes===0 && pInf!=null)?1:0;
+    let M=null; if(U) M=dn(last.d); else if(it.d0) M=dn(it.d0); else if(X>0||AA) M=dn(cfg.dataPadrao);
+    const N=U?last.interval:(M!=null?intervalo(degInicial(hist,cfg),hist.p,hist.q>=cfg.minAmostra,it.peso,cfg):null);
+    const AS=(!U&&it.rev0)?dn(it.rev0):((M!=null&&N!=null)?M+N:null);
+    let AB=null, AC=null;
+    if(U){AB=last.q;AC=last.ac;} else if(X>0){AB=X;AC=Y;}
+    let AD=null; if(AB!=null&&AB>0) AD=AC/AB; else if(AA) AD=pInf;
+    const conf=(AB!=null&&AB>=cfg.minAmostra);
+    let pri='';
+    if(AD!=null){ pri=AA?'⚪ QTD DESCONHECIDA':!conf?'⚪ AMOSTRA PEQUENA':AD<cfg.altaPct?'🔴 ALTA':AD<cfg.consPct?'🟠 MÉDIA':'🟢 CONSOLIDADO'; }
+    const peso=it.peso||3;
+    const ABe=(AB==null||AB===0)?cfg.qtdEq:AB;
+    let AG=null; if(AD==null){ if(AS!=null) AG=cfg.prior; } else AG=(ABe*(1-AD)+cfg.forca*cfg.prior)/(ABe+cfg.forca);
+    let AH=null; if(pHist!=null){ const Ee=qTot>0?qTot:cfg.qtdEq; AH=(Ee*(1-pHist)+cfg.forca*cfg.prior)/(Ee+cfg.forca); }
+    const AI=AG==null?null:Math.min(1,(cfg.wRecente*AG+(1-cfg.wRecente)*(AH==null?AG:AH))/cfg.satErro);
+    const AT=AS==null?null:AS-today;
+    const AJ=AT==null?0:(AT<=0?cfg.urgVenc+(1-cfg.urgVenc)*Math.min(1,-AT/cfg.atrasoSat):Math.max(0,cfg.urgVenc*(1-AT/cfg.horizonte)));
+    const idxP=AI==null?null:round1(cfg.ptsErro*AI+cfg.ptsUrg*AJ+cfg.ptsPeso*peso/5);
+    const variacao=(U>=2&&conf!=null&&last&&first)?(last.pct-first.pct):null;
+    return {it,idx,key:k,sess,U,last,first,qTot,aTot,pHist,AA,M,N,AS,AB,AC,AD,conf,pri,peso,idxP,AT,st:stOf(it,U),ativo:(U>0||!!it.d0),variacao,plan:null};
+  });
+  /* nivelamento: no máximo N assuntos por dia; ativos primeiro, estoque preenche as vagas */
+  const doneKeys=new Set(sessions.filter(s=>dn(s.d)===today).map(s=>keyOf(s.m,s.a,s.s)));
+  const doneToday=doneKeys.size;
+  const cap=new Map(); const capOf=d=>cap.has(d)?cap.get(d):Math.max(0,cfg.limite-(d===today?doneToday:0));
+  const take=(r,from)=>{ let d=from; while(capOf(d)<=0) d++; cap.set(d,capOf(d)-1); r.plan=d; };
+  const cand=rows.filter(r=>r.AS!=null&&!doneKeys.has(r.key));
+  const ativos=cfg.ativosFrente?cand.filter(r=>r.ativo):cand;
+  const estoque=cfg.ativosFrente?cand.filter(r=>!r.ativo):[];
+  ativos.sort((a,b)=>(Math.max(today,a.AS)-Math.max(today,b.AS))||((b.idxP||0)-(a.idxP||0))||(a.idx-b.idx));
+  for(const r of ativos) take(r,Math.max(today,r.AS));
+  estoque.sort((a,b)=>((b.idxP||0)-(a.idxP||0))||(a.idx-b.idx));
+  for(const r of estoque) take(r,today);
+  const byDay=new Map();
+  for(const r of rows) if(r.plan!=null){ if(!byDay.has(r.plan)) byDay.set(r.plan,[]); byDay.get(r.plan).push(r); }
+  for(const l of byDay.values()) l.sort((a,b)=>((b.idxP||0)-(a.idxP||0))||(a.idx-b.idx));
+  return {rows,byDay,doneToday,orphan,today};
+}
+
+function painel(model, sessions, cfg){
+  const {rows,byDay,today}=model;
+  const mats=[...new Set(rows.map(r=>r.it.m))];
+  const per=mats.map(m=>{
+    const rs=rows.filter(r=>r.it.m===m);
+    const q=rs.reduce((t,r)=>t+r.qTot,0), a=rs.reduce((t,r)=>t+r.aTot,0);
+    const hoje=(byDay.get(today)||[]).filter(r=>r.it.m===m).length;
+    return {m,q,a,e:q-a,pct:q>0?a/q:null,alta:rs.filter(r=>r.pri.startsWith('🔴')).length,hoje,n:rs.length,est:rs.filter(r=>r.st==='est').length,conc:rs.filter(r=>r.st==='conc').length};
+  });
+  const tq=per.reduce((t,p)=>t+p.q,0), ta=per.reduce((t,p)=>t+p.a,0);
+  const win=(from,to)=>{ let q=0,a=0; for(const s of sessions){ const d=dn(s.d); if(d>=from&&d<=to){q+=+s.q||0;a+=+s.ac||0;} } return q>0?a/q:null; };
+  const p30=win(today-29,today), p60=win(today-59,today-30);
+  const multi=rows.filter(r=>r.variacao!=null);
+  const up=multi.filter(r=>r.variacao>0.00001).length, down=multi.filter(r=>r.variacao<-0.00001).length;
+  const media=multi.length?multi.reduce((t,r)=>t+r.variacao,0)/multi.length*100:null;
+  const count=f=>rows.filter(f).length;
+  const kpi={
+    materias:mats.length, assuntos:rows.length, hoje:(byDay.get(today)||[]).length,
+    atrasados:count(r=>r.ativo&&r.AT!=null&&r.AT<0),
+    prox:[...byDay.entries()].filter(([d])=>d>today&&d<=today+cfg.janela).reduce((t,[,l])=>t+l.length,0),
+    alta:count(r=>r.pri.startsWith('🔴')),media:count(r=>r.pri.startsWith('🟠')),cons:count(r=>r.pri.startsWith('🟢')),
+    peq:count(r=>r.pri.startsWith('⚪')),sem:count(r=>!r.pri),est:count(r=>r.st==='est'),conc:count(r=>r.st==='conc'),nao:count(r=>r.st==='nao'),rev:count(r=>r.ativo&&r.AT!=null&&r.AT<=0)
+  };
+  const fracos=rows.filter(r=>r.pHist!=null&&r.qTot>=cfg.minAmostra).sort((x,y)=>x.pHist-y.pHist||x.idx-y.idx).slice(0,20);
+  const dia=d=>{ let q=0,a=0; for(const s of sessions){ if(dn(s.d)===d){q+=+s.q||0;a+=+s.ac||0;} } return {d,q,a,pct:q>0?a/q:null}; };
+  const hojeQ=dia(today), sem7=[]; for(let i=6;i>=0;i--) sem7.push(dia(today-i));
+  return {hojeQ,sem7,per,tq,ta,te:tq-ta,pctGeral:tq>0?ta/tq:null,p30,p60,up,down,estavel:multi.length-up-down,nMulti:multi.length,media,kpi,fracos};
+}
+
+const $=s=>document.querySelector(s);
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const pc=(x,d=1)=>x==null?'—':(x*100).toFixed(d).replace('.',',')+'%';
+const fd=n=>{if(n==null)return '—';const s=iso(n).split('-');return s[2]+'/'+s[1]};
+const fdi=i=>{if(!i)return '—';const s=i.split('-');return s[2]+'/'+s[1]+'/'+s[0]};
+const WD=['dom','seg','ter','qua','qui','sex','sáb'];
+const S={items:[],ses:[],cfg:{...DEFAULT_CFG},ready:false,tab:'hoje',db:null,err:null,reg:{},q:'',fm:'',fp:'',sel:null,hf:'hoje',hn:30,hq:'',ld:{a:false,s:false,c:false},ciclo:null,cic:[],flash:{},cm:null,cicAlt:{},sims:[],tents:[],simRun:null,simCq:null};
+let M=null,P=null;
+const T=()=>todayNum();
+function recalc(){ if(!S.ready)return; M=compute(S.items,S.ses,S.cfg,T()); P=painel(M,S.ses,S.cfg); }
+const priCls=p=>p.startsWith('🔴')?'b-alta':p.startsWith('🟠')?'b-media':p.startsWith('🟢')?'b-ok':'b-neu';
+const priTxt=p=>{if(!p)return 'sem dados';const x=p.replace(/^\S+\s/,'').trim();return ({'ALTA':'Fraco','MÉDIA':'Regular','CONSOLIDADO':'Consolidado'})[x]||x};
+const badge=r=>`<span class="badge ${priCls(r.pri)}">${esc(priTxt(r.pri).toLowerCase())}</span>`;
+function toast(t){const e=$('#toast');e.innerHTML=`<div class="toast">${esc(t)}</div>`;clearTimeout(toast.t);toast.t=setTimeout(()=>e.innerHTML='',2400)}
+
+/* ---------- banco local (localStorage) — substitui o banco do Claude ---------- */
+const SEED={"items":[{"id":"t001","m":"Língua Portuguesa","a":"Interpretação e textualidade","s":"Informações literais","peso":5,"pr":"Alta"},{"id":"t002","m":"Língua Portuguesa","a":"Interpretação e textualidade","s":"Inferências","peso":5,"pr":"Alta"},{"id":"t003","m":"Língua Portuguesa","a":"Interpretação e textualidade","s":"Expressões referenciais","peso":5,"pr":"Alta"},{"id":"t004","m":"Língua Portuguesa","a":"Interpretação e textualidade","s":"Nexos e operadores sequenciais","peso":5,"pr":"Alta"},{"id":"t005","m":"Língua Portuguesa","a":"Interpretação e textualidade","s":"Coerência e coesão","peso":5,"pr":"Alta"},{"id":"t006","m":"Língua Portuguesa","a":"Interpretação e textualidade","s":"Significação contextual","peso":5,"pr":"Alta"},{"id":"t007","m":"Língua Portuguesa","a":"Norma-padrão","s":"Crase","peso":5,"pr":"Alta"},{"id":"t008","m":"Língua Portuguesa","a":"Norma-padrão","s":"Tempos e modos verbais","peso":5,"pr":"Alta"},{"id":"t009","m":"Língua Portuguesa","a":"Norma-padrão","s":"Pronomes (emprego e colocação)","peso":5,"pr":"Alta"},{"id":"t010","m":"Língua Portuguesa","a":"Norma-padrão","s":"Regência","peso":5,"pr":"Alta"},{"id":"t011","m":"Língua Portuguesa","a":"Norma-padrão","s":"Concordância","peso":5,"pr":"Alta"},{"id":"t012","m":"Língua Portuguesa","a":"Norma-padrão","s":"Pontuação","peso":5,"pr":"Alta"},{"id":"t013","m":"Língua Portuguesa","a":"Linguística","s":"Variação linguística","peso":5,"pr":"Alta"},{"id":"t014","m":"Língua Portuguesa","a":"Linguística","s":"Norma linguística","peso":5,"pr":"Alta"},{"id":"t015","m":"Noções de Informática","a":"Sistemas e arquivos","s":"LibreOffice: arquivos/pastas e configurações","peso":3,"pr":"Alta","chg":"Confira a versão do LibreOffice citada no edital novo."},{"id":"t016","m":"Noções de Informática","a":"Sistemas e arquivos","s":"Windows 10: arquivos e pastas","peso":3,"pr":"Alta","chg":"Windows 10 saiu de suporte em 14/10/2025; edital novo pode cobrar Windows 11. Estude o 10 e compare com o 11."},{"id":"t017","m":"Noções de Informática","a":"Sistemas e arquivos","s":"Windows 10: configurações e permissões","peso":3,"pr":"Alta","chg":"Windows 10 saiu de suporte em 14/10/2025; edital novo pode cobrar Windows 11. Estude o 10 e compare com o 11."},{"id":"t018","m":"Noções de Informática","a":"Word 2016","s":"Estrutura e modelos","peso":3,"pr":"Alta","chg":"Office 2016 saiu de suporte em 14/10/2025; edital novo pode citar 2019, 2021 ou Microsoft 365. Confira a versão no edital."},{"id":"t019","m":"Noções de Informática","a":"Word 2016","s":"Edição e formatação","peso":3,"pr":"Alta","chg":"Office 2016 saiu de suporte em 14/10/2025; edital novo pode citar 2019, 2021 ou Microsoft 365. Confira a versão no edital."},{"id":"t020","m":"Noções de Informática","a":"Word 2016","s":"Marcadores, tabelas e colunas","peso":3,"pr":"Alta","chg":"Office 2016 saiu de suporte em 14/10/2025; edital novo pode citar 2019, 2021 ou Microsoft 365. Confira a versão no edital."},{"id":"t021","m":"Noções de Informática","a":"Word 2016","s":"Configuração de página e impressão","peso":3,"pr":"Alta","chg":"Office 2016 saiu de suporte em 14/10/2025; edital novo pode citar 2019, 2021 ou Microsoft 365. Confira a versão no edital."},{"id":"t022","m":"Noções de Informática","a":"Word 2016","s":"Quebras, numeração, legendas e índices","peso":3,"pr":"Alta","chg":"Office 2016 saiu de suporte em 14/10/2025; edital novo pode citar 2019, 2021 ou Microsoft 365. Confira a versão no edital."},{"id":"t023","m":"Noções de Informática","a":"Word 2016","s":"Objetos, campos e caixas de texto","peso":3,"pr":"Alta","chg":"Office 2016 saiu de suporte em 14/10/2025; edital novo pode citar 2019, 2021 ou Microsoft 365. Confira a versão no edital."},{"id":"t024","m":"Noções de Informática","a":"Word 2016","s":"Desenhos, régua, atalhos e menus","peso":3,"pr":"Alta","chg":"Office 2016 saiu de suporte em 14/10/2025; edital novo pode citar 2019, 2021 ou Microsoft 365. Confira a versão no edital."},{"id":"t025","m":"Noções de Informática","a":"Word 2016","s":"Mala direta e proteção","peso":3,"pr":"Alta","chg":"Office 2016 saiu de suporte em 14/10/2025; edital novo pode citar 2019, 2021 ou Microsoft 365. Confira a versão no edital."},{"id":"t026","m":"Noções de Informática","a":"Excel 2016","s":"Estrutura de planilhas","peso":3,"pr":"Alta","chg":"Office 2016 saiu de suporte em 14/10/2025; edital novo pode citar 2019, 2021 ou Microsoft 365. Confira a versão no edital."},{"id":"t027","m":"Noções de Informática","a":"Excel 2016","s":"Tabelas e gráficos","peso":3,"pr":"Alta","chg":"Office 2016 saiu de suporte em 14/10/2025; edital novo pode citar 2019, 2021 ou Microsoft 365. Confira a versão no edital."},{"id":"t028","m":"Noções de Informática","a":"Excel 2016","s":"Fórmulas, funções e macros","peso":3,"pr":"Alta","chg":"Office 2016 saiu de suporte em 14/10/2025; edital novo pode citar 2019, 2021 ou Microsoft 365. Confira a versão no edital."},{"id":"t029","m":"Noções de Informática","a":"Excel 2016","s":"Impressão e objetos","peso":3,"pr":"Alta","chg":"Office 2016 saiu de suporte em 14/10/2025; edital novo pode citar 2019, 2021 ou Microsoft 365. Confira a versão no edital."},{"id":"t030","m":"Noções de Informática","a":"Excel 2016","s":"Numeração e dados externos","peso":3,"pr":"Alta","chg":"Office 2016 saiu de suporte em 14/10/2025; edital novo pode citar 2019, 2021 ou Microsoft 365. Confira a versão no edital."},{"id":"t031","m":"Noções de Informática","a":"Excel 2016","s":"Classificação, atalhos e menus","peso":3,"pr":"Alta","chg":"Office 2016 saiu de suporte em 14/10/2025; edital novo pode citar 2019, 2021 ou Microsoft 365. Confira a versão no edital."},{"id":"t032","m":"Noções de Informática","a":"Outros (prioridade Média)","s":"PowerPoint 2016: estrutura, modelos, edição e formatação","peso":2,"pr":"Média","chg":"Office 2016 saiu de suporte em 14/10/2025; edital novo pode citar 2019, 2021 ou Microsoft 365. Confira a versão no edital."},{"id":"t033","m":"Noções de Informática","a":"Outros (prioridade Média)","s":"PowerPoint 2016: objetos, animações e transições","peso":2,"pr":"Média","chg":"Office 2016 saiu de suporte em 14/10/2025; edital novo pode citar 2019, 2021 ou Microsoft 365. Confira a versão no edital."},{"id":"t034","m":"Noções de Informática","a":"Outros (prioridade Média)","s":"PowerPoint 2016: apresentação, impressão e atalhos","peso":2,"pr":"Média","chg":"Office 2016 saiu de suporte em 14/10/2025; edital novo pode citar 2019, 2021 ou Microsoft 365. Confira a versão no edital."},{"id":"t035","m":"Noções de Informática","a":"Outros (prioridade Média)","s":"Outlook 2016","peso":2,"pr":"Média","chg":"Office 2016 saiu de suporte em 14/10/2025; edital novo pode citar 2019, 2021 ou Microsoft 365. Confira a versão no edital."},{"id":"t036","m":"Noções de Informática","a":"Outros (prioridade Média)","s":"Chrome 103+","peso":2,"pr":"Média","chg":"A versão 103 é de 2022; o Chrome atual é bem mais novo. Estude recursos e atalhos atuais."},{"id":"t037","m":"Noções de Informática","a":"Outros (prioridade Média)","s":"Segurança: vírus, trojans, malware e worms","peso":2,"pr":"Média"},{"id":"t038","m":"Noções de Informática","a":"Outros (prioridade Média)","s":"Segurança: spyware, phishing, pharming, ransomware e spam","peso":2,"pr":"Média"},{"id":"t039","m":"Noções de Direito Constitucional","a":"Constituição e direitos fundamentais","s":"Conceito de Constituição","peso":3,"pr":"Alta"},{"id":"t040","m":"Noções de Direito Constitucional","a":"Constituição e direitos fundamentais","s":"Aplicabilidade e interpretação","peso":3,"pr":"Alta"},{"id":"t041","m":"Noções de Direito Constitucional","a":"Constituição e direitos fundamentais","s":"Princípios fundamentais","peso":3,"pr":"Alta"},{"id":"t042","m":"Noções de Direito Constitucional","a":"Constituição e direitos fundamentais","s":"Direitos individuais e coletivos","peso":3,"pr":"Alta"},{"id":"t043","m":"Noções de Direito Constitucional","a":"Constituição e direitos fundamentais","s":"Direitos sociais","peso":3,"pr":"Alta"},{"id":"t044","m":"Noções de Direito Constitucional","a":"Constituição e direitos fundamentais","s":"Nacionalidade","peso":3,"pr":"Alta"},{"id":"t045","m":"Noções de Direito Constitucional","a":"Constituição e direitos fundamentais","s":"Direitos políticos","peso":3,"pr":"Alta"},{"id":"t046","m":"Noções de Direito Constitucional","a":"Organização do Estado e Administração Pública","s":"Organização político-administrativa","peso":3,"pr":"Alta","chg":"Confira as emendas constitucionais publicadas depois de 2022."},{"id":"t047","m":"Noções de Direito Constitucional","a":"Organização do Estado e Administração Pública","s":"União, Estados, Municípios, DF e Territórios","peso":3,"pr":"Alta","chg":"Confira as emendas constitucionais publicadas depois de 2022."},{"id":"t048","m":"Noções de Direito Constitucional","a":"Organização do Estado e Administração Pública","s":"Administração Pública (disposições gerais)","peso":3,"pr":"Alta","chg":"Confira as emendas constitucionais publicadas depois de 2022."},{"id":"t049","m":"Noções de Direito Constitucional","a":"Organização do Estado e Administração Pública","s":"Servidores públicos","peso":3,"pr":"Alta","chg":"Confira as emendas constitucionais publicadas depois de 2022."},{"id":"t050","m":"Noções de Direito Constitucional","a":"Poderes e Justiça do Trabalho","s":"Organização dos Poderes","peso":3,"pr":"Alta"},{"id":"t051","m":"Noções de Direito Constitucional","a":"Poderes e Justiça do Trabalho","s":"Congresso Nacional","peso":3,"pr":"Alta"},{"id":"t052","m":"Noções de Direito Constitucional","a":"Poderes e Justiça do Trabalho","s":"Câmara e Senado","peso":3,"pr":"Alta"},{"id":"t053","m":"Noções de Direito Constitucional","a":"Poderes e Justiça do Trabalho","s":"Processo legislativo","peso":3,"pr":"Alta"},{"id":"t054","m":"Noções de Direito Constitucional","a":"Poderes e Justiça do Trabalho","s":"Presidente e Vice-Presidente","peso":3,"pr":"Alta"},{"id":"t055","m":"Noções de Direito Constitucional","a":"Poderes e Justiça do Trabalho","s":"Judiciário (disposições gerais)","peso":3,"pr":"Alta"},{"id":"t056","m":"Noções de Direito Constitucional","a":"Poderes e Justiça do Trabalho","s":"STF","peso":3,"pr":"Alta"},{"id":"t057","m":"Noções de Direito Constitucional","a":"Poderes e Justiça do Trabalho","s":"CNJ","peso":3,"pr":"Alta"},{"id":"t058","m":"Noções de Direito Constitucional","a":"Poderes e Justiça do Trabalho","s":"STJ","peso":3,"pr":"Alta"},{"id":"t059","m":"Noções de Direito Constitucional","a":"Poderes e Justiça do Trabalho","s":"Tribunais e Juízes do Trabalho","peso":3,"pr":"Alta"},{"id":"t060","m":"Noções de Direito Constitucional","a":"Poderes e Justiça do Trabalho","s":"CSJT","peso":3,"pr":"Alta"},{"id":"t061","m":"Noções de Direito Administrativo","a":"Princípios e organização","s":"Princípios básicos","peso":3,"pr":"Alta"},{"id":"t062","m":"Noções de Direito Administrativo","a":"Princípios e organização","s":"Administração direta e indireta","peso":3,"pr":"Alta"},{"id":"t063","m":"Noções de Direito Administrativo","a":"Princípios e organização","s":"Centralização e descentralização","peso":3,"pr":"Alta"},{"id":"t064","m":"Noções de Direito Administrativo","a":"Princípios e organização","s":"Autarquias, fundações, empresas públicas e sociedades de economia mista","peso":3,"pr":"Alta"},{"id":"t065","m":"Noções de Direito Administrativo","a":"Poderes, atos e agentes","s":"Poderes hierárquico e disciplinar","peso":3,"pr":"Alta"},{"id":"t066","m":"Noções de Direito Administrativo","a":"Poderes, atos e agentes","s":"Poderes regulamentar e de polícia","peso":3,"pr":"Alta"},{"id":"t067","m":"Noções de Direito Administrativo","a":"Poderes, atos e agentes","s":"Uso e abuso do poder","peso":3,"pr":"Alta"},{"id":"t068","m":"Noções de Direito Administrativo","a":"Poderes, atos e agentes","s":"Cargo, emprego e função","peso":3,"pr":"Alta"},{"id":"t069","m":"Noções de Direito Administrativo","a":"Poderes, atos e agentes","s":"Ato administrativo: conceito","peso":3,"pr":"Alta"},{"id":"t070","m":"Noções de Direito Administrativo","a":"Poderes, atos e agentes","s":"Ato administrativo: requisitos","peso":3,"pr":"Alta"},{"id":"t071","m":"Noções de Direito Administrativo","a":"Poderes, atos e agentes","s":"Ato administrativo: atributos","peso":3,"pr":"Alta"},{"id":"t072","m":"Noções de Direito Administrativo","a":"Poderes, atos e agentes","s":"Anulação, revogação e convalidação","peso":3,"pr":"Alta"},{"id":"t073","m":"Noções de Direito Administrativo","a":"Poderes, atos e agentes","s":"Discricionariedade e vinculação","peso":3,"pr":"Alta"},{"id":"t074","m":"Noções de Direito Administrativo","a":"Legislação","s":"Lei 8.112/1990, Bloco 1: disposições preliminares","peso":4,"pr":"Alta","dup":"Estude aqui (teoria e cartões). Em Legislação este conteúdo entra só como 2ª rodada de questões, sem cartões novos.","chg":"Confira o texto consolidado da Lei 8.112/1990 no Planalto."},{"id":"t075","m":"Noções de Direito Administrativo","a":"Legislação","s":"Lei 8.112/1990, Bloco 2: provimento, vacância e remoção","peso":4,"pr":"Alta","dup":"Estude aqui (teoria e cartões). Em Legislação este conteúdo entra só como 2ª rodada de questões, sem cartões novos.","chg":"Confira o texto consolidado da Lei 8.112/1990 no Planalto."},{"id":"t076","m":"Noções de Direito Administrativo","a":"Legislação","s":"Lei 8.112/1990, Bloco 3: vencimento e vantagens","peso":4,"pr":"Alta","dup":"Estude aqui (teoria e cartões). Em Legislação este conteúdo entra só como 2ª rodada de questões, sem cartões novos.","chg":"Confira o texto consolidado da Lei 8.112/1990 no Planalto."},{"id":"t077","m":"Noções de Direito Administrativo","a":"Legislação","s":"Lei 8.112/1990, Bloco 4: férias, licenças, afastamentos e direito de petição","peso":4,"pr":"Alta","dup":"Estude aqui (teoria e cartões). Em Legislação este conteúdo entra só como 2ª rodada de questões, sem cartões novos.","chg":"Confira o texto consolidado da Lei 8.112/1990 no Planalto."},{"id":"t078","m":"Noções de Direito Administrativo","a":"Legislação","s":"Lei 8.112/1990, Bloco 5: deveres, proibições e acumulação","peso":4,"pr":"Alta","dup":"Estude aqui (teoria e cartões). Em Legislação este conteúdo entra só como 2ª rodada de questões, sem cartões novos.","chg":"Confira o texto consolidado da Lei 8.112/1990 no Planalto."},{"id":"t079","m":"Noções de Direito Administrativo","a":"Legislação","s":"Lei 8.112/1990, Bloco 6: responsabilidades, penalidades e PAD","peso":4,"pr":"Alta","dup":"Estude aqui (teoria e cartões). Em Legislação este conteúdo entra só como 2ª rodada de questões, sem cartões novos.","chg":"Confira o texto consolidado da Lei 8.112/1990 no Planalto."},{"id":"t080","m":"Noções de Direito Administrativo","a":"Legislação","s":"Lei 14.133/2021 (licitações e contratos)","peso":3,"pr":"Alta","chg":"Pode ter alterações posteriores a 2022; use o texto consolidado no Planalto."},{"id":"t081","m":"Noções de Direito Administrativo","a":"Legislação","s":"Responsabilidade extracontratual do Estado","peso":3,"pr":"Alta"},{"id":"t082","m":"Noções de Direito Administrativo","a":"Legislação","s":"Lei 9.784/1999 (processo administrativo federal)","peso":4,"pr":"Alta","dup":"Estude aqui (teoria e cartões). Em Legislação este conteúdo entra só como 2ª rodada de questões, sem cartões novos."},{"id":"t083","m":"Noções de Direito Administrativo","a":"Legislação","s":"Lei 8.429/1992 (improbidade administrativa)","peso":4,"pr":"Alta","dup":"Estude aqui (teoria e cartões). Em Legislação este conteúdo entra só como 2ª rodada de questões, sem cartões novos.","chg":"A Lei 14.230/2021 reformou a 8.429; estude o texto consolidado."},{"id":"t084","m":"Legislação","a":"Regime jurídico","s":"Lei 8.112/1990, Bloco 1: disposições preliminares","peso":4,"pr":"Alta","dup":"Já estudado em Dir. Administrativo (teoria e cartões). Aqui faça só a 2ª rodada de questões, com foco na literalidade da lei, sem cartões novos.","dupId":"t074","chg":"Confira o texto consolidado da Lei 8.112/1990 no Planalto."},{"id":"t085","m":"Legislação","a":"Regime jurídico","s":"Lei 8.112/1990, Bloco 2: provimento, vacância e remoção","peso":4,"pr":"Alta","dup":"Já estudado em Dir. Administrativo (teoria e cartões). Aqui faça só a 2ª rodada de questões, com foco na literalidade da lei, sem cartões novos.","dupId":"t075","chg":"Confira o texto consolidado da Lei 8.112/1990 no Planalto."},{"id":"t086","m":"Legislação","a":"Regime jurídico","s":"Lei 8.112/1990, Bloco 3: vencimento e vantagens","peso":4,"pr":"Alta","dup":"Já estudado em Dir. Administrativo (teoria e cartões). Aqui faça só a 2ª rodada de questões, com foco na literalidade da lei, sem cartões novos.","dupId":"t076","chg":"Confira o texto consolidado da Lei 8.112/1990 no Planalto."},{"id":"t087","m":"Legislação","a":"Regime jurídico","s":"Lei 8.112/1990, Bloco 4: férias, licenças, afastamentos e direito de petição","peso":4,"pr":"Alta","dup":"Já estudado em Dir. Administrativo (teoria e cartões). Aqui faça só a 2ª rodada de questões, com foco na literalidade da lei, sem cartões novos.","dupId":"t077","chg":"Confira o texto consolidado da Lei 8.112/1990 no Planalto."},{"id":"t088","m":"Legislação","a":"Regime jurídico","s":"Lei 8.112/1990, Bloco 5: deveres, proibições e acumulação","peso":4,"pr":"Alta","dup":"Já estudado em Dir. Administrativo (teoria e cartões). Aqui faça só a 2ª rodada de questões, com foco na literalidade da lei, sem cartões novos.","dupId":"t078","chg":"Confira o texto consolidado da Lei 8.112/1990 no Planalto."},{"id":"t089","m":"Legislação","a":"Regime jurídico","s":"Lei 8.112/1990, Bloco 6: responsabilidades, penalidades e PAD","peso":4,"pr":"Alta","dup":"Já estudado em Dir. Administrativo (teoria e cartões). Aqui faça só a 2ª rodada de questões, com foco na literalidade da lei, sem cartões novos.","dupId":"t079","chg":"Confira o texto consolidado da Lei 8.112/1990 no Planalto."},{"id":"t090","m":"Legislação","a":"Regime jurídico","s":"Lei 8.112/1990, Bloco 7: seguridade social do servidor","peso":4,"pr":"Alta","chg":"Confira o texto consolidado da Lei 8.112/1990 no Planalto."},{"id":"t091","m":"Legislação","a":"Regime jurídico","s":"Processo administrativo disciplinar (PAD)","peso":4,"pr":"Alta","dup":"Já estudado em Dir. Administrativo (teoria e cartões). Aqui faça só a 2ª rodada de questões, com foco na literalidade da lei, sem cartões novos.","dupId":"t079"},{"id":"t092","m":"Legislação","a":"Regime jurídico","s":"Lei 9.784/1999","peso":4,"pr":"Alta","dup":"Já estudado em Dir. Administrativo (teoria e cartões). Aqui faça só a 2ª rodada de questões, com foco na literalidade da lei, sem cartões novos.","dupId":"t082"},{"id":"t093","m":"Legislação","a":"Regime jurídico","s":"Lei 8.429/1992","peso":4,"pr":"Alta","dup":"Já estudado em Dir. Administrativo (teoria e cartões). Aqui faça só a 2ª rodada de questões, com foco na literalidade da lei, sem cartões novos.","dupId":"t083","chg":"A Lei 14.230/2021 reformou a 8.429; estude o texto consolidado."},{"id":"t094","m":"Legislação","a":"Normas institucionais","s":"LGPD (Lei 13.709/2018)","peso":4,"pr":"Alta","chg":"A Lei 14.460/2022 transformou a ANPD em autarquia especial; confira o texto atualizado."},{"id":"t095","m":"Legislação","a":"Normas institucionais","s":"Lei Brasileira de Inclusão (Lei 13.146/2015)","peso":4,"pr":"Alta","chg":"Confira alterações posteriores no texto consolidado."},{"id":"t096","m":"Legislação","a":"Normas institucionais","s":"Regimento Interno e Código de Ética do TRT3","peso":4,"pr":"Alta","chg":"Baixe a versão vigente no site do TRT3; os textos podem ter sido alterados."},{"id":"t097","m":"Noções de Direito do Trabalho","a":"Fundamentos e sujeitos","s":"Princípios e fontes","peso":5,"pr":"Alta"},{"id":"t098","m":"Noções de Direito do Trabalho","a":"Fundamentos e sujeitos","s":"Art. 7º da CF","peso":5,"pr":"Alta"},{"id":"t099","m":"Noções de Direito do Trabalho","a":"Fundamentos e sujeitos","s":"Relação de trabalho x relação de emprego","peso":5,"pr":"Alta"},{"id":"t100","m":"Noções de Direito do Trabalho","a":"Fundamentos e sujeitos","s":"Trabalho intermitente","peso":5,"pr":"Alta"},{"id":"t101","m":"Noções de Direito do Trabalho","a":"Fundamentos e sujeitos","s":"Empregado e empregador","peso":5,"pr":"Alta"},{"id":"t102","m":"Noções de Direito do Trabalho","a":"Fundamentos e sujeitos","s":"Poderes do empregador","peso":5,"pr":"Alta"},{"id":"t103","m":"Noções de Direito do Trabalho","a":"Fundamentos e sujeitos","s":"Grupo econômico e sucessão","peso":5,"pr":"Alta"},{"id":"t104","m":"Noções de Direito do Trabalho","a":"Fundamentos e sujeitos","s":"Responsabilidade solidária e subsidiária","peso":5,"pr":"Alta"},{"id":"t105","m":"Noções de Direito do Trabalho","a":"Contrato e extinção","s":"Contrato individual de trabalho","peso":5,"pr":"Alta"},{"id":"t106","m":"Noções de Direito do Trabalho","a":"Contrato e extinção","s":"Alterações e jus variandi","peso":5,"pr":"Alta"},{"id":"t107","m":"Noções de Direito do Trabalho","a":"Contrato e extinção","s":"Suspensão e interrupção","peso":5,"pr":"Alta"},{"id":"t108","m":"Noções de Direito do Trabalho","a":"Contrato e extinção","s":"Justas causas","peso":5,"pr":"Alta"},{"id":"t109","m":"Noções de Direito do Trabalho","a":"Contrato e extinção","s":"Despedida indireta, arbitrária e coletiva","peso":5,"pr":"Alta"},{"id":"t110","m":"Noções de Direito do Trabalho","a":"Contrato e extinção","s":"Culpa recíproca","peso":5,"pr":"Alta"},{"id":"t111","m":"Noções de Direito do Trabalho","a":"Contrato e extinção","s":"Aviso-prévio","peso":5,"pr":"Alta"},{"id":"t112","m":"Noções de Direito do Trabalho","a":"Contrato e extinção","s":"Estabilidades e garantias provisórias","peso":5,"pr":"Alta"},{"id":"t113","m":"Noções de Direito do Trabalho","a":"Duração e remuneração","s":"Jornada e horas in itinere","peso":5,"pr":"Alta"},{"id":"t114","m":"Noções de Direito do Trabalho","a":"Duração e remuneração","s":"Intervalos","peso":5,"pr":"Alta"},{"id":"t115","m":"Noções de Direito do Trabalho","a":"Duração e remuneração","s":"DSR","peso":5,"pr":"Alta"},{"id":"t116","m":"Noções de Direito do Trabalho","a":"Duração e remuneração","s":"Trabalho noturno, extraordinário e compensação","peso":5,"pr":"Alta"},{"id":"t117","m":"Noções de Direito do Trabalho","a":"Duração e remuneração","s":"Salário mínimo","peso":5,"pr":"Alta"},{"id":"t118","m":"Noções de Direito do Trabalho","a":"Duração e remuneração","s":"Férias","peso":5,"pr":"Alta"},{"id":"t119","m":"Noções de Direito do Trabalho","a":"Duração e remuneração","s":"Abono","peso":5,"pr":"Alta"},{"id":"t120","m":"Noções de Direito do Trabalho","a":"Duração e remuneração","s":"Salário x remuneração","peso":5,"pr":"Alta"},{"id":"t121","m":"Noções de Direito do Trabalho","a":"Duração e remuneração","s":"Modalidades e pagamento do salário","peso":5,"pr":"Alta"},{"id":"t122","m":"Noções de Direito do Trabalho","a":"Duração e remuneração","s":"13º salário e equiparação","peso":5,"pr":"Alta"},{"id":"t123","m":"Noções de Direito do Trabalho","a":"Duração e remuneração","s":"FGTS","peso":5,"pr":"Alta"},{"id":"t124","m":"Noções de Direito do Trabalho","a":"Duração e remuneração","s":"Prescrição e decadência","peso":5,"pr":"Alta"},{"id":"t125","m":"Noções de Direito do Trabalho","a":"Proteção e temas especiais","s":"Insalubridade e periculosidade","peso":5,"pr":"Alta"},{"id":"t126","m":"Noções de Direito do Trabalho","a":"Proteção e temas especiais","s":"Condições especiais de trabalho (CLT, Tít. III, Cap. I)","peso":5,"pr":"Alta"},{"id":"t127","m":"Noções de Direito do Trabalho","a":"Proteção e temas especiais","s":"Gestante e licença-maternidade","peso":5,"pr":"Alta"},{"id":"t128","m":"Noções de Direito do Trabalho","a":"Proteção e temas especiais","s":"Convenções e acordos coletivos","peso":5,"pr":"Alta"},{"id":"t129","m":"Noções de Direito do Trabalho","a":"Proteção e temas especiais","s":"Greve","peso":5,"pr":"Alta"},{"id":"t130","m":"Noções de Direito do Trabalho","a":"Proteção e temas especiais","s":"Teletrabalho e Reforma Trabalhista","peso":5,"pr":"Alta","chg":"A Lei 14.442/2022 alterou o teletrabalho na CLT (arts. 75-A a 75-F)."},{"id":"t131","m":"Noções de Direito do Trabalho","a":"Proteção e temas especiais","s":"Dano moral","peso":5,"pr":"Alta"},{"id":"t132","m":"Noções de Direito do Trabalho","a":"Proteção e temas especiais","s":"Súmulas e OJs do TST","peso":5,"pr":"Alta","chg":"Súmulas, OJs e atos mudam: use a lista atualizada no site do TST/STF."},{"id":"t133","m":"Noções de Direito do Trabalho","a":"Proteção e temas especiais","s":"Súmulas vinculantes","peso":5,"pr":"Alta","chg":"Súmulas, OJs e atos mudam: use a lista atualizada no site do TST/STF."},{"id":"t134","m":"Noções de Direito do Trabalho","a":"Proteção e temas especiais","s":"Atos normativos do TST","peso":5,"pr":"Alta","chg":"Súmulas, OJs e atos mudam: use a lista atualizada no site do TST/STF."},{"id":"t135","m":"Noções de Direito do Trabalho","a":"Proteção e temas especiais","s":"Acidentes do trabalho","peso":5,"pr":"Alta"},{"id":"t136","m":"Noções de Direito do Trabalho","a":"Proteção e temas especiais","s":"Responsabilidade civil trabalhista","peso":5,"pr":"Alta"},{"id":"t137","m":"Noções de Direito Processual do Trabalho","a":"Estrutura e competência","s":"Justiça do Trabalho","peso":4,"pr":"Alta"},{"id":"t138","m":"Noções de Direito Processual do Trabalho","a":"Estrutura e competência","s":"Varas, TRTs e TST","peso":4,"pr":"Alta"},{"id":"t139","m":"Noções de Direito Processual do Trabalho","a":"Estrutura e competência","s":"Serviços auxiliares","peso":4,"pr":"Alta"},{"id":"t140","m":"Noções de Direito Processual do Trabalho","a":"Estrutura e competência","s":"Peritos","peso":4,"pr":"Alta"},{"id":"t141","m":"Noções de Direito Processual do Trabalho","a":"Estrutura e competência","s":"Ministério Público do Trabalho","peso":4,"pr":"Alta"},{"id":"t142","m":"Noções de Direito Processual do Trabalho","a":"Estrutura e competência","s":"Princípios e aplicação subsidiária do CPC","peso":4,"pr":"Alta"},{"id":"t143","m":"Noções de Direito Processual do Trabalho","a":"Atos, partes e conhecimento","s":"Prescrição e prescrição intercorrente","peso":4,"pr":"Alta"},{"id":"t144","m":"Noções de Direito Processual do Trabalho","a":"Atos, partes e conhecimento","s":"Atos, termos e prazos","peso":4,"pr":"Alta"},{"id":"t145","m":"Noções de Direito Processual do Trabalho","a":"Atos, partes e conhecimento","s":"Distribuição e valor da causa","peso":4,"pr":"Alta"},{"id":"t146","m":"Noções de Direito Processual do Trabalho","a":"Atos, partes e conhecimento","s":"Custas","peso":4,"pr":"Alta"},{"id":"t147","m":"Noções de Direito Processual do Trabalho","a":"Atos, partes e conhecimento","s":"Partes, procuradores e jus postulandi","peso":4,"pr":"Alta"},{"id":"t148","m":"Noções de Direito Processual do Trabalho","a":"Atos, partes e conhecimento","s":"Assistência judiciária e honorários","peso":4,"pr":"Alta"},{"id":"t149","m":"Noções de Direito Processual do Trabalho","a":"Atos, partes e conhecimento","s":"Conflitos de competência","peso":4,"pr":"Alta"},{"id":"t150","m":"Noções de Direito Processual do Trabalho","a":"Atos, partes e conhecimento","s":"Audiências","peso":4,"pr":"Alta"},{"id":"t151","m":"Noções de Direito Processual do Trabalho","a":"Atos, partes e conhecimento","s":"Notificação, arquivamento, revelia e confissão","peso":4,"pr":"Alta"},{"id":"t152","m":"Noções de Direito Processual do Trabalho","a":"Atos, partes e conhecimento","s":"Provas","peso":4,"pr":"Alta"},{"id":"t153","m":"Noções de Direito Processual do Trabalho","a":"Atos, partes e conhecimento","s":"Dissídios individuais","peso":4,"pr":"Alta"},{"id":"t154","m":"Noções de Direito Processual do Trabalho","a":"Atos, partes e conhecimento","s":"Ritos ordinário e sumaríssimo","peso":4,"pr":"Alta"},{"id":"t155","m":"Noções de Direito Processual do Trabalho","a":"Atos, partes e conhecimento","s":"Desconsideração da personalidade jurídica","peso":4,"pr":"Alta"},{"id":"t156","m":"Noções de Direito Processual do Trabalho","a":"Atos, partes e conhecimento","s":"Sentença e coisa julgada","peso":4,"pr":"Alta"},{"id":"t157","m":"Noções de Direito Processual do Trabalho","a":"Atos, partes e conhecimento","s":"Homologação de acordo extrajudicial","peso":4,"pr":"Alta"},{"id":"t158","m":"Noções de Direito Processual do Trabalho","a":"Liquidação, execução e recursos","s":"Liquidação","peso":4,"pr":"Alta"},{"id":"t159","m":"Noções de Direito Processual do Trabalho","a":"Liquidação, execução e recursos","s":"Execução provisória e definitiva","peso":4,"pr":"Alta"},{"id":"t160","m":"Noções de Direito Processual do Trabalho","a":"Liquidação, execução e recursos","s":"Execução contra a Fazenda e massa falida","peso":4,"pr":"Alta"},{"id":"t161","m":"Noções de Direito Processual do Trabalho","a":"Liquidação, execução e recursos","s":"Citação e depósito","peso":4,"pr":"Alta"},{"id":"t162","m":"Noções de Direito Processual do Trabalho","a":"Liquidação, execução e recursos","s":"Garantias da execução","peso":4,"pr":"Alta"},{"id":"t163","m":"Noções de Direito Processual do Trabalho","a":"Liquidação, execução e recursos","s":"Mandado e penhora","peso":4,"pr":"Alta"},{"id":"t164","m":"Noções de Direito Processual do Trabalho","a":"Liquidação, execução e recursos","s":"Embargos e impugnação","peso":4,"pr":"Alta"},{"id":"t165","m":"Noções de Direito Processual do Trabalho","a":"Liquidação, execução e recursos","s":"Praça, leilão e arrematação","peso":4,"pr":"Alta"},{"id":"t166","m":"Noções de Direito Processual do Trabalho","a":"Liquidação, execução e recursos","s":"Recursos","peso":4,"pr":"Alta"},{"id":"t167","m":"Noções de Direito Processual do Trabalho","a":"Liquidação, execução e recursos","s":"PJe","peso":4,"pr":"Alta","chg":"Resoluções do CSJT sobre o PJe mudam com frequência; confira a versão vigente."},{"id":"t168","m":"Noções de Direito Processual do Trabalho","a":"Liquidação, execução e recursos","s":"Reforma Trabalhista no processo","peso":4,"pr":"Alta"},{"id":"t169","m":"Noções de Direito Processual do Trabalho","a":"Liquidação, execução e recursos","s":"Súmulas e OJs","peso":4,"pr":"Alta","chg":"Súmulas, OJs e atos mudam: use a lista atualizada no site do TST/STF."},{"id":"t170","m":"Noções de Direito Processual do Trabalho","a":"Liquidação, execução e recursos","s":"Instruções normativas","peso":4,"pr":"Alta","chg":"Súmulas, OJs e atos mudam: use a lista atualizada no site do TST/STF."},{"id":"t171","m":"Noções de Direito Processual do Trabalho","a":"Liquidação, execução e recursos","s":"Súmulas vinculantes","peso":4,"pr":"Alta","chg":"Súmulas, OJs e atos mudam: use a lista atualizada no site do TST/STF."},{"id":"t172","m":"Noções de Direito Processual do Trabalho","a":"Liquidação, execução e recursos","s":"Lei 6.858/1980","peso":4,"pr":"Alta"}],"cfg":{"limite":4,"minAmostra":5,"minLadder":3,"altaPct":0.7,"consPct":0.85,"janela":7,"escada":[1,7,30],"degExtra":0,"fAcAlto":1,"fAcMed":1,"fAcBaixo":1,"fPeso5":1,"fPeso4":1,"fPeso3":1,"fPeso12":1,"pctZera":0.5,"pctAlto":0.9,"pctMed":0.8,"dataPadrao":"2026-11-13","wRecente":0.6,"prior":0.3,"forca":10,"qtdEq":5,"satErro":0.5,"horizonte":30,"atrasoSat":14,"urgVenc":0.85,"ptsErro":50,"ptsUrg":35,"ptsPeso":15,"minSubir":0.7,"ativosFrente":true,"pesosV2":1}};
+function localDb(){
+  const KEY='trt3_tecnico_db_v1';let store;
+  const load=()=>{try{const o=JSON.parse(localStorage.getItem(KEY)||'null');if(o&&o.docs)return o}catch(e){}return null};
+  const persist=()=>{try{localStorage.setItem(KEY,JSON.stringify(store))}catch(e){throw e}};
+  store=load();
+  if(!store){store={docs:{}};store.docs['app/assuntos']={items:SEED.items};store.docs['app/config']=SEED.cfg;store.docs['app/horas']={meta:1000,prova:''};persist()}
+  localStorage.setItem(KEY+'_t','1');
+  const subs=[];
+  const docSn=p=>({exists:p in store.docs,data:()=>JSON.parse(JSON.stringify(store.docs[p]||{})),id:p.split('/').pop()});
+  const colSn=c=>({docs:Object.keys(store.docs).filter(k=>k.startsWith(c+'/')&&k.indexOf('/',c.length+1)<0).map(k=>({id:k.slice(c.length+1),data:()=>JSON.parse(JSON.stringify(store.docs[k]))}))});
+  const fire=()=>subs.slice().forEach(s=>{try{s.fn(s.col?colSn(s.key):docSn(s.key))}catch(e){console.error(e)}});
+  const mk=p=>({set:async d=>{store.docs[p]=JSON.parse(JSON.stringify(d));persist();fire()},delete:async()=>{delete store.docs[p];persist();fire()},get:async()=>docSn(p),
+    onSnapshot:fn=>{const s={fn,col:false,key:p};subs.push(s);Promise.resolve().then(()=>fn(docSn(p)));return()=>{subs.splice(subs.indexOf(s),1)}}});
+  return{doc:p=>mk(p),collection:c=>({doc:id=>mk(c+'/'+id),onSnapshot:fn=>{const s={fn,col:true,key:c};subs.push(s);Promise.resolve().then(()=>fn(colSn(c)));return()=>{subs.splice(subs.indexOf(s),1)}}})}
+}
+const dlSave_=0;
+const dlSave=async({filename,data})=>{const b=new Blob([data],{type:filename.endsWith('.json')?'application/json':'text/csv;charset=utf-8'});const u=URL.createObjectURL(b);const a=document.createElement('a');a.href=u;a.download=filename;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),4000)};
+/* ---------- persistência (db) ---------- */
+async function init(){
+  regLoad();try{S.regModo=sessionStorage.getItem('rc_modo')||'uma'}catch(e){}
+  try{ S.db=localDb(); }catch(e){ S.db=null; }
+  if(!S.db){ S.err='Armazenamento do navegador indisponível (janela privada ou bloqueado). Abra em uma janela normal para salvar seus dados.'; render(); return; }
+  const chk=()=>{ if(S.ld.a&&S.ld.s&&S.ld.c){ if(!S.ready){S.ready=true; recalc(); render();} } };
+  S.db.doc('app/assuntos').onSnapshot(sn=>{ S.items=sn.exists?clean(sn.data().items||[]):[]; S.hasItems=sn.exists; S.ld.a=true; recalc(); chk(); bgRender(); });
+  S.db.doc('app/config').onSnapshot(sn=>{ S.cfg={...DEFAULT_CFG,...(sn.exists?clean(sn.data()):{})}; S.ld.c=true; recalc(); chk(); bgRender(); });
+  S.db.collection('sessoes').onSnapshot(sn=>{ S.ses=sn.docs.map(d=>({...clean(d.data()),_id:d.id})); S.ld.s=true; recalc(); chk(); bgRender(); });
+  S.db.collection('redacao').onSnapshot(sn=>{ S.red=sn.docs.map(d=>({...clean(d.data()),_id:d.id})); bgRender(); });
+  S.db.collection('rotina').onSnapshot(sn=>{ const f={}; sn.docs.forEach(d=>{ f[d.id]=clean(d.data()); }); S.rot=f; bgRender(); });
+  S.db.collection('horas').onSnapshot(sn=>{ S.hrs=sn.docs.map(d=>({...clean(d.data()),_id:d.id})); bgRender(); });
+  S.db.doc('app/horas').onSnapshot(sn=>{ S.hcfg={meta:1000,prova:'',...(sn.exists?clean(sn.data()):{})}; bgRender(); });
+  S.db.collection('simulados').onSnapshot(sn=>{ const dbs=sn.docs.map(d=>({...clean(d.data()),id:d.id})); S.simsDb=dbs; S.sims=simMerge(); bgRender(); });
+  simLoadFiles();
+  S.db.collection('sim_tent').onSnapshot(sn=>{ const keep=S.simRun&&S.tents.find(x=>x._id===S.simRun.tid); S.tents=sn.docs.map(d=>({...clean(d.data()),_id:d.id})); if(keep){const db=S.tents.find(x=>x._id===keep._id); if(!db) S.tents.push(keep); else if(keep.fim||!db.fim) S.tents=S.tents.map(x=>x._id===keep._id?keep:x)} bgRender(); });
+  S.db.collection('flash').onSnapshot(sn=>{ const f={}; sn.docs.forEach(d=>{ if(d.data().ok) f[d.id]=true; }); S.flash=f; bgRender(); });
+}
+const clean=o=>JSON.parse(JSON.stringify(o));
+
+async function saveItems(){S.items=clean(S.items);try{await S.db.doc('app/assuntos').set({items:S.items});return true}catch(e){toast('Não foi possível salvar o assunto. Tente de novo.');return false}}
+function digitando(){const e=document.activeElement;return !!(e&&/^(INPUT|SELECT|TEXTAREA)$/.test(e.tagName)&&(e.closest('#app')||e.closest('#ov')))}
+function bgRender(){if(!S.ready)return; if(S.sel!=null||S.rd||S.es||(S.simRun&&S.tab==='sim')){S.pend=true;return}
+  if((S.tab==='reg'||S.tab==='hrs')&&digitando()){S.pendR=true;return} render()}
+document.addEventListener('focusout',()=>setTimeout(()=>{if(S.pendR&&!digitando()&&!S.es){S.pendR=false;render()}},400));
+const saveCfg=()=>S.db.doc('app/config').set(clean(S.cfg));
+function proxTxt(m,a,s){const r=M&&M.rows.find(x=>x.key===keyOf(m,a,s));if(!r||r.AS==null)return '';const n=r.AS-T();return n<=0?' · próxima revisão: hoje':' · próxima revisão em '+n+(n===1?' dia':' dias')+' ('+fd(r.AS)+')'}
+async function addSes(s){ const id='s'+Date.now().toString(36); S.ses.push({...s,_id:id}); recalc(); render(); await S.db.collection('sessoes').doc(id).set(clean(s)); }
+async function delSes(id){ S.ses=S.ses.filter(x=>x._id!==id); recalc(); render(); await S.db.collection('sessoes').doc(id).delete(); }
+
+/* ---------- navegação ---------- */
+const ICON={hrs:'<circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/>',sim:'<path d="M9 5h10v14H9zM5 9v10h10M12 9h4M12 12h4"/>',cic:'<path d="M20 12a8 8 0 1 1-2.3-5.6M20 4v4h-4"/>',hoje:'<path d="M5 4h14v16H5zM8 9h8M8 13h8M8 17h5"/>',reg:'<path d="M12 5v14M5 12h14"/>',pan:'<path d="M5 20V10M12 20V4M19 20v-8"/>',ass:'<path d="M4 6h16M4 12h16M4 18h10"/>',mais:'<circle cx="6" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="18" cy="12" r="1.6"/>'};
+const TABS=[['hoje','Hoje'],['cic','Plano'],['hrs','Horas'],['reg','Registrar'],['pan','Painel'],['ass','Edital'],['sim','Simulados'],['mais','Mais']];
+function go(t){if(S.simRun&&t!=='sim')simFlush();S.tab=t;render();scrollTo(0,0)}
+function render(){
+  $('#nav').innerHTML=TABS.map(([k,l])=>`<button class="${S.tab===k?'on':''}" onclick="go('${k}')" ${S.tab===k?'aria-current="page"':''}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${ICON[k]}</svg>${l}</button>`).join('');
+  const a=$('#app');
+  if(S.err){a.innerHTML=`<div class="msg">${esc(S.err)}</div>`;return}
+  if(!S.ready){a.innerHTML='<div class="empty">Carregando…</div>';return}
+  const keepScroll=0;
+  a.innerHTML=({hoje:vHoje,cic:vCic,hrs:vHrs,sim:vSim,reg:vReg,pan:vPan,ass:vAss,mais:vMais})[S.tab]();
+  if(S.tab==='reg')renderPv();
+  if(S.sel!=null) sheet();
+  else if(S.rd) redSheet();
+  else if(S.es) sesEditSheet();
+  else $('#ov').innerHTML='';
+}
+
+/* ---------- Hoje ---------- */
+function card(r,opt={}){
+  const it=r.it;
+  return `<div class="card"><div class="row sp"><div class="tag">${esc(it.m)}</div>${r.pri?badge(r):`<span class="badge b-neu">${STL[r.st]}</span>`}</div>
+  <div class="ttl">${esc(it.s)}</div><div class="sub">${esc(it.a)}</div>
+  <div class="meta"><span>Acerto <b>${pc(r.pHist,0)}</b></span><span>Questões <b>${r.qTot}</b></span><span>Último estudo <b>${r.U?fd(r.M):(it.d0?fdi(it.d0).slice(0,5):'—')}</b></span>${r.AT!=null&&r.AT<0?`<span style="color:var(--alta)"><b>${-r.AT}d atrasado</b></span>`:''}</div>
+  ${it.dup?`<div class="sub" style="margin-top:6px">${esc(it.dup)}</div>`:''}${it.chg?`<div class="sub" style="margin-top:6px;color:var(--media)">⚠ ${esc(it.chg)}</div>`:''}
+  ${it.obs?`<div class="sub" style="margin-top:6px">${esc(it.obs)}</div>`:''}
+  <div class="row" style="margin-top:10px"><button class="btn p s" onclick="regFor(${r.idx})">Registrar revisão</button><button class="btn s" onclick="openSel(${r.idx})">Detalhes</button></div></div>`;
+}
+function vHoje(){
+  const t=T(), list=M.byDay.get(t)||[], lim=S.cfg.limite, done=M.doneToday;
+  const d=new Date(t*864e5);
+  let h=`<h1>Hoje</h1><div class="sub">${WD[d.getUTCDay()]}, ${fdi(iso(t))} · ${done} de ${lim} assuntos feitos</div>
+  <div class="bar" style="margin:12px 0 14px"><i style="width:${Math.min(100,done/lim*100)}%;background:var(--ok)"></i></div>`;
+  h+=planoHojeCard()+hrsMini()+atrasoBanner();
+  h+=`<div class="tiles"><div class="tile"><div class="n">${list.length}</div><div class="l">Para revisar</div></div><div class="tile"><div class="n" style="color:${P.kpi.atrasados?'var(--alta)':'inherit'}">${P.kpi.atrasados}</div><div class="l">Atrasados</div></div></div>`;
+  h+=`<h2>Revisar hoje</h2>`;
+  h+=list.length?list.map(r=>card(r)).join(''):`<div class="empty">${done>=lim?'Meta do dia cumprida. 🎉':'Nada agendado para hoje. As revisões de 24h, 7 e 30 dias aparecem aqui a partir do dia em que você marcar “Estudei hoje” em um tópico da aba Edital ou registrar questões.'}</div>`;
+  const dias=[...M.byDay.keys()].filter(k=>k>t&&k<=t+S.cfg.janela).sort((a,b)=>a-b);
+  if(dias.length){ h+=`<h2>Próximos dias</h2>`;
+    for(const k of dias){ const dd=new Date(k*864e5); h+=`<div class="card"><div class="tag">${WD[dd.getUTCDay()]} ${fd(k)} · ${M.byDay.get(k).length} assuntos</div>`+M.byDay.get(k).map(r=>`<div class="hist row sp" onclick="openSel(${r.idx})" style="cursor:pointer"><div class="grow"><b>${esc(r.it.s)}</b><div class="sub">${esc(r.it.m)} · ${esc(r.it.a)}</div></div>${r.pri?badge(r):''}</div>`).join('')+`</div>`; } }
+  return h;
+}
+
+/* ---------- Registrar ---------- */
+function regFor(idx){const it=S.items[idx];S.reg={m:it.m,a:it.a,s:it.s};S.regModo='uma';regSave();go('reg')}
+const uniq=a=>[...new Set(a)];
+const cmpAbc=(x,y)=>String(x).localeCompare(String(y),'pt-BR',{sensitivity:'base',numeric:true});
+const rowAbc=(r1,r2)=>cmpAbc(r1.it.m,r2.it.m)||cmpAbc(r1.it.a,r2.it.a)||cmpAbc(r1.it.s,r2.it.s);
+const abc=a=>a.slice().sort((x,y)=>String(x).localeCompare(String(y),'pt-BR',{sensitivity:'base',numeric:true}));
+function regSave(){try{sessionStorage.setItem('rc_reg',JSON.stringify(S.reg))}catch(e){}}
+function regLoad(){try{const o=JSON.parse(sessionStorage.getItem('rc_reg')||'null');if(o&&typeof o==='object')S.reg=o}catch(e){}}
+function regSet(k,v){S.reg[k]=v;regSave()}
+function vReg(){
+  const R=S.reg, ms=abc(uniq(S.items.map(i=>i.m)));
+  const as=abc(uniq(S.items.filter(i=>i.m===R.m).map(i=>i.a))), ss=abc(S.items.filter(i=>i.m===R.m&&i.a===R.a).map(i=>i.s));
+  const opt=(l,v)=>l.map(x=>`<option ${x===v?'selected':''}>${esc(x)}</option>`).join('');
+  const td=T();
+  const v=k=>R[k]==null?'':esc(R[k]);
+  return `<h1>Registrar</h1><div class="sub">Lance uma sessão de questões</div>
+  <label>Matéria</label><select id="rm" onchange="S.reg={...S.reg,m:this.value,a:'',s:''};regSave();render()"><option value="">Selecione…</option>${opt(ms,R.m)}</select>
+  <label>Assunto</label><select id="ra" onchange="S.reg={...S.reg,a:this.value,s:''};regSave();render()"><option value="">Selecione…</option>${opt(as,R.a)}</select>
+  <label>Subassunto</label><select id="rs" onchange="regSet('s',this.value);renderPv()"><option value="">Selecione…</option>${opt(ss,R.s)}</select>
+  <div class="g2"><div><label>Questões feitas</label><input id="rq" type="number" inputmode="numeric" min="0" value="${v('q')}" oninput="regSet('q',this.value);renderPv()"></div><div><label>Acertos</label><input id="rac" type="number" inputmode="numeric" min="0" value="${v('ac')}" oninput="regSet('ac',this.value);renderPv()"></div></div>
+  <div class="g2"><div><label>Tipo</label><select id="rt" onchange="regSet('t',this.value)">${['Questões','Revisão','Teoria'].map(x=>`<option ${R.t===x?'selected':''}>${x}</option>`).join('')}</select></div><div><label>Data</label><input id="rd" type="date" value="${R.d||iso(td)}" onchange="regSet('d',this.value);renderPv()"></div></div>
+  <label>Motivo / observação</label><input id="ro" type="text" placeholder="opcional" value="${v('o')}" oninput="regSet('o',this.value)">
+  <div class="pv" id="pv"></div>
+  <button class="btn p" style="width:100%;margin-top:14px" onclick="saveReg()">Salvar sessão</button>
+  <h2>Histórico de sessões</h2>
+  <div class="row" style="gap:6px;margin-bottom:8px">${[['hoje','Hoje'],['7','7 dias'],['tudo','Tudo']].map(([k,l])=>`<button class="btn s ${S.hf===k?'p':''}" onclick="S.hf='${k}';S.hn=30;render()">${l}</button>`).join('')}</div>
+  <input id="hq" type="search" placeholder="Buscar no histórico…" value="${esc(S.hq||'')}" oninput="S.hq=this.value;S.hn=30;hrefresh()">
+  <div id="hl" style="margin-top:10px">${hlist()}</div>`;
+}
+function hlist(){
+  const td=T(), f=S.hf||'hoje', q=(S.hq||'').toLowerCase();
+  let l=S.ses.filter(s=>(f==='tudo'||(f==='7'?dn(s.d)>=td-6:dn(s.d)===td))&&(!q||(s.a+' '+s.s+' '+s.m).toLowerCase().includes(q)))
+    .sort((a,b)=>dn(b.d)-dn(a.d)||(b.n||0)-(a.n||0));
+  const tot=l.length, n=S.hn||30; l=l.slice(0,n);
+  if(!tot)return '<div class="empty">Nenhuma sessão.</div>';
+  let h=`<div class="sub" style="margin-bottom:6px">${tot} sessões</div>`,last='';
+  for(const s of l){ if(s.d!==last){last=s.d;h+=`<div class="tag" style="margin:12px 0 6px">${fdi(s.d)}</div>`}
+    h+=`<div class="card row sp"><div class="grow"><b>${esc(s.a)}</b><div class="sub">${esc(s.m)} · ${esc(s.s)}</div><div class="sub">${s.ac}/${s.q} · ${pc(s.q?s.ac/s.q:null,0)}${s.obs?' · '+esc(s.obs):''}</div></div><div class="row" style="gap:6px;flex-shrink:0"><button class="btn s" onclick="sesEdit('${s._id}')">Editar</button><button class="btn s d" onclick="delSes('${s._id}')">Excluir</button></div></div>`; }
+  if(tot>n) h+=`<button class="btn" style="width:100%" onclick="S.hn=(S.hn||30)+30;hrefresh()">Ver mais</button>`;
+  return h;
+}
+function hrefresh(){const e=$('#hl');if(e)e.innerHTML=hlist()}
+/* ---------- editar sessão do histórico ---------- */
+function sesEdit(id){S.es=id;render()}
+function sesEditSheet(){const s=S.ses.find(x=>x._id===S.es);if(!s){S.es=null;$('#ov').innerHTML='';return}
+  $('#ov').innerHTML=`<div class="sheet" onclick="if(event.target===this)sesEditClose()"><div>
+   <div class="tag">Editar sessão</div><h2 style="margin:4px 0 0">${esc(s.a)}</h2><div class="sub">${esc(s.m)} · ${esc(s.s)}</div>
+   <div class="g2"><div><label>Questões feitas</label><input id="eq" type="number" inputmode="numeric" min="1" value="${+s.q||0}"></div><div><label>Acertos</label><input id="eac" type="number" inputmode="numeric" min="0" value="${+s.ac||0}"></div></div>
+   <div class="g2"><div><label>Data</label><input id="ed" type="date" value="${esc(s.d)}"></div><div><label>Tipo</label><select id="et">${['Questões','Revisão','Teoria','Simulado'].map(x=>`<option ${(s.tipo||'Questões')===x?'selected':''}>${x}</option>`).join('')}</select></div></div>
+   <label>Motivo / observação</label><input id="eo" type="text" value="${esc(s.obs||'')}">
+   <div class="sub" style="margin-top:8px">A próxima revisão do assunto é recalculada.</div>
+   <div class="row" style="margin-top:16px;flex-wrap:wrap"><button class="btn p grow" onclick="sesEditSave()">Salvar alterações</button><button class="btn" onclick="sesEditClose()">Cancelar</button></div></div></div>`}
+function sesEditClose(){S.es=null;render()}
+async function sesEditSave(){const id=S.es,s=S.ses.find(x=>x._id===id);if(!s)return sesEditClose();
+  const q=+$('#eq').value||0,ac=+$('#eac').value||0,d=$('#ed').value;
+  if(!q||!d)return toast('Preencha questões e data');if(ac<0||ac>q)return toast('Acertos inválidos');
+  const {_id,...rest}=s;const nv={...rest,q,ac,d,tipo:$('#et').value,obs:$('#eo').value};
+  if(d!==s.d)nv.n=S.ses.filter(x=>x.d===d&&x._id!==id).length+1;
+  S.ses=S.ses.map(x=>x._id===id?{...nv,_id:id}:x);S.es=null;recalc();render();
+  try{await S.db.collection('sessoes').doc(id).set(clean(nv));toast('Sessão atualizada'+proxTxt(nv.m,nv.a,nv.s))}catch(e){toast('Não foi possível salvar a edição')}}
+/* ---------- modo caderno: vários assuntos da mesma matéria em uma tela ---------- */
+function regModoBar(){return `<div class="row" style="gap:6px;margin:10px 0 2px">${[['uma','Uma sessão'],['cad','Caderno (vários assuntos)']].map(([k,l])=>`<button class="btn s ${(S.regModo||'uma')===k?'p':''}" onclick="S.regModo='${k}';try{sessionStorage.setItem('rc_modo','${k}')}catch(e){};render()">${l}</button>`).join('')}</div>`}
+function cadLoad(){if(S.cad)return S.cad;let o=null;try{o=JSON.parse(localStorage.getItem('rc_caderno')||'null')}catch(e){}
+  S.cad=o&&typeof o==='object'&&o.cont?o:{m:'',d:iso(T()),cont:{},f:'',obs:''};return S.cad}
+function cadSave(){try{localStorage.setItem('rc_caderno',JSON.stringify(S.cad))}catch(e){}}
+function cadTot(){cadLoad();let q=0,a=0,n=0;const ks=new Set(S.items.map(x=>keyOf(x.m,x.a,x.s)));for(const k in S.cad.cont){const c=S.cad.cont[k];if(c.q>0&&ks.has(k)){q+=c.q;a+=c.ac;n++}}return {q,a,n}}
+function cadSort(l){return l.slice().sort((x,y)=>x.m.localeCompare(y.m,'pt')||x.a.localeCompare(y.a,'pt')||x.s.localeCompare(y.s,'pt'))}
+function cadItems(){const C=cadLoad();return cadSort(C.m==='*'?S.items:S.items.filter(i=>i.m===C.m))}
+function cadMarcados(){const C=cadLoad();return cadSort(S.items.filter(i=>(C.cont[keyOf(i.m,i.a,i.s)]||{}).q>0))}
+/* lista visível: matéria escolhida (filtrada pela busca) ou, em "todas", os já marcados + resultados da busca */
+function cadLista(){const C=cadLoad(),f=(C.f||'').toLowerCase().trim(),hit=i=>(i.m+' '+i.a+' '+i.s).toLowerCase().includes(f);
+  if(C.m!=='*')return cadItems().filter(i=>!f||hit(i));
+  const mk=cadMarcados(),ks=new Set(mk.map(i=>keyOf(i.m,i.a,i.s)));
+  const res=f.length>=2?cadItems().filter(i=>hit(i)&&!ks.has(keyOf(i.m,i.a,i.s))).slice(0,40):[];
+  return f?res.concat(mk.filter(hit)):mk}
+function cadListaHtml(){const C=cadLoad(),l=cadLista();
+  if(l.length)return l.map(cadRow).join('');
+  return '<div class="empty">'+(C.m==='*'&&(C.f||'').trim().length<2?'Digite ao menos 2 letras do assunto ou subassunto para encontrá-lo em qualquer matéria.':'Nenhum subassunto encontrado.')+'</div>'}
+function cadRow(it){const k=keyOf(it.m,it.a,it.s),c=S.cad.cont[k]||{q:0,ac:0},on=c.q>0;
+  return `<div class="card" id="cr-${cadId(k)}" style="padding:10px 12px;${on?'border-color:var(--acc)':''}"><div class="row sp" style="gap:8px;align-items:center">
+   <div class="grow" style="min-width:0"><div class="sub" style="font-size:12px">${S.cad.m==='*'?'<b>'+esc(it.m)+'</b> · ':''}${esc(it.a)}</div><b style="font-size:14px">${esc(it.s)}</b></div>
+   <div class="row" style="gap:6px;flex-shrink:0;align-items:center"><button class="btn s" title="Acertei" aria-label="Acertei" style="color:var(--ok);min-width:40px" onclick="cadBump('${cadId(k)}',1)">✓</button><button class="btn s" title="Errei" aria-label="Errei" style="color:var(--alta);min-width:40px" onclick="cadBump('${cadId(k)}',0)">✗</button></div></div>
+   <div class="row" style="gap:8px;margin-top:6px;align-items:center"><span class="sub" style="font-size:12px">Questões</span><input type="number" inputmode="numeric" min="0" value="${c.q||''}" style="width:64px;padding:6px 8px;margin:0" onchange="cadSet('${cadId(k)}','q',this.value)">
+   <span class="sub" style="font-size:12px">Acertos</span><input type="number" inputmode="numeric" min="0" value="${c.ac||''}" style="width:64px;padding:6px 8px;margin:0" onchange="cadSet('${cadId(k)}','ac',this.value)">
+   <span class="sub" id="cp-${cadId(k)}" style="font-size:12px;margin-left:auto">${on?pc(c.ac/c.q,0):''}</span></div></div>`}
+const CADK={};function cadId(k){for(const i in CADK)if(CADK[i]===k)return i;const i='k'+Object.keys(CADK).length;CADK[i]=k;return i}
+function cadBump(i,ok){const k=CADK[i],c=S.cad.cont[k]||(S.cad.cont[k]={q:0,ac:0});c.q++;if(ok)c.ac++;cadSave();cadPatch(i)}
+function cadSet(i,f,v){const k=CADK[i],c=S.cad.cont[k]||(S.cad.cont[k]={q:0,ac:0});c[f]=Math.max(0,Math.floor(+v||0));if(c.ac>c.q){c.ac=c.q;toast('Acertos ajustados ao número de questões')}cadSave();cadPatch(i)}
+function cadPatch(i){const k=CADK[i],it=S.items.find(x=>keyOf(x.m,x.a,x.s)===k),e=$('#cr-'+i);if(it&&e){const h=document.createElement('div');h.innerHTML=cadRow(it);e.replaceWith(h.firstElementChild)}
+  const tb=$('#cad-tot');if(tb)tb.innerHTML=cadTotHtml();const at=$('#cad-at');if(at)at.innerHTML=cadAtivosHtml()}
+function cadTotHtml(){const t=cadTot();return t.q?`<b>${t.q}</b> questões · <b>${t.a}</b> acertos (${pc(t.a/t.q,0)}) · ${t.n} ${t.n===1?'subassunto':'subassuntos'}`:'Toque em ✓ ou ✗ a cada questão resolvida, ou digite os números.'}
+const CAD_AB={'Língua Portuguesa':'Português','Noções de Informática':'Informática','Noções de Direito Constitucional':'Constitucional','Noções de Direito Administrativo':'Administrativo','Legislação':'Legislação','Noções de Direito do Trabalho':'D. Trabalho','Noções de Direito Processual do Trabalho':'P. Trabalho'};
+function cadAtivosHtml(){const C=S.cad,l=cadMarcados(),ms=uniq(l.map(i=>i.m)),mix=ms.length>1||C.m==='*'||(ms[0]&&ms[0]!==C.m);
+  return l.length?(mix?'<div class="sub" style="font-size:12px;margin-bottom:4px">Marcados até agora ('+ms.length+(ms.length===1?' matéria':' matérias')+'):</div>':'')+l.map(i=>{const c=C.cont[keyOf(i.m,i.a,i.s)];return `<span class="badge b-neu" style="margin:0 6px 6px 0;display:inline-block">${mix?esc(CAD_AB[i.m]||i.m)+': ':''}${(n=>esc(n.length>34?n.slice(0,32)+'…':n))(/^Todo o conteúdo/.test(i.s)?i.a:i.s)} ${c.ac}/${c.q}</span>`}).join(''):''}
+function vCad(){const C=cadLoad(),ms=abc(uniq(S.items.map(i=>i.m))),f=(C.f||'').toLowerCase();
+  
+  return `<h1>Registrar</h1><div class="sub">Caderno de questões com vários assuntos, de uma ou de várias matérias: vá marcando cada questão e salve tudo no fim. O rascunho fica guardado neste aparelho, mesmo se fechar o app.</div>
+  <div class="g2"><div><label>Matéria</label><select onchange="S.cad.m=this.value;S.cad.f='';cadSave();render()"><option value="">Selecione…</option><option value="*" ${C.m==='*'?'selected':''}>Todas as matérias (caderno misto)</option>${ms.map(x=>`<option ${x===C.m?'selected':''}>${esc(x)}</option>`).join('')}</select></div>
+  <div><label>Data</label><input type="date" value="${esc(C.d||iso(T()))}" onchange="S.cad.d=this.value;cadSave()"></div></div>
+  ${C.m?`<label>Buscar subassunto</label><input type="search" placeholder="${C.m==='*'?'Assunto ou subassunto, de qualquer matéria…':'Digite parte do nome…'}" value="${esc(C.f||'')}" oninput="S.cad.f=this.value;cadSave();cadFiltro()">
+  <div id="cad-at" style="margin-top:10px">${cadAtivosHtml()}</div>
+  <div id="cad-l" style="margin-top:6px;display:flex;flex-direction:column;gap:8px">${cadListaHtml()}</div>
+  <label>Observação (vai em todas as sessões)</label><input type="text" placeholder="ex.: caderno de questões FUMARC" value="${esc(C.obs||'')}" oninput="S.cad.obs=this.value;cadSave()">
+  <div style="position:sticky;bottom:calc(64px + env(safe-area-inset-bottom));background:var(--bg);padding:10px 0 4px;margin-top:10px;border-top:1px solid var(--line)">
+   <div class="sub" id="cad-tot" style="margin-bottom:8px">${cadTotHtml()}</div>
+   <div class="row" style="gap:8px"><button class="btn p grow" onclick="cadSalvar()">Salvar caderno</button><button class="btn" onclick="cadDescartar()">Descartar</button></div></div>`
+  :'<div class="empty" style="margin-top:14px">Escolha a matéria do caderno, ou “Todas as matérias” para um caderno misto.'+(cadTot().q?' Você tem um rascunho com '+cadTot().q+' questões marcadas.':'')+'</div>'}`}
+function cadFiltro(){const e=$('#cad-l');if(e)e.innerHTML=cadListaHtml()}
+function cadDescartar(){if(!cadTot().q){S.cad={m:cadLoad().m,d:iso(T()),cont:{},f:'',obs:''};cadSave();return render()}
+  if(S.cadDel!==1){S.cadDel=1;setTimeout(()=>S.cadDel=0,4000);return toast('Toque em Descartar de novo para apagar o rascunho')}
+  S.cadDel=0;S.cad={m:S.cad.m,d:iso(T()),cont:{},f:'',obs:''};cadSave();render();toast('Rascunho descartado')}
+async function cadSalvar(){const C=cadLoad(),t=cadTot();if(!t.q)return toast('Nenhuma questão marcada');if(!C.d)return toast('Informe a data');
+  const l=cadMarcados().map(i=>({i,c:C.cont[keyOf(i.m,i.a,i.s)]}));
+  let n=S.ses.filter(s=>s.d===C.d).length, base=Date.now();const novos=l.map((x,j)=>({_id:'s'+(base+j).toString(36),d:C.d,m:x.i.m,a:x.i.a,s:x.i.s,q:x.c.q,ac:x.c.ac,tipo:'Questões',motivo:'',obs:C.obs?('Caderno · '+C.obs):'Caderno',n:++n}));
+  S.ses.push(...novos);recalc();
+  try{for(const s of novos){const {_id,...d}=s;await S.db.collection('sessoes').doc(_id).set(clean(d))}}catch(e){toast('Falha ao salvar algumas sessões');return render()}
+  /* ciclo: compara com o próximo bloco começando pela matéria do caderno com mais questões */
+  const pm={};for(const x of l){const o=pm[x.i.m]||(pm[x.i.m]={q:0,ac:0,l:[]});o.q+=x.c.q;o.ac+=x.c.ac;o.l.push(x)}
+  const mats=Object.keys(pm);let cq=null;
+  S.cad={m:C.m,d:iso(T()),cont:{},f:'',obs:''};cadSave();
+  const msg=novos.length+(novos.length===1?' sessão salva':' sessões salvas')+(mats.length>1?' em '+mats.length+' matérias':'');
+  toast(msg);if(cq){S.cq=cq;go('cic')}else go('hoje')}
+function renderPv(){
+  const e=$('#pv'); if(!e)return; const R=S.reg; const q=+($('#rq')||{}).value||0, ac=+($('#rac')||{}).value||0, d=($('#rd')||{}).value;
+  if(!R.s||!q||!d){e.innerHTML='<span class="sub">Preencha subassunto e questões para ver a prévia.</span>';return}
+  if(ac>q){e.innerHTML='<span style="color:var(--alta)">Acertos maior que questões.</span>';return}
+  const k=keyOf(R.m,R.a,R.s), list=S.ses.filter(s=>keyOf(s.m,s.a,s.s)===k).concat([{d,q,ac,n:999}]).sort((a,b)=>dn(a.d)-dn(b.d)||(a.n||0)-(b.n||0));
+  const itR=S.items.find(i=>keyOf(i.m,i.a,i.s)===k), X0=itR?+itR.q0||0:0, L=ladder(list,S.cfg,itR&&itR.peso,itR?{q:X0>0?X0:(itR.p0!=null?S.cfg.minAmostra:0),p:X0>0?(+itR.a0||0)/X0:(itR.p0==null?null:+itR.p0),v0:itR.v0}:null), me=L.find(x=>x.n===999&&x.d===d)||L[L.length-1];
+  const p=ac/q, lbl=q<(S.cfg.minLadder||S.cfg.minAmostra)?'amostra pequena (mantém o degrau e soma com as próximas sessões)':p>=S.cfg.minSubir?'boa — sobe um degrau':p<S.cfg.pctZera?'fraca — volta ao início':'fraca — desce dois degraus';
+  e.innerHTML=`<div class="big">${pc(p)}</div><div class="sub">${lbl}</div><div style="margin-top:6px">Próxima revisão: <b>${fd(me.next)}</b> (em ${me.interval} dias)</div>`;
+}
+async function saveReg(){
+  const R=S.reg,q=+$('#rq').value||0,ac=+$('#rac').value||0,d=$('#rd').value;
+  if(!R.m||!R.a||!R.s||!q||!d)return toast('Preencha matéria, assunto, subassunto e questões');
+  if(ac>q||ac<0)return toast('Acertos inválidos');
+  const n=S.ses.filter(s=>s.d===d).length+1;
+  await addSes({d,m:R.m,a:R.a,s:R.s,q,ac,tipo:$('#rt').value,motivo:'',obs:$('#ro').value,n});
+  const cq=null;
+  S.reg={};regSave();
+  if(cq){S.cq=cq;go('cic')} else {toast('Sessão salva'+proxTxt(R.m,R.a,R.s));go('hoje')}
+}
+
+/* ---------- Painel ---------- */
+function vPan(){
+  const k=P.kpi, col=p=>p==null?'var(--neu)':p<S.cfg.altaPct?'var(--alta)':p<S.cfg.consPct?'var(--media)':'var(--ok)';
+  let h=`<h1>Painel</h1><div class="sub">${k.assuntos} tópicos em ${k.materias} disciplinas · TRT3 Técnico Administrativo</div><div style="height:12px"></div>
+  <h2 style="margin-top:0">Progresso do edital</h2><div class="tiles"><div class="tile big"><div class="l">Total de tópicos</div><div class="n">${k.assuntos}</div></div><div class="tile big"><div class="l">% concluído</div><div class="n" style="color:var(--ok)">${pc(k.assuntos?k.conc/k.assuntos:0,1)}</div></div></div>
+  <div class="tiles t3" style="margin-top:10px"><div class="tile"><div class="n" style="color:var(--media)">${k.est}</div><div class="l">Estudando</div></div><div class="tile"><div class="n" style="color:${k.atrasados?'var(--alta)':'inherit'}">${k.rev}</div><div class="l">A revisar</div></div><div class="tile"><div class="n" style="color:var(--ok)">${k.conc}</div><div class="l">Concluídos</div></div></div>
+  <div class="bar" style="margin-top:10px"><i style="width:${k.assuntos?(k.est+k.conc)/k.assuntos*100:0}%;background:var(--acc)"></i></div><div class="sub" style="margin-top:4px">${k.est+k.conc} de ${k.assuntos} iniciados · ${k.nao} não iniciados · Concluído = teoria + recuperação ativa + questões + revisão inicial</div>
+  <div style="height:12px"></div>${atrasoBanner()}
+  <div class="tiles"><div class="tile big"><div class="l">Total de questões</div><div class="n">${P.tq.toLocaleString('pt-BR')}</div></div><div class="tile big"><div class="l">Total de acertos</div><div class="n">${P.ta.toLocaleString('pt-BR')}</div></div>
+  <div class="tile big"><div class="l">Total de erros</div><div class="n">${P.te.toLocaleString('pt-BR')}</div></div><div class="tile big"><div class="l">Taxa de acerto</div><div class="n" style="color:${col(P.pctGeral)}">${pc(P.pctGeral)}</div></div></div>
+  <h2>Questões de hoje</h2><div class="tiles t3"><div class="tile"><div class="n">${P.hojeQ.q.toLocaleString('pt-BR')}</div><div class="l">Questões</div></div><div class="tile"><div class="n">${P.hojeQ.a.toLocaleString('pt-BR')}</div><div class="l">Acertos</div></div><div class="tile"><div class="n" style="color:${col(P.hojeQ.pct)}">${pc(P.hojeQ.pct,0)}</div><div class="l">Acerto</div></div></div>
+  <div class="card" style="margin-top:8px"><div class="tag">Últimos 7 dias · ${P.sem7.reduce((t,x)=>t+x.q,0).toLocaleString('pt-BR')} questões</div><div style="display:flex;gap:6px;align-items:flex-end;height:86px;margin-top:8px">${(()=>{const mx=Math.max(1,...P.sem7.map(x=>x.q));return P.sem7.map(x=>`<div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;min-width:0"><div style="font-size:11px;font-weight:600">${x.q||''}</div><div style="width:100%;max-width:28px;height:${Math.round(x.q/mx*52)}px;min-height:${x.q?3:1}px;border-radius:4px 4px 0 0;background:${x.q?col(x.pct):'var(--line,#ccc)'}"></div><div style="font-size:11px;opacity:.7;margin-top:3px">${x.d===P.sem7[6].d?'hoje':WD[new Date(iso(x.d)+'T12:00').getDay()]}</div></div>`).join('')})()}</div></div>
+  <h2>Desempenho nas questões</h2><div class="tiles t3"><div class="tile"><div class="n" style="color:var(--alta)">${k.alta}</div><div class="l">Fracos</div></div><div class="tile"><div class="n" style="color:var(--media)">${k.media}</div><div class="l">Regulares</div></div><div class="tile"><div class="n" style="color:var(--ok)">${k.cons}</div><div class="l">Consolidados</div></div></div>
+  <div class="sub" style="margin-top:6px">${k.peq} com amostra pequena · ${k.sem} sem dados · ${k.atrasados} atrasados</div>
+  <h2>Por disciplina</h2><div class="card"><table><tr><th>Disciplina</th><th>Iniciados</th><th>Quest.</th><th>%</th></tr>`;
+  for(const p of P.per) h+=`<tr><td>${esc(p.m)}<div class="bar" style="margin-top:5px"><i style="width:${(p.pct||0)*100}%;background:${col(p.pct)}"></i></div></td><td>${p.est+p.conc}/${p.n}</td><td>${p.q}</td><td style="color:${col(p.pct)};font-weight:600">${pc(p.pct,0)}</td></tr>`;
+  h+=`<tr><td><b>Total</b></td><td><b>${k.est+k.conc}/${k.assuntos}</b></td><td><b>${P.tq}</b></td><td><b>${pc(P.pctGeral,0)}</b></td></tr></table></div>
+  <h2>20 tópicos mais fracos</h2>`+P.fracos.map(r=>`<div class="card row sp" onclick="openSel(${r.idx})" style="cursor:pointer"><div class="grow"><div class="tag">${esc(r.it.m)}</div><b>${esc(r.it.s)}</b><div class="sub">${esc(r.it.a)} · ${r.qTot} questões</div></div><div class="ttl" style="color:${col(r.pHist)}">${pc(r.pHist,0)}</div></div>`).join('');
+  return h;
+}
+
+/* ---------- Assuntos ---------- */
+const assF=(r,q)=>(!S.fm||r.it.m===S.fm)&&(!S.fp||(S.fp==='sem'?!r.pri:r.pri.startsWith(S.fp)))&&(!S.fs||(S.fs==='rev'?(r.ativo&&r.AT!=null&&r.AT<=0):r.st===S.fs))&&(!q||(r.it.a+' '+r.it.s+' '+r.it.m).toLowerCase().includes(q));
+function vAss(){
+  const ms=abc(uniq(S.items.map(i=>i.m))), q=S.q.toLowerCase();
+  let rs=M.rows.filter(r=>assF(r,q)).sort((x,y)=>x.idx-y.idx);
+  const tot=rs.length; rs=rs.slice(0,200);
+  return `<div class="row sp"><h1>Edital</h1><button class="btn s p" onclick="newItem()">+ Novo</button></div>
+  <input id="sq" type="search" placeholder="Buscar assunto…" value="${esc(S.q)}" oninput="S.q=this.value;fq()" style="margin-top:12px">
+  <div class="g2" style="margin-top:8px"><select onchange="S.fm=this.value;render()"><option value="">Todas as matérias</option>${ms.map(m=>`<option ${m===S.fm?'selected':''}>${esc(m)}</option>`).join('')}</select>
+  <select onchange="S.fp=this.value;render()">${[['','Todo desempenho'],['🔴','Fraco'],['🟠','Regular'],['🟢','Consolidado'],['⚪','Amostra pequena'],['sem','Sem dados']].map(([v,l])=>`<option value="${v}" ${v===S.fp?'selected':''}>${l}</option>`).join('')}</select></div>
+  <select style="margin-top:8px" onchange="S.fs=this.value;render()">${[['','Todas as situações'],['nao','Não iniciado'],['est','Estudando'],['rev','A revisar'],['conc','Concluído']].map(([v,l])=>`<option value="${v}" ${v===(S.fs||'')?'selected':''}>${l}</option>`).join('')}</select><div class="sub" style="margin:10px 0">${tot} tópicos</div><div id="al">${alist(rs)}</div>`;
+}
+function alist(rs){return rs.map(r=>`<div class="card" onclick="openSel(${r.idx})" style="cursor:pointer"><div class="row sp"><div class="tag">${esc(r.it.m)}</div><div class="row" style="gap:6px">${r.pri?badge(r):''}<span class="badge ${r.st==='conc'?'b-ok':r.st==='est'?'b-media':'b-neu'}">${STL[r.st]}</span></div></div><div class="ttl">${esc(r.it.s)}</div><div class="sub">${esc(r.it.a)}</div><div class="meta"><span>Edital <b>${esc(r.it.pr||'Alta')}</b></span><span>Acerto <b>${pc(r.pHist,0)}</b></span><span>Quest. <b>${r.qTot}</b></span><span>Próx. <b>${fd(r.AS)}</b></span>${r.it.chg?'<span style="color:var(--media)"><b>⚠ pode ter mudado</b></span>':''}</div></div>`).join('')||'<div class="empty">Nada encontrado.</div>'}
+function fq(){const q=S.q.toLowerCase();let rs=M.rows.filter(r=>assF(r,q)).sort((x,y)=>x.idx-y.idx);$('#al').innerHTML=alist(rs.slice(0,200))}
+function openSel(i){S.sel=i;render()}
+function closeSel(){S.sel=null;render()}
+function sheet(){
+  if(S.sel==='new'){ $('#ov').innerHTML=`<div class="sheet" onclick="if(event.target===this)closeSel()"><div><h2 style="margin-top:0">Novo assunto</h2>
+   <label>Matéria</label><input id="nm" list="lm"><datalist id="lm">${uniq(S.items.map(i=>i.m)).map(m=>`<option value="${esc(m)}">`).join('')}</datalist>
+   <label>Assunto</label><input id="na"><label>Subassunto</label><input id="ns" value="Todo o conteúdo do assunto"><label>Peso (1–5)</label><input id="np" type="number" min="1" max="5" value="3">
+   <div class="row" style="margin-top:16px"><button class="btn p grow" onclick="addItem()">Adicionar</button><button class="btn" onclick="closeSel()">Cancelar</button></div></div></div>`; return; }
+  const r=M.rows[S.sel]; if(!r){S.sel=null;return} const it=r.it;
+  const hs=r.sess.slice().reverse().map(s=>`<div class="hist row sp"><div>${fdi(s.d)} · ${s.ac}/${s.q} (${pc(s.pct,0)})<div class="sub">${esc(s.tipo||'')} ${esc(s.obs||'')}</div></div><div class="sub" style="text-align:right">próx. ${fd(s.next)}<br><button class="btn s d" style="margin-top:4px" onclick="delSesSel('${s._id}')">Excluir</button></div></div>`).join('');
+  $('#ov').innerHTML=`<div class="sheet" onclick="if(event.target===this)closeSel()"><div>
+  <div class="row sp"><div class="tag">${esc(it.m)}</div>${badge(r)}</div><h2 style="margin:4px 0 0">${esc(it.a)}</h2><div class="sub">${esc(it.s)}</div>
+  <div class="tiles t3" style="margin-top:12px"><div class="tile"><div class="n">${pc(r.pHist,0)}</div><div class="l">Acerto</div></div><div class="tile"><div class="n">${r.qTot}</div><div class="l">Questões</div></div><div class="tile"><div class="n">${fd(r.AS)}</div><div class="l">Próxima</div></div></div>
+  <div class="sub" style="margin-top:8px">Prioridade no edital: <b>${esc(it.pr||'Alta')}</b> · Peso <b>${r.peso}</b> · Situação <b>${STL[r.st]}</b></div>${it.dup?`<div class="msg" style="margin:10px 0 0">${esc(it.dup)}</div>`:''}${it.chg?`<div class="msg" style="margin:10px 0 0;color:var(--media)">⚠ ${esc(it.chg)}</div>`:''}
+  <h2>Histórico</h2>${hs||'<div class="sub">Sem sessões registradas.</div>'}
+  <h2>Editar</h2><label>Matéria</label><input id="em" value="${esc(it.m)}"><label>Assunto</label><input id="ea2" value="${esc(it.a)}"><label>Subassunto</label><input id="es" value="${esc(it.s)}"><div class="g2"><div><label>Peso</label><input id="ep" type="number" min="1" max="5" value="${it.peso||3}"></div><div><label>Data de estudo</label><input id="ed" type="date" value="${it.d0||''}"></div>
+  <div><label>Questões anteriores</label><input id="eq" type="number" value="${it.q0||''}"></div><div><label>Acertos anteriores</label><input id="ea" type="number" value="${it.a0||''}"></div></div>
+  <label>Observação</label><textarea id="eo" rows="2">${esc(it.obs||'')}</textarea>
+  <label>Situação</label><select id="est">${['nao','est','conc'].map(v=>`<option value="${v}" ${r.st===v?'selected':''}>${STL[v]}</option>`).join('')}</select>
+  <label>Concluído = os quatro marcados</label>${CK.map((c,j)=>`<label class="row" style="gap:8px;color:var(--ink);font-size:14px;font-weight:500;margin:6px 0"><input id="ck${j}" type="checkbox" style="width:auto;min-height:0" ${(it.ck||[])[j]?'checked':''}> ${c}</label>`).join('')}
+  <div class="row" style="margin-top:14px;flex-wrap:wrap"><button class="btn p grow" onclick="saveItem(${S.sel})">Salvar</button><button class="btn" onclick="S.sel=null;planoEstudei(${S.sel})">Estudei hoje</button><button class="btn" onclick="regFor(${S.sel});S.sel=null;render()">Registrar</button><button class="btn" onclick="closeSel()">Fechar</button></div>
+  <button class="btn d" style="width:100%;margin-top:10px" onclick="delItem(${S.sel})">Excluir assunto</button></div></div>`;
+}
+async function delSesSel(id){await delSes(id);toast('Sessão excluída')}
+async function delItem(i){const it=S.items[i];if(S.delArm!==i){S.delArm=i;return toast('Toque de novo em Excluir assunto para confirmar')}
+  S.delArm=null;const k=keyOf(it.m,it.a,it.s);const rm=S.ses.filter(s=>keyOf(s.m,s.a,s.s)===k);
+  S.items.splice(i,1);S.sel=null;recalc();render();await saveItems();for(const s of rm) await delSes(s._id);toast('Assunto excluído')}
+async function saveItem(i){const it=S.items[i];
+  const m=$('#em').value.trim(),a=$('#ea2').value.trim(),s=$('#es').value.trim();if(!m||!a||!s)return toast('Nomes não podem ficar vazios');
+  const ok=keyOf(it.m,it.a,it.s),nk=keyOf(m,a,s);
+  if(nk!==ok){ if(S.items.some((x,j)=>j!==i&&keyOf(x.m,x.a,x.s)===nk))return toast('Já existe esse assunto');
+    const mv=S.ses.filter(x=>keyOf(x.m,x.a,x.s)===ok);mv.forEach(x=>{x.m=m;x.a=a;x.s=s;const {_id,...d}=x;S.db.collection('sessoes').doc(_id).set(d)}); }
+  it.m=m;it.a=a;it.s=s;it.peso=+$('#ep').value||3;it.d0=$('#ed').value||undefined;it.q0=+$('#eq').value||undefined;it.a0=+$('#ea').value||undefined;it.obs=$('#eo').value||undefined;{const ck=[0,1,2,3].map(j=>!!$('#ck'+j).checked),sv=$('#est').value,old=M.rows[i].st;it.ck=ck.some(Boolean)?ck:undefined;if(sv!==old){it.st=sv;if(sv!=='conc'&&ck.every(Boolean))it.ck=undefined;if(sv==='nao'){it.ck=undefined;it.d0=undefined;it.rev0=undefined}}}S.sel=null;recalc();render();if(await saveItems())toast('Salvo')}
+function newItem(){S.sel='new';render()}
+async function addItem(){const m=$('#nm').value.trim(),a=$('#na').value.trim(),s=$('#ns').value.trim();if(!m||!a||!s)return toast('Preencha matéria, assunto e subassunto');
+  if(S.items.some(x=>keyOf(x.m,x.a,x.s)===keyOf(m,a,s)))return toast('Esse subassunto já existe nesse assunto');
+  S.items.push({id:'n'+Date.now().toString(36),m,a,s,peso:+$('#np').value||3,pr:'Alta'});S.sel=null;recalc();render();if(await saveItems())toast('Assunto adicionado')}
+
+/* ---------- Mais ---------- */
+const CF=[['limite','Assuntos por dia'],['minAmostra','Mínimo de questões p/ confiar'],['janela','Dias em "Próximos dias"'],['altaPct','Limite % alta (0–1)'],['consPct','Limite % consolidado (0–1)'],['minSubir','% mínimo p/ subir degrau (0–1)'],['pctZera','Abaixo deste % volta ao 1º degrau (0–1)'],['degExtra','Degrau extra (dias) p/ acerto alto e peso até 3'],['pctAlto','% de acerto alto (0–1)'],['pctMed','% de acerto médio (0–1)'],['fAcAlto','Multiplicador: acerto alto'],['fAcMed','Multiplicador: acerto médio'],['fAcBaixo','Multiplicador: acerto baixo (entre o mínimo e o médio)'],['fPeso5','Multiplicador: peso 5'],['fPeso4','Multiplicador: peso 4'],['fPeso3','Multiplicador: peso 3'],['fPeso12','Multiplicador: peso 1 e 2']];
+function vMais(){
+  const orph=M.orphan;
+  return `<h1>Mais</h1><div class="sub">Edital, parâmetros e exportação</div>
+  <h2>Edital de referência</h2><div class="card"><div class="sub">TRT da 3ª Região (MG) · Técnico Judiciário, Área Administrativa, cobrança de nível Técnico. Base: Anexo II do Edital 01/2022 (172 tópicos). Banca de referência provisória: FUMARC. Edital novo ainda não publicado (previsão de 2027, cadastro de reserva). Quando sair, peça no chat a comparação com esta base e a adaptação de tópicos, pesos e banca.</div><div class="sub" style="margin-top:8px">Os tópicos marcados com ⚠ na aba Edital podem ter mudado desde 2022. Os pesos de 1 a 5 são inferência minha a partir da prova de 2022; ajuste em cada tópico.</div></div>
+  <details style="margin-top:22px"><summary style="cursor:pointer;font-weight:700;font-size:17px">Ajustes avançados (opcional)</summary><div class="card" style="margin-top:10px">${CF.map(([k,l])=>`<label>${l}</label><input type="number" step="any" value="${S.cfg[k]}" onchange="setCfg('${k}',this.value)">`).join('')}
+  <label>Escada de revisão (dias, separados por vírgula)</label><input value="${S.cfg.escada.join(',')}" onchange="setEsc(this.value)"><div class="sub" style="margin-top:8px">Escada fixa 24h, 7 e 30 dias a partir da data de estudo. Revisão boa (acima do % mínimo) sobe um degrau; ruim desce dois; abaixo do % de reinício volta a 1 dia. Os multiplicadores de acerto e peso ficam em 1 e não alteram os intervalos. Sessões com menos de 3 questões se somam à próxima.</div></div></details>
+  <h2>Exportar</h2><div class="card"><div class="sub">Baixe as suas sessões de questões em CSV.</div>
+  <div class="row" style="margin-top:10px;flex-wrap:wrap"><button class="btn" onclick="expCsv()">Baixar sessões (CSV)</button></div>
+</div>
+  <h2>Backup completo</h2><div class="card"><div class="sub">Guarda tópicos, sessões, horas de estudo e parâmetros em um único arquivo. Faça de vez em quando e guarde fora do Claude.</div>
+  <div class="row" style="margin-top:10px;flex-wrap:wrap"><button class="btn p" onclick="expBackup()">Baixar backup</button><button class="btn" onclick="$('#bk').click()">Restaurar backup</button></div>
+  <input id="bk" type="file" accept=".json,application/json" style="display:none" onchange="impBackup(this)"><div class="sub" style="margin-top:8px">Restaurar substitui todos os dados atuais pelos do arquivo.</div></div>
+  ${orph.length?`<h2>Sessões sem assunto cadastrado (${orph.length})</h2>`+orph.map(s=>`<div class="card"><b>${esc(s.a)}</b><div class="sub">${esc(s.m)} · ${esc(s.s)} · ${fdi(s.d)}</div></div>`).join(''):''}`;
+}
+async function setCfg(k,v){S.cfg[k]=+v;recalc();render();await saveCfg()}
+async function setEsc(v){const a=v.split(',').map(x=>+x.trim()).filter(x=>x>0);if(!a.length)return toast('Escada inválida');S.cfg.escada=a;recalc();render();await saveCfg()}
+const rowsExp=()=>S.ses.slice().sort((a,b)=>dn(a.d)-dn(b.d)||(a.n||0)-(b.n||0)).map(s=>[fdi(s.d),s.m,s.a,s.s,s.q,s.ac,s.q?(s.ac/s.q).toFixed(3).replace('.',','):'',s.tipo||'',s.obs||'']);
+async function expCsv(){const dl={save:dlSave};
+  const csv=['Data;Matéria;Assunto;Subassunto;Questões;Acertos;%;Tipo;Obs'].concat(rowsExp().map(r=>r.map(x=>'"'+String(x).replace(/"/g,'""')+'"').join(';'))).join('\n');
+  try{await dl.save({filename:'sessoes_revisao.csv',data:'﻿'+csv});toast('Arquivo pronto')}catch(e){toast('Download cancelado')}}
+async function expCad(){const f=x=>x==null?'':String(x).replace(/[\t\r\n]+/g,' ');
+  const t=S.items.map(i=>[i.m,i.a,i.s,i.peso||'',i.q0==null?'':i.q0,i.a0==null?'':i.a0,i.p0==null?'':(i.p0*100).toFixed(1).replace('.',',')+'%',i.obs||'','',i.d0?fdi(i.d0):''].map(f).join('\t')).join('\n');
+  try{await navigator.clipboard.writeText(t);toast('Cadastro copiado — cole na aba CADASTRO')}catch(e){toast('Não foi possível copiar')}}
+async function expTsv(){const t=rowsExp().map(r=>r.join('\t')).join('\n');try{await navigator.clipboard.writeText(t);toast('Copiado — cole na planilha')}catch(e){toast('Não foi possível copiar')}}
+async function expBackup(){const dl={save:dlSave};
+  const ses=S.ses.map(({_id,...s})=>s);const d={app:'revisao-concursos',versao:1,gerado:new Date().toISOString(),items:S.items,cfg:S.cfg,ses,horas:(S.hrs||[]).map(({_id,...x})=>x)};
+  const nm='backup_revisao_'+iso(T())+'.json';
+  try{await dl.save({filename:nm,data:JSON.stringify(d)});toast('Backup pronto')}catch(e){toast('Download cancelado')}}
+async function impBackup(inp){const f=inp.files[0];inp.value='';if(!f)return;
+  let d;try{d=JSON.parse(await f.text())}catch(e){return toast('Arquivo inválido')}
+  if(d.app!=='revisao-concursos'||!Array.isArray(d.items)||!Array.isArray(d.ses))return toast('Não é um backup deste app');
+  if(S.pend!==f.name+f.size){S.pend=f.name+f.size;return toast('Toque em Restaurar e escolha o arquivo de novo para confirmar')}
+  S.pend=null;toast('Restaurando…');
+  try{
+    for(const s of S.ses) await S.db.collection('sessoes').doc(s._id).delete();
+    S.items=d.items;S.cfg={...DEFAULT_CFG,...d.cfg};await saveItems();await saveCfg();
+    let i=0;for(const s of d.ses){await S.db.collection('sessoes').doc('r'+Date.now().toString(36)+(i++)).set(s)}
+    for(const x of (S.hrs||[])) await S.db.collection('horas').doc(x._id).delete();
+    for(const x of (d.horas||[])) await S.db.collection('horas').doc('h'+Date.now().toString(36)+(i++)).set(x);
+    toast('Backup restaurado')}catch(e){toast('Falha ao restaurar')}}
+/* ===== PLANO: rotina semanal do TRT3 (Técnico Administrativo) ===== */
+const STL={nao:'Não iniciado',est:'Estudando',conc:'Concluído'};
+const CK=['Teoria','Recuperação ativa','Questões','Revisão inicial'];
+const DIAS=['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'];
+const MAT={PT:'Língua Portuguesa',INF:'Noções de Informática',CON:'Noções de Direito Constitucional',ADM:'Noções de Direito Administrativo',LEG:'Legislação',DT:'Noções de Direito do Trabalho',DPT:'Noções de Direito Processual do Trabalho'};
+const MABR={[MAT.PT]:'Português',[MAT.INF]:'Informática',[MAT.CON]:'Constitucional',[MAT.ADM]:'Administrativo',[MAT.LEG]:'Legislação',[MAT.DT]:'D. Trabalho',[MAT.DPT]:'P. Trabalho'};
+const ROT={1:[MAT.DT,MAT.PT],2:[MAT.DPT,MAT.ADM],3:[MAT.DT,MAT.CON],4:[MAT.DPT,MAT.LEG],5:[MAT.PT,MAT.INF],6:[MAT.ADM,MAT.CON]};
+const PROVA22=[['Língua Portuguesa',15,[MAT.PT]],['Noções de Informática',5,[MAT.INF]],['Legislação',5,[MAT.LEG]],['Noções de Direito (Const. + Adm.)',5,[MAT.CON,MAT.ADM]],['Dir. do Trabalho + Proc. do Trabalho',30,[MAT.DT,MAT.DPT]]];
+function planoPool(m){
+  const byId=new Map(M.rows.map(r=>[r.it.id,r]));
+  const ok=r=>{const tw=r.it.dupId&&byId.get(r.it.dupId);return !(tw&&tw.st==='nao')};
+  const rows=M.rows.filter(r=>r.it.m===m&&r.st!=='conc'&&ok(r));
+  const A=rows.filter(r=>r.st==='est'&&!r.it.d0&&!r.U);
+  const B=rows.filter(r=>r.st==='nao').sort((x,y)=>((x.it.pr==='Média')-(y.it.pr==='Média'))||x.idx-y.idx);
+  return A.concat(B)}
+function planoPick(m){const p=planoPool(m);return p.length?p[((S.pAlt&&S.pAlt[m])||0)%p.length]:null}
+function planoBloco(m,full){
+  const pool=planoPool(m),r=planoPick(m);
+  if(!r) return `<div class="tag">${esc(m)}</div><div class="sub" style="margin-top:4px">Todos os tópicos desta disciplina já foram iniciados. Use o bloco para revisões vencidas e questões dos tópicos mais fracos.</div>`;
+  const it=r.it;
+  const modo=it.dupId?'2ª rodada de questões (literalidade do texto legal), sem cartões novos':r.st==='est'?'Continuar o que já começou: fechar a teoria, recitar e fazer questões':'Tema novo: videoaula (se difícil) ou PDF com leitura ativa, depois fechar o material e recitar, depois questões no mesmo dia';
+  return `<div class="row sp"><div class="tag">${esc(m)}</div><span class="badge ${it.pr==='Média'?'b-media':'b-alta'}">edital: ${esc((it.pr||'Alta').toLowerCase())}</span></div>
+  <div class="ttl">${esc(it.s)}</div><div class="sub">${esc(it.a)}</div>
+  ${it.chg?`<div class="sub" style="color:var(--media);margin-top:4px">⚠ ${esc(it.chg)}</div>`:''}
+  <div class="cic-modo">${esc(modo)}</div>
+  ${full?`<div class="row" style="margin-top:12px;flex-wrap:wrap"><button class="btn p s" onclick="planoEstudei(${r.idx})">Estudei hoje</button><button class="btn s" onclick="regFor(${r.idx})">Registrar questões</button>${pool.length>1?`<button class="btn s" onclick="planoOutro('${esc(m)}')">Outro tópico</button>`:''}</div>`:''}`}
+async function planoEstudei(i){const it=S.items[i];it.d0=iso(T());delete it.rev0;if(it.st!=='conc')it.st='est';S.pAlt={};recalc();render();if(await saveItems())toast('Revisão de 24h agendada para '+fd(T()+1)+'. Registre as questões na aba Registrar.')}
+function planoOutro(m){S.pAlt=S.pAlt||{};S.pAlt[m]=(S.pAlt[m]||0)+1;render()}
+function rotDayCard(d){const t=T(),dow=new Date(d*DAY).getUTCDay(),ds=iso(d),R=(S.rot||{})[ds]||{},isT=d===t,fut=d>t;
+  const it=dow===0?['Simulado','Correção dos erros','Planejamento da semana']:ROT[dow].map(m=>MABR[m]);
+  const sub=dow===0?['','','']:['1h30','1h30'];
+  const nDone=it.filter((_,i)=>R['b'+i]).length,hs=hStats().sum(d,d),fl=S.flash&&S.flash[ds];
+  const row=(i,l,s)=>`<div class="row sp hist"><div class="grow"><b>${esc(l)}</b>${s?`<span class="sub"> · ${s}</span>`:''}</div>${fut?'':`<button class="btn s ${R['b'+i]?'p':''}" onclick="rotTog('${ds}',${i})">${R['b'+i]?'Feito ✓':'Marcar'}</button>`}</div>`;
+  return `<div class="card ${isT?'cic-next':''}"><div class="row sp"><div class="tag">${DIAS[dow]} · ${fd(d)}</div><span class="badge ${nDone===it.length?'b-ok':'b-neu'}">${isT?'hoje · ':''}${nDone}/${it.length}</span></div>
+  ${it.map((l,i)=>row(i,l,sub[i])).join('')}
+  ${dow===6?`<div class="hist sub">Sábado inclui a redação quinzenal. ${planoRedDue().txt}</div>`:''}
+  <div class="row sp hist"><div class="grow"><b>Fechamento</b><span class="sub"> · Anki + questões, erros e revisão</span></div>${fut?'':`<button class="btn s ${fl?'p':''}" onclick="flashToggle('${ds}')">${fl?'Feito ✓':'Marcar'}</button>`}</div>
+  ${hs?`<div class="sub" style="margin-top:6px">Horas lançadas: <b>${hFmt(hs)}</b></div>`:''}</div>`}
+async function rotTog(ds,i){S.rot=S.rot||{};const cur={...(S.rot[ds]||{})};cur['b'+i]=!cur['b'+i];S.rot[ds]=cur;render();try{await S.db.collection('rotina').doc(ds).set(clean(cur))}catch(e){toast('Não foi possível salvar')}}
+function planoHojeCard(){return '<div style="margin-top:12px">'+rotDayCard(T())+'</div>'}
+function atrasoBanner(){const l=M.rows.filter(r=>r.ativo&&r.AT!=null&&r.AT<0).sort((a,b)=>a.AT-b.AT);if(!l.length)return '';
+  return `<div class="card" style="border-color:var(--alta)"><div class="tag" style="color:var(--alta)">Revisões atrasadas (${l.length})</div>`+l.slice(0,4).map(r=>`<div class="hist row sp" onclick="openSel(${r.idx})" style="cursor:pointer"><div class="grow"><b>${esc(r.it.s)}</b><div class="sub">${esc(r.it.m)} · prevista em ${fd(r.AS)}</div></div><span style="color:var(--alta);font-weight:600">${-r.AT}d</span></div>`).join('')+(l.length>4?`<div class="sub" style="margin-top:6px">+ ${l.length-4} na aba Edital (filtro “A revisar”).</div>`:'')+`<div class="sub" style="margin-top:6px">O app distribui o atraso em até ${S.cfg.limite} assuntos por dia. Não precisa compensar tudo de uma vez.</div></div>`}
+function flashCard(){const t=T();let dots='';for(let i=6;i>=0;i--){const d=iso(t-i),ok=S.flash&&S.flash[d];dots+=`<span class="cic-dot ${ok?'ok':''}" title="${fdi(d)}"></span>`}
+  const ok=S.flash&&S.flash[iso(t)];
+  return `<div class="card row sp" style="margin-top:10px"><div><b>Anki (fechamento)</b><div class="row" style="gap:4px;margin-top:4px">${dots}</div></div><button class="btn s ${ok?'':'p'}" onclick="flashToggle()">${ok?'Feito hoje ✓':'Marcar hoje'}</button></div>`}
+async function flashToggle(ds){const d=typeof ds==='string'?ds:iso(T()),ok=S.flash[d];S.flash[d]=!ok;render();try{if(ok)await S.db.collection('flash').doc(d).delete();else await S.db.collection('flash').doc(d).set({ok:true})}catch(e){toast('Não foi possível salvar')}}
+function planoRedDue(){const l=(S.red||[]).slice().sort((a,b)=>dn(b.d)-dn(a.d));
+  if(!l.length)return {txt:'Nenhuma redação registrada. Faça a primeira neste sábado.'};
+  const due=dn(l[0].d)+14,n=due-T();
+  return {due,txt:n<0?`Redação atrasada há ${-n} ${-n===1?'dia':'dias'} (última em ${fdi(l[0].d)}).`:n===0?'Redação quinzenal: é hoje.':`Próxima redação em ${n} ${n===1?'dia':'dias'} (${fd(due)}). Última em ${fdi(l[0].d)}.`}}
+function planoProj(){const t=T(),b={};for(const d in ROT)for(const m of ROT[d])b[m]=(b[m]||0)+1;
+  return Object.values(MAT).map(m=>{const rs=M.rows.filter(r=>r.it.m===m),rest=rs.filter(r=>r.st==='nao').length,w=b[m]||0,sem=w?Math.ceil(rest/w):null;return {m,n:rs.length,rest,w,sem,fim:sem==null?null:t+sem*7}})}
+function vCic(){
+  const t=T(),wd=new Date(t*DAY).getUTCDay(),off=S.wk||0,ini=t-((wd+6)%7)+off*7,R=S.rot||{};
+  let nb=0;for(let i=0;i<6;i++){const r=R[iso(ini+i)]||{};ROT[i+1].forEach((m,j)=>{if(r['b'+j])nb++})}
+  const hsem=hStats().sum(ini,ini+6);
+  let h=`<h1>Plano</h1><div class="sub">Rotina semanal: 2 blocos de 1h30 por dia e fechamento de 30 min</div>
+  <div class="row sp" style="margin:14px 0 8px"><button class="btn s" onclick="S.wk=(S.wk||0)-1;render()" aria-label="Semana anterior">←</button><div style="text-align:center"><b>${off===0?'Esta semana':off<0?(-off)+(off===-1?' semana atrás':' semanas atrás'):'Daqui a '+off+(off===1?' semana':' semanas')}</b><div class="sub">${fd(ini)} a ${fd(ini+6)}</div></div><button class="btn s" onclick="S.wk=(S.wk||0)+1;render()" aria-label="Próxima semana">→</button></div>
+  <div class="tiles"><div class="tile"><div class="l">Blocos (seg a sáb)</div><div class="n">${nb}<span class="sub"> / 12</span></div><div class="bar" style="margin-top:6px"><i style="width:${nb/12*100}%;background:var(--ok)"></i></div></div><div class="tile"><div class="l">Horas da semana</div><div class="n">${hFmt(hsem)}</div><div class="sub">meta: cerca de 20 h</div></div></div>`;
+  if(off!==0)h+=`<div class="row" style="margin-top:8px"><button class="btn s" onclick="S.wk=0;render()">Voltar para esta semana</button></div>`;
+  h+=`<div style="height:12px"></div>`;
+  for(let i=0;i<7;i++)h+=rotDayCard(ini+i);
+  const pj=planoProj(),fim=Math.max(...pj.filter(x=>x.fim!=null).map(x=>x.fim));
+  h+=`<h2>Projeção da 1ª passada</h2><div class="card"><table><tr><th>Disciplina</th><th>Faltam</th><th>Blocos/sem.</th><th>Termina</th></tr>`+pj.map(x=>`<tr><td>${esc(MABR[x.m])}</td><td>${x.rest}/${x.n}</td><td>${x.w}</td><td>${x.rest?fd(x.fim):'feito'}</td></tr>`).join('')+`</table><div class="sub" style="margin-top:8px">Estimativa minha: 1 tópico por bloco de 1h30. Tema pesado pode levar 2 blocos. Primeira passada completa em cerca de ${fdi(iso(fim))}; depois vêm as passadas de revisão e os simulados.</div></div>`;
+  const rl=(S.red||[]).slice().sort((a,b)=>dn(b.d)-dn(a.d));
+  h+=`<div class="row sp" style="margin:22px 0 10px"><h2 style="margin:0">Redação quinzenal</h2><button class="btn p s" onclick="redOpen()">Registrar</button></div><div class="card"><div class="sub">${planoRedDue().txt}</div></div>`+rl.slice(0,6).map(x=>`<div class="card row sp"><div class="grow"><b>${esc(x.tema||'Redação')}</b><div class="sub">${fdi(x.d)}${x.nota!=null?' · nota '+String(x.nota).replace('.',','):''}</div></div><button class="btn s d" onclick="redDel('${x._id}')">Excluir</button></div>`).join('');
+  h+=`<h2>Peso na prova (referência 2022)</h2><div class="card"><table><tr><th>Bloco</th><th>Quest.</th><th>Tópicos</th></tr>`+PROVA22.map(([l,q,ms])=>`<tr><td>${esc(l)}</td><td>${q}</td><td>${M.rows.filter(r=>ms.includes(r.it.m)).length}</td></tr>`).join('')+`</table><div class="sub" style="margin-top:8px">Prova FUMARC de 2022 para este cargo: 60 objetivas (A a E) e 1 redação, em 4h30. A divisão entre Trabalho e Processual (cerca de 20 e 10) é inferência: confira no caderno oficial. O edital novo pode mudar banca e distribuição.</div></div>`;
+  return h}
+/* ===== BANCO DE HORAS (meta: 1000 h antes da prova) ===== */
+function hMeta(){return (S.hcfg&&+S.hcfg.meta)||1000}
+const hFmt=min=>{min=Math.round(min);const h=Math.floor(min/60),m=min%60;return h+'h'+(m?String(m).padStart(2,'0'):'')};
+const hDec=min=>(min/60).toFixed(1).replace('.',',')+' h';
+function hForm(){if(!S.hform){const wd=new Date(T()*DAY).getUTCDay();S.hform={d:iso(T()),m:(ROT[wd]||[MAT.PT])[0],h:'',min:''}}return S.hform}
+function hStats(){const t=T(),H=S.hrs||[],tot=H.reduce((a,x)=>a+(+x.min||0),0),by={};
+  Object.values(MAT).forEach(m=>by[m]=0);H.forEach(x=>{by[x.m]=(by[x.m]||0)+(+x.min||0)});
+  const sum=(a,b)=>H.filter(x=>{const d=dn(x.d);return d>=a&&d<=b}).reduce((s,x)=>s+(+x.min||0),0);
+  const wd=(new Date(t*DAY).getUTCDay()+6)%7,ini=t-wd;
+  const first=H.length?Math.min(...H.map(x=>dn(x.d))):null;
+  return {t,tot,by,sum,hoje:sum(t,t),sem:sum(ini,t),last28:sum(t-27,t),first}}
+function hrsMini(){const st=hStats(),meta=hMeta();
+  return `<div class="card" style="margin-top:10px;cursor:pointer" onclick="go('hrs')"><div class="row sp"><div><div class="tag">Banco de horas</div><div class="ttl">${hDec(st.tot)} <span class="sub">de ${meta.toLocaleString('pt-BR')} h</span></div></div><div style="text-align:right"><div class="sub">hoje <b>${hFmt(st.hoje)}</b></div><div class="sub">semana <b>${hFmt(st.sem)}</b></div></div></div><div class="bar" style="margin-top:8px"><i style="width:${Math.min(100,st.tot/(meta*60)*100)}%;background:var(--ok)"></i></div></div>`}
+function vHrs(){
+  const F=hForm(),st=hStats(),meta=hMeta(),metaMin=meta*60,t=T(),falta=Math.max(0,metaMin-st.tot),pct=Math.min(1,st.tot/metaMin);
+  const dias=st.first==null?0:Math.min(28,t-st.first+1),ritmo=dias>=7?st.last28/dias*7:null;
+  const fim=r=>r>0&&falta>0?fdi(iso(t+Math.ceil(falta/r*7))):null;
+  const prova=S.hcfg&&S.hcfg.prova;let pt='';
+  if(prova){const dd=dn(prova)-t;pt=dd>0?`Faltam ${dd} dias para a prova estimada (${fdi(prova)}). Para chegar a ${meta.toLocaleString('pt-BR')} h você precisa de ${hDec(falta/(dd/7))} por semana${ritmo!=null?`; seu ritmo atual é ${hDec(ritmo)}`:''}.`:'A data estimada da prova já passou: atualize-a abaixo.'}
+  else pt='Defina abaixo a data estimada da prova para ver o ritmo semanal necessário.';
+  const mats=Object.values(MAT);
+  let h=`<h1>Horas</h1><div class="sub">Banco de horas de estudo · meta de ${meta.toLocaleString('pt-BR')} h antes da prova</div>
+  <div class="card" style="margin-top:12px"><div class="tag">Total estudado</div><div class="row" style="align-items:baseline;gap:8px"><div class="n" style="font-family:'Schibsted Grotesk',sans-serif;font-weight:800;font-size:34px;color:var(--ok)">${hDec(st.tot)}</div><div class="sub">de ${meta.toLocaleString('pt-BR')} h · ${pc(pct,1)}</div></div>
+   <div class="bar" style="margin-top:8px;height:12px"><i style="width:${pct*100}%;background:var(--ok)"></i></div><div class="sub" style="margin-top:6px">Faltam <b>${hDec(falta)}</b></div></div>
+  <div class="tiles t3" style="margin-top:10px"><div class="tile"><div class="n">${hFmt(st.hoje)}</div><div class="l">Hoje</div></div><div class="tile"><div class="n">${hFmt(st.sem)}</div><div class="l">Semana</div></div><div class="tile"><div class="n">${ritmo==null?'—':hDec(ritmo).replace(' h','')}</div><div class="l">Média h/sem</div></div></div>
+  <h2>Lançar horas</h2><div class="card">
+   <div class="g2"><div><label for="hd">Data</label><input id="hd" type="date" value="${esc(F.d)}" onchange="hForm().d=this.value"></div><div><label for="hm">Matéria</label><select id="hm" onchange="hForm().m=this.value">${mats.map(m=>`<option value="${esc(m)}" ${m===F.m?'selected':''}>${esc(MABR[m])}</option>`).join('')}</select></div></div>
+   <div class="g2"><div><label for="hh">Horas</label><input id="hh" type="number" inputmode="numeric" min="0" max="16" value="${esc(F.h)}" oninput="hForm().h=this.value"></div><div><label for="hmin">Minutos</label><input id="hmin" type="number" inputmode="numeric" min="0" max="59" value="${esc(F.min)}" oninput="hForm().min=this.value"></div></div>
+   <div class="row" style="gap:6px;margin-top:10px;flex-wrap:wrap">${[[0,30],[1,0],[1,30],[2,0]].map(([a,b])=>`<button class="btn s" onclick="hPre(${a},${b})">${hFmt(a*60+b)}</button>`).join('')}</div>
+   <button class="btn p" style="width:100%;margin-top:12px" onclick="hAdd()">Adicionar ao banco</button></div>
+  <h2>Por matéria</h2><div class="card"><table><tr><th>Matéria</th><th>Horas</th><th>%</th></tr>${mats.map(m=>`<tr><td>${esc(MABR[m])}<div class="bar" style="margin-top:5px"><i style="width:${st.tot?st.by[m]/st.tot*100:0}%;background:var(--acc)"></i></div></td><td>${hDec(st.by[m])}</td><td>${st.tot?pc(st.by[m]/st.tot,0):'—'}</td></tr>`).join('')}<tr><td><b>Total</b></td><td><b>${hDec(st.tot)}</b></td><td></td></tr></table></div>
+  <h2>Últimos 7 dias</h2><div class="card"><div style="display:flex;gap:6px;align-items:flex-end;height:96px">${(()=>{const ds=[];for(let i=6;i>=0;i--){const d=t-i;ds.push({d,m:st.sum(d,d)})}const mx=Math.max(60,...ds.map(x=>x.m));return ds.map(x=>`<div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;min-width:0"><div style="font-size:11px;font-weight:600">${x.m?hFmt(x.m):''}</div><div style="width:100%;max-width:28px;height:${Math.round(x.m/mx*56)}px;min-height:${x.m?3:1}px;border-radius:4px 4px 0 0;background:${x.m?'var(--acc)':'var(--line)'}"></div><div style="font-size:11px;opacity:.7;margin-top:3px">${x.d===t?'hoje':WD[new Date(x.d*DAY).getUTCDay()]}</div></div>`).join('')})()}</div><div class="sub" style="margin-top:8px">Meta da rotina: cerca de 20 h por semana.</div></div>
+  <h2>Projeção</h2><div class="card"><div class="sub">${pt}</div>${falta>0?`<div class="sub" style="margin-top:8px">No ritmo da rotina (20 h/sem) você chega a ${meta.toLocaleString('pt-BR')} h em <b>${fim(20*60)}</b>.${ritmo>0?` No seu ritmo atual: <b>${fim(ritmo)}</b>.`:''}</div>`:'<div class="sub" style="margin-top:8px"><b style="color:var(--ok)">Meta atingida.</b></div>'}
+   <div class="g2"><div><label for="hp">Data estimada da prova</label><input id="hp" type="date" value="${esc(prova||'')}" onchange="hSetCfg('prova',this.value)"></div><div><label for="hg">Meta (horas)</label><input id="hg" type="number" inputmode="numeric" min="1" value="${meta}" onchange="hSetCfg('meta',+this.value||1000)"></div></div></div>
+  <h2>Últimos lançamentos</h2>`;
+  const l=(S.hrs||[]).slice().sort((a,b)=>dn(b.d)-dn(a.d)||(b.t||0)-(a.t||0)).slice(0,15);
+  h+=l.length?l.map(x=>`<div class="card row sp"><div class="grow"><b>${esc(MABR[x.m]||x.m)}</b><div class="sub">${fdi(x.d)} · ${hFmt(x.min)}</div></div><button class="btn s d" onclick="hDel('${x._id}')">${S.hDelArm===x._id?'Confirmar':'Excluir'}</button></div>`).join(''):'<div class="empty">Nenhuma hora lançada. Registre o que estudou hoje no formulário acima.</div>';
+  return h}
+function hPre(a,b){const F=hForm();F.h=a?String(a):'';F.min=b?String(b):'';render()}
+async function hAdd(){const F=hForm(),d=F.d,m=F.m,min=Math.round((+F.h||0)*60+(+F.min||0));
+  if(!d||!m)return toast('Informe a data e a matéria');if(min<=0)return toast('Informe as horas estudadas');if(min>16*60)return toast('Máximo de 16 h por lançamento');
+  const id='h'+Date.now().toString(36),doc={d,m,min,t:Date.now()};S.hrs=(S.hrs||[]).concat([{...doc,_id:id}]);F.h='';F.min='';render();
+  try{await S.db.collection('horas').doc(id).set(doc);toast(hFmt(min)+' de '+MABR[m]+' adicionadas')}catch(e){toast('Não foi possível salvar')}}
+async function hDel(id){if(S.hDelArm!==id){S.hDelArm=id;setTimeout(()=>{if(S.hDelArm===id){S.hDelArm=null;render()}},4000);return render()}
+  S.hDelArm=null;S.hrs=(S.hrs||[]).filter(x=>x._id!==id);render();try{await S.db.collection('horas').doc(id).delete()}catch(e){toast('Não foi possível excluir')}}
+async function hSetCfg(k,v){S.hcfg={...(S.hcfg||{meta:1000,prova:''}),[k]:v};render();try{await S.db.doc('app/horas').set(clean(S.hcfg))}catch(e){toast('Não foi possível salvar')}}
+function redOpen(){S.rd=true;render()}
+function redClose(){S.rd=false;render()}
+function redSheet(){$('#ov').innerHTML=`<div class="sheet" onclick="if(event.target===this)redClose()"><div><div class="tag">Redação quinzenal</div><h2 style="margin:4px 0 0">Registrar redação</h2><label for="rd-t">Tema</label><input id="rd-t" type="text" placeholder="tema da redação"><div class="g2"><div><label for="rd-n">Nota (0 a 10, opcional)</label><input id="rd-n" type="text" inputmode="decimal" placeholder="ex.: 7,5" autocomplete="off"></div><div><label for="rd-d">Data</label><input id="rd-d" type="date" value="${iso(T())}"></div></div><div class="row" style="margin-top:16px"><button class="btn p grow" onclick="redSave()">Salvar</button><button class="btn" onclick="redClose()">Cancelar</button></div></div></div>`}
+async function redSave(){const tx=String($('#rd-n').value).trim(),n=tx===''?null:parseFloat(tx.replace(',','.'));if(n!=null&&(isNaN(n)||n<0||n>10))return toast('Informe a nota de 0 a 10');const d=$('#rd-d').value;if(!d)return toast('Informe a data');
+  const doc={d,tema:$('#rd-t').value.trim()||'Redação',t:Date.now()};if(n!=null)doc.nota=Math.round(n*10)/10;const id='r'+Date.now().toString(36);
+  S.rd=false;S.red=(S.red||[]).concat([{...doc,_id:id}]);render();try{await S.db.collection('redacao').doc(id).set(doc);toast('Redação registrada')}catch(e){toast('Não foi possível salvar')}}
+async function redDel(id){S.red=(S.red||[]).filter(x=>x._id!==id);render();try{await S.db.collection('redacao').doc(id).delete()}catch(e){toast('Não foi possível excluir')}}
+
+/* ===== SIMULADOS INÉDITOS (aba Simulados) =====
+   simulados/{id}: questões, textos, estudo de caso (escritos pelo Claude)
+   sim_tent/{id}: uma tentativa: respostas, tempo, resultado, nota da discursiva */
+const SL='ABCDE';
+/* simulados publicados como arquivos do próprio app (simulados/index.json) + eventuais do banco */
+function simMerge(){const m=new Map();for(const x of (S.simsFile||[]))m.set(x.id,x);for(const x of (S.simsDb||[]))m.set(x.id,x);return [...m.values()]}
+async function simLoadFiles(){try{const r=await fetch('simulados/index.json',{cache:'no-store'});if(!r.ok)return;const ix=await r.json();const out=[];
+  for(const f of ix.arquivos||[]){try{const q=await fetch('simulados/'+f,{cache:'no-store'});if(q.ok)out.push(await q.json())}catch(e){}}
+  S.simsFile=out;S.sims=simMerge();bgRender()}catch(e){}}
+function simById(id){return S.sims.find(x=>x.id===id)}
+function simTents(sid){return S.tents.filter(t=>t.sim===sid).sort((a,b)=>a.ini-b.ini)}
+function simFmtT(sec){sec=Math.max(0,Math.round(sec));const h=Math.floor(sec/3600),m=Math.floor(sec%3600/60),s=sec%60;return h+':'+String(m).padStart(2,'0')+':'+String(s).padStart(2,'0')}
+function simLinkItem(l){if(!l)return null;let x=null;if(l.id)x=S.items.find(i=>i.id===l.id);if(!x&&l.cid)x=S.items.find(i=>i.cic===l.cid);
+  if(!x)x=S.items.find(i=>i.m===l.m&&i.a===l.a&&i.s===l.s);if(!x&&l.m){const m2=null}return x}
+function simLinkName(l){const x=simLinkItem(l);const o=x||l;return o.a+(o.s&&o.s!=='Todo o conteúdo do assunto'?' · '+o.s:'')}
+/* resultado de uma tentativa */
+function simCalc(sim,t){const r={G:[0,0],E:[0,0],mat:{},tot:0,ac:0,br:0};
+  for(const q of sim.questoes){const a=t.resp&&t.resp[q.n];const ok=a===q.gab;r[q.area][1]++;if(ok)r[q.area][0]++;if(!a)r.br++;
+    const m=r.mat[q.mat]||(r.mat[q.mat]={q:0,ac:0,area:q.area});m.q++;if(ok)m.ac++;r.tot++;if(ok)r.ac++}
+  r.nG=r.G[1]?r.G[0]/r.G[1]*10:0;r.nE=r.E[1]?r.E[0]/r.E[1]*10:0;r.nota=r.tot?r.ac/r.tot*10:0;return r}
+function nf(x,d=2){return x.toFixed(d).replace('.',',')}
+/* ---------- lista ---------- */
+function vSim(){
+  if(S.simRun){const t=S.tents.find(x=>x._id===S.simRun.tid),sim=t&&simById(t.sim);if(t&&sim)return t.fim?vSimRes(sim,t):vSimRun(sim,t);S.simRun=null}
+  let h=`<h1>Simulados</h1><div class="sub">Inéditos no estilo FUMARC (referência provisória), proporcionais ao edital do TRT3. O resultado entra nas suas sessões, por assunto.</div>`;
+  if(!S.sims.length) return h+`<div class="msg">Nenhum simulado disponível ainda. Peça no chat para gerar o simulado nº 1 (60 questões no padrão de 2022: 15 Português, 5 Informática, 5 Legislação, 5 Direito e 30 específicas).</div>`;
+  for(const sim of S.sims.slice().sort((a,b)=>a.n-b.n)){
+    const ts=simTents(sim.id),fin=ts.filter(t=>t.fim),and=ts.find(t=>!t.fim),last=fin[fin.length-1];
+    const nG=sim.questoes.filter(q=>q.area==='G').length;
+    let st='<span class="badge b-neu">não iniciado</span>',res='';
+    if(and){const nr=Object.keys(and.resp||{}).length;st=`<span class="badge b-media">em andamento · ${nr}/${sim.questoes.length}</span>`}
+    else if(last){const r=simCalc(sim,last);st=`<span class="badge ${r.nota>=6?'b-ok':'b-alta'}">nota ${nf(r.nota)}</span>`;
+      res=`<div class="meta"><span>Acertos <b>${r.ac}/${r.tot}</b></span><span>Gerais <b>${r.G[0]}/${r.G[1]}</b></span><span>Específicos <b>${r.E[0]}/${r.E[1]}</b></span>${last.discNota!=null?`<span>Redação <b>${nf(last.discNota,1)}</b></span>`:''}</div>`}
+    h+=`<div class="card"><div class="row sp"><div class="tag">Simulado nº ${sim.n} · ${esc(sim.criado?fdi(sim.criado):'')}</div>${st}</div>
+     <div class="ttl">${esc(sim.titulo)}</div><div class="sub">${sim.questoes.length} objetivas (${nG} gerais + ${sim.questoes.length-nG} específicas)${sim.disc?' + 1 redação':''} · ${nf((sim.duracao_min||270)/60,1)}h</div>${res}
+     <div class="row" style="margin-top:10px;flex-wrap:wrap">${and?`<button class="btn p s" onclick="simOpen('${and._id}')">Continuar</button>`:`<button class="btn p s" onclick="simStart('${sim.id}')">${fin.length?'Refazer':'Começar'}</button>`}${last?`<button class="btn s" onclick="simOpen('${last._id}')">Ver correção</button>`:''}</div></div>`}
+  h+=`<div class="sub" style="margin-top:10px">Como funciona: faça as objetivas com o cronômetro correndo e escreva a redação no papel. Ao entregar, o app corrige, mostra os comentários e registra cada assunto nas suas sessões. Depois, você mesmo dá a nota da redação usando o espelho.</div>`;
+  return h}
+async function simStart(sid){const id='t'+Date.now().toString(36);const t={sim:sid,ini:Date.now(),gasto:0,resp:{},marc:{},atual:1};
+  S.tents.push({...t,_id:id});S.simRun={tid:id,t0:Date.now()};render();try{await S.db.collection('sim_tent').doc(id).set(t)}catch(e){toast('Não foi possível iniciar: tente de novo')}}
+function simOpen(tid){S.simRun={tid,t0:Date.now(),filtro:'todas'};render();scrollTo(0,0)}
+function simExit(){simFlush();S.simRun=null;render()}
+/* ---------- fazendo a prova ---------- */
+function vSimRun(sim,t){const n=t.atual||1,q=sim.questoes.find(x=>x.n===n),tot=sim.questoes.length;
+  const nr=Object.keys(t.resp||{}).length,el=(t.gasto||0)+(Date.now()-S.simRun.t0)/1000,lim=(sim.duracao_min||270)*60;
+  let h=`<div class="sim-bar"><div class="row sp"><div><b>${esc(sim.titulo)}</b><div class="sub">${nr} de ${tot} respondidas</div></div>
+   <div style="text-align:right"><div id="sim-timer" class="sim-timer">${simFmtT(el)}</div><div class="sub">de ${simFmtT(lim)}</div></div></div>
+   <div class="bar" style="margin-top:6px"><i style="width:${nr/tot*100}%;background:var(--acc)"></i></div></div>`;
+  if(n==='disc'){h+=simDiscHtml(sim,t,false)}
+  else{const tx=q.texto&&sim.textos?sim.textos.find(x=>x.id===q.texto):null;
+   h+=`<div class="card"><div class="row sp"><div class="tag">Questão ${q.n} · ${q.area==='G'?'Conhecimentos Básicos':'Conhecimentos Específicos'} · ${esc(q.mat)}</div><button class="btn s ${t.marc&&t.marc[q.n]?'p':''}" onclick="simMarc(${q.n})">${t.marc&&t.marc[q.n]?'Marcada':'Marcar'}</button></div>
+    ${tx?`<details class="sim-tx" ${S.simTx?'open':''} ontoggle="S.simTx=this.open"><summary>Texto: ${esc(tx.titulo)}</summary><div class="sim-corpo">${esc(tx.corpo)}</div></details>`:''}
+    <div class="sim-enun">${esc(q.enun)}</div>
+    <div class="sim-alts">${q.alts.map((a,i)=>`<button class="sim-alt ${t.resp[q.n]===SL[i]?'on':''}" onclick="simResp(${q.n},'${SL[i]}')"><span class="sim-l">${SL[i]}</span><span>${esc(a)}</span></button>`).join('')}</div></div>`}
+  h+=`<div class="row" style="gap:8px;margin:10px 0"><button class="btn grow" onclick="simGo(-1)" ${n===1?'disabled':''}>← Anterior</button><button class="btn grow" onclick="simGo(1)">${n==='disc'?'Fim':n===tot?(sim.disc?'Redação →':'Fim'):'Próxima →'}</button></div>`;
+  h+=`<div class="sim-grid">`+sim.questoes.map(x=>`<button class="sim-n ${t.resp[x.n]?'ok':''} ${t.marc&&t.marc[x.n]?'mk':''} ${x.n===n?'cur':''}" onclick="simGoTo(${x.n})">${x.n}</button>`).join('')+(sim.disc?`<button class="sim-n ${n==='disc'?'cur':''}" style="grid-column:span 2" onclick="simGoTo('disc')">Redação</button>`:'')+`</div>
+   <div class="sub" style="margin-top:6px">Azul: respondida · borda laranja: marcada para revisar</div>
+   <div class="row" style="margin-top:14px;flex-wrap:wrap;gap:8px"><button class="btn p grow" onclick="simEntregar()">${S.simArm?'Toque de novo para entregar':'Entregar e corrigir'}</button><button class="btn" onclick="simExit()">Pausar e sair</button></div>
+   ${tot-nr?`<div class="sub" style="margin-top:6px">${tot-nr} questões em branco. Confira no edital novo se haverá desconto por erro; sem desconto, vale chutar.</div>`:''}`;
+  return h}
+function simCur(){const t=S.tents.find(x=>x._id===S.simRun.tid);return [t,simById(t.sim)]}
+function simResp(n,l){const [t]=simCur();t.resp={...t.resp};if(t.resp[n]===l)delete t.resp[n];else t.resp[n]=l;S.simArm=false;render();simSave()}
+function simMarc(n){const [t]=simCur();t.marc={...(t.marc||{})};if(t.marc[n])delete t.marc[n];else t.marc[n]=1;render();simSave()}
+function simGoTo(n){const [t]=simCur();t.atual=n;S.simArm=false;render();scrollTo(0,0);simSave()}
+function simGo(d){const [t,sim]=simCur();const tot=sim.questoes.length;let n=t.atual||1;
+  if(n==='disc'){if(d<0)n=tot;else return}else{n+=d;if(n>tot)n=sim.disc?'disc':tot;if(n<1)n=1}simGoTo(n)}
+let simSaveT=null;
+function simSave(){clearTimeout(simSaveT);simSaveT=setTimeout(simFlush,700)}
+async function simFlush(){clearTimeout(simSaveT);if(!S.simRun)return;const t=S.tents.find(x=>x._id===S.simRun.tid);if(!t||t.fim)return;
+  const now=Date.now();t.gasto=(t.gasto||0)+(now-S.simRun.t0)/1000;S.simRun.t0=now;const {_id,...d}=t;
+  try{await S.db.collection('sim_tent').doc(_id).set(clean(d))}catch(e){toast('Não foi possível salvar a resposta')}}
+setInterval(()=>{const e=document.getElementById('sim-timer');if(!e||!S.simRun)return;const t=S.tents.find(x=>x._id===S.simRun.tid);if(!t||t.fim)return;
+  const el=(t.gasto||0)+(Date.now()-S.simRun.t0)/1000;e.textContent=simFmtT(el);const sim=simById(t.sim);if(sim&&el>(sim.duracao_min||270)*60)e.style.color='var(--alta)'},1000);
+async function simEntregar(){if(!S.simArm){S.simArm=true;render();return}S.simArm=false;
+  const [t,sim]=simCur();const now=Date.now();t.gasto=(t.gasto||0)+(now-S.simRun.t0)/1000;S.simRun.t0=now;t.fim=now;
+  const r=simCalc(sim,t);t.res={ac:r.ac,tot:r.tot,G:r.G,E:r.E,nota:Math.round(r.nota*100)/100};
+  /* registra por assunto nas sessões do app */
+  const today=iso(T()),grp=new Map();
+  for(const q of sim.questoes){const k=JSON.stringify(q.link);const g=grp.get(k)||{link:q.link,q:0,ac:0};g.q++;if(t.resp[q.n]===q.gab)g.ac++;grp.set(k,g)}
+  let nSes=0,nCad=0;const cads=[];
+  for(const g of grp.values()){let x=simLinkItem(g.link);
+    if(!x){x={id:'n'+Date.now().toString(36)+(nCad++),m:g.link.m,a:g.link.a,s:g.link.s,peso:3,d0:today};if(g.link.cid)x.cic=g.link.cid;S.items.push(x);cads.push(x)}
+    g.item=x}
+  t.reg=true;const {_id,...d}=t;
+  try{if(cads.length){recalc();await saveItems()}
+    await S.db.collection('sim_tent').doc(_id).set(clean(d));
+    let n0=S.ses.filter(s=>s.d===today).length;
+    for(const g of grp.values()){await addSes({d:today,m:g.item.m,a:g.item.a,s:g.item.s,q:g.q,ac:g.ac,tipo:'Simulado',motivo:'',obs:sim.titulo,n:++n0});nSes++}
+    toast(nSes+' assuntos registrados nas suas sessões'+(cads.length?' ('+cads.length+' cadastrados)':''))}catch(e){toast('A correção foi salva, mas houve falha ao registrar as sessões')}
+  S.simRun.filtro='erradas';
+  render();scrollTo(0,0)}
+/* ---------- correção ---------- */
+function vSimRes(sim,t){const r=simCalc(sim,t),f=S.simRun.filtro||'todas';
+  const col=x=>x>=6?'var(--ok)':'var(--alta)';
+  let h=`<div class="row sp"><h1 style="font-size:22px">${esc(sim.titulo)}</h1><button class="btn s" onclick="simExit()">Voltar</button></div>
+   <div class="sub">Entregue em ${new Date(t.fim).toLocaleDateString('pt-BR')} · tempo ${simFmtT(t.gasto||0)}</div>
+   <div class="tiles t3" style="margin-top:12px"><div class="tile"><div class="l">Nota objetiva</div><div class="n" style="color:${col(r.nota)}">${nf(r.nota)}</div></div>
+   <div class="tile"><div class="l">Conhecimentos básicos</div><div class="n">${r.G[0]}/${r.G[1]}</div><div class="sub">${nf(r.nG)}</div></div>
+   <div class="tile"><div class="l">Específicos</div><div class="n">${r.E[0]}/${r.E[1]}</div><div class="sub">${nf(r.nE)}</div></div></div>
+   <div class="sub" style="margin-top:6px">Nota provisória = acertos ÷ total × 10. A regra de pontuação e o mínimo de aprovação só valem quando o edital novo sair; use 60% como referência de trabalho.</div>`;
+  if(t.reg) h+=`<div class="msg" style="margin-top:10px">O resultado já foi registrado por assunto nas suas sessões (aba Registrar → Histórico). Os assuntos com erro entram na revisão do app. Registre os erros recorrentes no caderno de erros e no Anki.</div>`;
+  h+=`<h2>Por matéria</h2><div class="card"><table><tr><th>Matéria</th><th>Acertos</th><th>%</th></tr>`+Object.entries(r.mat).sort((a,b)=>(a[1].area<b[1].area?-1:a[1].area>b[1].area?1:0)||(a[1].ac/a[1].q-b[1].ac/b[1].q)).map(([m,x])=>`<tr><td>${esc(m)}<div class="sub">${x.area==='G'?'Gerais':'Específicos'}</div></td><td>${x.ac}/${x.q}</td><td style="font-weight:600;color:${x.ac/x.q>=.7?'var(--ok)':x.ac/x.q>=.5?'var(--media)':'var(--alta)'}">${pc(x.ac/x.q,0)}</td></tr>`).join('')+`</table></div>`;
+  if(sim.disc) h+=simDiscHtml(sim,t,true);
+  h+=`<h2>Questões comentadas</h2><div class="row" style="gap:6px;margin-bottom:8px;flex-wrap:wrap">${[['erradas','Erradas e em branco'],['todas','Todas'],['marcadas','Marcadas']].map(([k,l])=>`<button class="btn s ${f===k?'p':''}" onclick="S.simRun.filtro='${k}';render()">${l}</button>`).join('')}</div>`;
+  const qs=sim.questoes.filter(q=>f==='todas'||(f==='erradas'&&t.resp[q.n]!==q.gab)||(f==='marcadas'&&t.marc&&t.marc[q.n]));
+  if(!qs.length) h+=`<div class="empty">${f==='erradas'?'Nenhum erro. Gabaritou!':'Nada aqui.'}</div>`;
+  for(const q of qs){const a=t.resp[q.n],ok=a===q.gab;
+    h+=`<div class="card"><div class="row sp"><div class="tag">Questão ${q.n} · ${esc(q.mat)}</div><span class="badge ${ok?'b-ok':a?'b-alta':'b-neu'}">${ok?'acertou':a?'errou':'em branco'}</span></div>
+     <div class="sim-enun">${esc(q.enun)}</div><div class="sim-alts">${q.alts.map((x,i)=>{const L=SL[i];const c=L===q.gab?'gab':L===a?'err':'';return `<div class="sim-alt ro ${c}"><span class="sim-l">${L}</span><span>${esc(x)}</span></div>`}).join('')}</div>
+     <div class="sim-com"><b>Gabarito ${q.gab}.</b> ${esc(q.com)}</div>
+     <div class="sub" style="margin-top:6px">Assunto no app: ${esc(simLinkName(q.link))}${q.conferir?' · <span class="badge b-media">confira no texto oficial</span>':''}</div></div>`}
+  return h}
+function simDiscHtml(sim,t,corr){const d=sim.disc,LN=d.linhas||30;
+  let h=`<h2>Redação</h2><div class="card"><div class="ttl">${esc(d.titulo)}</div><div class="sim-enun">${esc(d.enun)}</div>
+   <div class="sub" style="margin-top:8px">Escreva o texto no papel (até ${LN} linhas, ou o limite do edital novo). O espelho de correção e o texto-modelo aparecem depois da entrega.</div>
+   ${d.dicas?`<details style="margin-top:8px"><summary class="sub" style="cursor:pointer"><b>Como a banca espera o texto</b></summary><ul class="sub" style="margin:6px 0 0 18px;padding:0">${d.dicas.map(x=>`<li style="margin:3px 0">${esc(x)}</li>`).join('')}</ul></details>`:''}</div>`;
+  if(!corr) return h;
+  if(!d.grade){
+    h+=`<div class="card"><div class="tag">Espelho de correção</div>`+d.espelho.map(x=>`<div class="sim-com" style="margin-top:8px">${esc(x)}</div>`).join('')+`<div class="sub" style="margin-top:8px">${esc(d.criterios)}</div>
+     <label for="sim-dn">Sua nota na redação (0 a 10)</label><div class="row" style="gap:8px"><input id="sim-dn" type="text" inputmode="decimal" placeholder="ex.: 7,5" value="${t.discNota!=null?String(t.discNota).replace('.',','):''}"><button class="btn p" onclick="simDiscSave()">Salvar nota</button></div>
+     <div class="sub" style="margin-top:6px">A nota também entra no histórico de redações do Plano.</div></div>`;
+    return h}
+  const G=simGradeState(t),ck=id=>G.c.includes(id)?'checked':'',f=x=>nf(x,1);
+  const item=(id,x,neg)=>`<label style="display:flex;gap:10px;align-items:flex-start;margin:8px 0;font-weight:400;color:var(--ink);font-size:14px;line-height:1.4;cursor:pointer"><input type="checkbox" data-g="${id}" data-p="${x.p}" ${ck(id)} onchange="simGradeCalc()" style="width:20px;height:20px;margin:1px 0 0;flex-shrink:0"><span>${esc(x.t)} <b style="color:${neg?'var(--alta)':'var(--mut)'};white-space:nowrap">${neg?'−':''}${f(Math.abs(x.p))}</b></span></label>`;
+  h+=`<div class="card" id="sim-grade"><div class="tag">Grade de correção</div><div class="sub" style="margin-top:4px">Releia o seu texto e marque cada elemento que você realmente escreveu e fundamentou. A nota é calculada sozinha.</div>`;
+  d.grade.forEach((g,gi)=>{h+=`<div style="margin-top:12px"><b>${esc(g.q)}</b> <span class="sub">(${f(g.itens.reduce((a,x)=>a+x.p,0))})</span>${g.itens.map((x,ii)=>item(gi+'.'+ii,x)).join('')}</div>`});
+  h+=`<div style="margin-top:12px"><b>Estrutura e expressão</b> <span class="sub">(${f((d.expr||[]).reduce((a,x)=>a+(x.niveis?Math.max(...x.niveis.map(n=>n[1])):x.p),0))})</span>`+(d.expr||[]).map((x,k)=>x.niveis
+     ?`<div style="margin:8px 0"><div style="font-size:14px;margin-bottom:4px">${esc(x.t)}</div><select data-n="e${k}" onchange="simGradeCalc()">${x.niveis.map((n,ni)=>`<option value="${n[1]}" ${String(G.n['e'+k])===String(n[1])?'selected':''}>${esc(n[0])} (${f(n[1])})</option>`).join('')}</select></div>`
+     :item('e'+k,x)).join('')+`</div>`;
+  if(d.desc&&d.desc.length)h+=`<div style="margin-top:12px"><b>Descontos</b>${d.desc.map((x,k)=>item('d'+k,x,true)).join('')}</div>`;
+  h+=`<div class="sub" id="sim-gt" style="margin-top:12px;font-size:15px"></div>
+   <details style="margin-top:12px"><summary style="cursor:pointer;font-weight:600">Ver resposta-modelo</summary><div class="sim-com" style="margin-top:8px;white-space:normal">${esc(d.modelo||'').split(/\n\s*\n/).map(p=>`<p style="margin:0 0 10px;text-indent:1.5em">${p}</p>`).join('')}</div></details>
+   <div class="sub" style="margin-top:10px">${esc(d.criterios||'')}</div>
+   <label for="sim-dn">Sua nota na redação (0 a 10)</label><div class="row" style="gap:8px"><input id="sim-dn" type="text" inputmode="decimal" placeholder="calculada pela grade" value="${t.discNota!=null?String(t.discNota).replace('.',','):''}"><button class="btn p" onclick="simDiscSave()">Salvar nota</button></div>
+   <div class="sub" style="margin-top:6px">Dá para ajustar a nota à mão antes de salvar. Ela também entra no histórico de redações do Plano.</div></div>`;
+  setTimeout(()=>simGradeCalc(true),0);
+  return h}
+/* estado da grade: o que foi marcado fica guardado na tentativa (e em memória até salvar) */
+function simGradeState(t){S.discG=S.discG||{};const k=t._id||'x';if(!S.discG[k])S.discG[k]=t.discGrade?JSON.parse(JSON.stringify(t.discGrade)):{c:[],n:{}};const g=S.discG[k];g.c=g.c||[];g.n=g.n||{};return g}
+function simGradeCalc(inicial){const box=$('#sim-grade');if(!box)return;const [t,sim]=simCur();if(!t||!sim||!sim.disc.grade)return;const G=simGradeState(t);
+  let cont=0,ex=0,de=0;G.c=[];
+  box.querySelectorAll('input[data-g]').forEach(e=>{if(!e.checked)return;G.c.push(e.dataset.g);const p=+e.dataset.p,id=e.dataset.g;if(id[0]==='d')de+=p;else if(id[0]==='e')ex+=p;else cont+=p});
+  box.querySelectorAll('select[data-n]').forEach(e=>{G.n[e.dataset.n]=+e.value;ex+=+e.value});
+  const nota=Math.max(0,Math.min(10,Math.round((cont+ex+de)*10)/10));
+  const gt=$('#sim-gt');if(gt)gt.innerHTML=`Conteúdo <b>${nf(cont,1)}</b>/8 · Estrutura e expressão <b>${nf(ex,1)}</b>/2${de?` · Descontos <b style="color:var(--alta)">${nf(de,1)}</b>`:''} · <b style="font-size:17px;color:${nota>=6?'var(--ok)':'var(--alta)'}">Nota ${nf(nota,1)}</b> ${nota>=6?'(habilitaria)':'(abaixo do mínimo de 6,0)'}`;
+  const dn=$('#sim-dn');if(dn&&(!inicial||t.discNota==null))dn.value=(G.c.length||Object.keys(G.n).length)?String(nota).replace('.',','):'';}
+async function simDiscSave(){const [t,sim]=simCur();const n=parseFloat(String($('#sim-dn').value).replace(',','.'));if(isNaN(n)||n<0||n>10)return toast('Informe a nota de 0 a 10');
+  t.discNota=Math.round(n*10)/10;if(sim.disc.grade){const G=simGradeState(t);t.discGrade={c:G.c.slice(),n:{...G.n}}}const {_id,...d}=t;
+  try{await S.db.collection('sim_tent').doc(_id).set(clean(d));
+    {const ex=(S.red||[]).find(x=>x.simTent===_id);const doc={d:iso(T()),tema:'Redação do '+sim.titulo,nota:t.discNota,simTent:_id,t:Date.now()};const id=ex?ex._id:'r'+Date.now().toString(36);await S.db.collection('redacao').doc(id).set(doc)}
+    toast('Nota da redação salva')}catch(e){toast('Não foi possível salvar a nota')}render()}
+
+render();init();
+</script>
+<script>if("serviceWorker"in navigator&&location.protocol.startsWith("http"))navigator.serviceWorker.register("sw.js").catch(()=>{})</script>
+</body></html>
