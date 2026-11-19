@@ -1,6 +1,6 @@
 # Mapa de cobertura do banco de questões (Anexo II do Edital 01/2022, TRT3)
 
-Gerado em 19/11/2026 a partir de `edital.json` (172 tópicos) e de `bancos/*.json` (709 questões, lotes 1 a 4). A contagem é por tópico do edital, na ordem do edital. Tópicos gêmeos (a mesma matéria cobrada em duas disciplinas, como a Lei 8.112 em Direito Administrativo e em Legislação) compartilham as questões: o app libera as questões do gêmeo quando você marca um deles como estudado.
+Gerado em 19/11/2026 a partir de `edital.json` (172 tópicos) e de `bancos/*.json` (711 questões, lotes 1 a 4). A contagem é por tópico do edital, na ordem do edital. Tópicos gêmeos (a mesma matéria cobrada em duas disciplinas, como a Lei 8.112 em Direito Administrativo e em Legislação) compartilham as questões: o app libera as questões do gêmeo quando você marca um deles como estudado.
 
 ## Resumo por matéria
 
@@ -11,13 +11,13 @@ Gerado em 19/11/2026 a partir de `edital.json` (172 tópicos) e de `bancos/*.jso
 | Noções de Direito Constitucional | 22 | 94 | 3 | — |
 | Noções de Direito Administrativo | 23 | 69 | 0 | t074 (gêmeo: t084), t075 (gêmeo: t085), t076 (gêmeo: t086), t077 (gêmeo: t087), t078 (gêmeo: t088), t079 (gêmeo: t089, t091) |
 | Legislação | 13 | 70 | 1 | — |
-| Noções de Direito do Trabalho | 40 | 170 | 2 | — |
+| Noções de Direito do Trabalho | 40 | 172 | 4 | — |
 | Noções de Direito Processual do Trabalho | 36 | 156 | 2 | — |
-| **Total** | **172** | **709** | | |
+| **Total** | **172** | **711** | | |
 
 ## Pontos que ainda merecem mais questões
 
-- Tópicos com menos de 3 questões próprias: t081 (2), t093 (1), t134 (2), t153 (2).
+- Tópicos com menos de 3 questões próprias: t081 (2), t093 (1), t153 (2).
 - Os seis tópicos de Direito Administrativo sobre a Lei 8.112/1990 (t074 a t079) não têm questões próprias: as questões ficam nos tópicos gêmeos de Legislação (t084 a t089 e t091), e o app as libera quando você estuda qualquer um dos dois.
 - Os números por lote seguem os prefixos dos ids: lote 1 sem número (`LP-`, `DT-`…), lote 2 (`LP2-`…), lote 3 (`LP3-`…) e lote 4 (`LP4-`…).
 
@@ -91,7 +91,7 @@ Gerado em 19/11/2026 a partir de `edital.json` (172 tópicos) e de `bancos/*.jso
 | t052 | Poderes e Justiça do Trabalho | Câmara e Senado | 0 | 0 | 4 | 0 | 4 | 4 |
 | t053 | Poderes e Justiça do Trabalho | Processo legislativo | 0 | 2 | 1 | 0 | 3 | 3 |
 | t054 | Poderes e Justiça do Trabalho | Presidente e Vice-Presidente | 0 | 0 | 3 | 0 | 3 | 3 |
-| t055 | Poderes e Justiça do Trabalho | Judiciário (disposições gerais) | 0 | 2 | 0 | 2 | 4 | 3 |
+| t055 | Poderes e Justiça do Trabalho | Judiciário (disposições gerais) | 0 | 2 | 0 | 2 | 4 | 4 |
 | t056 | Poderes e Justiça do Trabalho | STF | 0 | 0 | 2 | 1 | 3 | 3 |
 | t057 | Poderes e Justiça do Trabalho | CNJ | 0 | 1 | 0 | 2 | 3 | 3 |
 | t058 | Poderes e Justiça do Trabalho | STJ | 0 | 0 | 1 | 2 | 3 | 2 |
@@ -175,19 +175,19 @@ Gerado em 19/11/2026 a partir de `edital.json` (172 tópicos) e de `bancos/*.jso
 | t121 | Duração e remuneração | Modalidades e pagamento do salário | 0 | 0 | 4 | 0 | 4 | 3 |
 | t122 | Duração e remuneração | 13º salário e equiparação | 0 | 1 | 2 | 1 | 4 | 4 |
 | t123 | Duração e remuneração | FGTS | 0 | 0 | 3 | 1 | 4 | 4 |
-| t124 | Duração e remuneração | Prescrição e decadência | 0 | 2 | 0 | 2 | 4 | 2 |
-| t125 | Proteção e temas especiais | Insalubridade e periculosidade | 0 | 3 | 0 | 1 | 4 | 0 |
+| t124 | Duração e remuneração | Prescrição e decadência | 0 | 2 | 0 | 2 | 4 | 3 |
+| t125 | Proteção e temas especiais | Insalubridade e periculosidade | 0 | 3 | 0 | 1 | 4 | 1 |
 | t126 | Proteção e temas especiais | Condições especiais de trabalho (CLT, Tít. III, Cap. I) | 0 | 0 | 0 | 4 | 4 | 4 |
-| t127 | Proteção e temas especiais | Gestante e licença-maternidade | 0 | 0 | 2 | 2 | 4 | 3 |
+| t127 | Proteção e temas especiais | Gestante e licença-maternidade | 0 | 0 | 2 | 2 | 4 | 4 |
 | t128 | Proteção e temas especiais | Convenções e acordos coletivos | 0 | 6 | 0 | 0 | 6 | 4 |
 | t129 | Proteção e temas especiais | Greve | 0 | 1 | 0 | 3 | 4 | 3 |
 | t130 | Proteção e temas especiais | Teletrabalho e Reforma Trabalhista | 0 | 5 | 1 | 0 | 6 | 6 |
-| t131 | Proteção e temas especiais | Dano moral | 0 | 0 | 1 | 3 | 4 | 3 |
-| t132 | Proteção e temas especiais | Súmulas e OJs do TST | 0 | 0 | 2 | 2 | 4 | 1 |
-| t133 | Proteção e temas especiais | Súmulas vinculantes | 0 | 0 | 0 | 4 | 4 | 0 |
-| t134 | Proteção e temas especiais | Atos normativos do TST | 0 | 0 | 0 | 2 | 2 | 1 |
+| t131 | Proteção e temas especiais | Dano moral | 0 | 0 | 1 | 3 | 4 | 4 |
+| t132 | Proteção e temas especiais | Súmulas e OJs do TST | 0 | 0 | 2 | 2 | 4 | 2 |
+| t133 | Proteção e temas especiais | Súmulas vinculantes | 0 | 0 | 0 | 4 | 4 | 4 |
+| t134 | Proteção e temas especiais | Atos normativos do TST | 0 | 0 | 0 | 4 | 4 | 4 |
 | t135 | Proteção e temas especiais | Acidentes do trabalho | 0 | 0 | 0 | 4 | 4 | 4 |
-| t136 | Proteção e temas especiais | Responsabilidade civil trabalhista | 0 | 0 | 0 | 4 | 4 | 2 |
+| t136 | Proteção e temas especiais | Responsabilidade civil trabalhista | 0 | 0 | 0 | 4 | 4 | 4 |
 
 ### Noções de Direito Processual do Trabalho
 
@@ -199,19 +199,19 @@ Gerado em 19/11/2026 a partir de `edital.json` (172 tópicos) e de `bancos/*.jso
 | t140 | Estrutura e competência | Peritos | 0 | 0 | 2 | 2 | 4 | 4 |
 | t141 | Estrutura e competência | Ministério Público do Trabalho | 1 | 3 | 0 | 0 | 4 | 2 |
 | t142 | Estrutura e competência | Princípios e aplicação subsidiária do CPC | 4 | 0 | 0 | 0 | 4 | 0 |
-| t143 | Atos, partes e conhecimento | Prescrição e prescrição intercorrente | 0 | 0 | 3 | 1 | 4 | 1 |
+| t143 | Atos, partes e conhecimento | Prescrição e prescrição intercorrente | 0 | 0 | 3 | 1 | 4 | 2 |
 | t144 | Atos, partes e conhecimento | Atos, termos e prazos | 1 | 2 | 0 | 1 | 4 | 2 |
 | t145 | Atos, partes e conhecimento | Distribuição e valor da causa | 0 | 1 | 1 | 2 | 4 | 3 |
 | t146 | Atos, partes e conhecimento | Custas | 0 | 3 | 0 | 1 | 4 | 2 |
 | t147 | Atos, partes e conhecimento | Partes, procuradores e jus postulandi | 0 | 2 | 0 | 2 | 4 | 2 |
 | t148 | Atos, partes e conhecimento | Assistência judiciária e honorários | 0 | 3 | 0 | 1 | 4 | 3 |
-| t149 | Atos, partes e conhecimento | Conflitos de competência | 0 | 2 | 0 | 2 | 4 | 2 |
-| t150 | Atos, partes e conhecimento | Audiências | 0 | 2 | 0 | 2 | 4 | 1 |
+| t149 | Atos, partes e conhecimento | Conflitos de competência | 0 | 2 | 0 | 2 | 4 | 3 |
+| t150 | Atos, partes e conhecimento | Audiências | 0 | 2 | 0 | 2 | 4 | 2 |
 | t151 | Atos, partes e conhecimento | Notificação, arquivamento, revelia e confissão | 0 | 4 | 1 | 1 | 6 | 3 |
 | t152 | Atos, partes e conhecimento | Provas | 0 | 3 | 0 | 1 | 4 | 2 |
 | t153 | Atos, partes e conhecimento | Dissídios individuais | 0 | 1 | 0 | 1 | 2 | 2 |
 | t154 | Atos, partes e conhecimento | Ritos ordinário e sumaríssimo | 0 | 4 | 0 | 1 | 5 | 1 |
-| t155 | Atos, partes e conhecimento | Desconsideração da personalidade jurídica | 0 | 1 | 0 | 3 | 4 | 3 |
+| t155 | Atos, partes e conhecimento | Desconsideração da personalidade jurídica | 0 | 1 | 0 | 3 | 4 | 4 |
 | t156 | Atos, partes e conhecimento | Sentença e coisa julgada | 0 | 1 | 0 | 3 | 4 | 3 |
 | t157 | Atos, partes e conhecimento | Homologação de acordo extrajudicial | 0 | 3 | 0 | 1 | 4 | 3 |
 | t158 | Liquidação, execução e recursos | Liquidação | 0 | 0 | 2 | 2 | 4 | 4 |
@@ -225,8 +225,8 @@ Gerado em 19/11/2026 a partir de `edital.json` (172 tópicos) e de `bancos/*.jso
 | t166 | Liquidação, execução e recursos | Recursos | 1 | 12 | 0 | 0 | 13 | 3 |
 | t167 | Liquidação, execução e recursos | PJe | 0 | 1 | 0 | 3 | 4 | 3 |
 | t168 | Liquidação, execução e recursos | Reforma Trabalhista no processo | 0 | 0 | 1 | 3 | 4 | 4 |
-| t169 | Liquidação, execução e recursos | Súmulas e OJs | 0 | 0 | 0 | 4 | 4 | 2 |
+| t169 | Liquidação, execução e recursos | Súmulas e OJs | 0 | 0 | 0 | 4 | 4 | 4 |
 | t170 | Liquidação, execução e recursos | Instruções normativas | 0 | 0 | 0 | 4 | 4 | 4 |
-| t171 | Liquidação, execução e recursos | Súmulas vinculantes | 0 | 0 | 3 | 1 | 4 | 3 |
+| t171 | Liquidação, execução e recursos | Súmulas vinculantes | 0 | 0 | 3 | 1 | 4 | 4 |
 | t172 | Liquidação, execução e recursos | Lei 6.858/1980 | 0 | 0 | 2 | 2 | 4 | 4 |
 
