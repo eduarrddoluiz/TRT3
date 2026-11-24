@@ -85,7 +85,7 @@ const MATS=Object.values(MAT);
 const MABR={[MAT.PT]:'Português',[MAT.INF]:'Informática',[MAT.CON]:'Constitucional',[MAT.ADM]:'Administrativo',[MAT.LEG]:'Legislação',[MAT.DT]:'D. Trabalho',[MAT.DPT]:'P. Trabalho'};
 const ROT={1:[MAT.DT,MAT.PT],2:[MAT.DPT,MAT.ADM],3:[MAT.DT,MAT.CON],4:[MAT.DPT,MAT.LEG],5:[MAT.PT,MAT.INF],6:[MAT.ADM,MAT.CON]};
 const DIAS=['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'];
-const NIV={1:'Básico',2:'Intermediário',3:'Avançado'};
+const NIV={1:'Fácil',2:'Média',3:'Difícil'};
 const LET='ABCDE';
 const LADS={eq:[3,7,15,30,60,120],fr:[2,4,8,15,30,60],es:[4,10,25,60,120,240]};
 const CFG0={meta:30,novasMin:8,maxRev:50,lad:LADS.eq,emb:true,push:true,flash:false,niv:{}};
@@ -302,7 +302,7 @@ function vTreino(){const f=S.tf,n=filt(f).length;
   return `<h1>Treino livre</h1><div class="sub">Filtre como no QConcursos. Os resultados também entram no calendário de revisão: erro volta amanhã, acerto só avança se a questão já estava vencida.</div>
   <div class="card" style="margin-top:12px"><label>Disciplina</label>${sel('m',[['','Todas'],...MATS.map(m=>[m,m])])}
   <label>Assunto</label>${sel('t',[['','Todos'],...tops.map(i=>[i.id,i.a+' — '+i.s+' ('+BANK.filter(q=>q.t===i.id).length+')'])])}
-  <div class="g2"><div><label>Nível</label>${sel('n',[['','Todos'],['1','Básico'],['2','Intermediário'],['3','Avançado']])}</div><div><label>Situação</label>${sel('st',[['nr','Não resolvidas'],['err','Erradas na última vez'],['venc','Vencidas hoje'],['res','Já resolvidas'],['flag','Marcadas ⚑'],['nota','Com anotação'],['todas','Todas']])}</div></div>
+  <div class="g2"><div><label>Nível</label>${sel('n',[['','Todos'],['1','Fácil'],['2','Média'],['3','Difícil']])}</div><div><label>Situação</label>${sel('st',[['nr','Não resolvidas'],['err','Erradas na última vez'],['venc','Vencidas hoje'],['res','Já resolvidas'],['flag','Marcadas ⚑'],['nota','Com anotação'],['todas','Todas']])}</div></div>
   <div class="g2"><div><label>Origem</label>${sel('orig',[['','Todas'],['min','Do app'],['imp','Importadas']])}</div><div><label>Quantidade</label>${sel('qtd',[['10','10'],['20','20'],['30','30'],['50','50'],['100','100']])}</div></div>
   <div class="row" style="margin-top:12px"><input type="checkbox" id="td" ${f.todos?'checked':''} onchange="tfSet('todos',this.checked)"><label for="td" style="margin:0;flex:1">Incluir tópicos que ainda não liberei</label></div></div>
   <div class="row sp"><div><b>${n}</b> questões encontradas</div><button class="btn g" ${n?'':'disabled'} onclick="startFiltro()">Resolver ${Math.min(n,+f.qtd)}</button></div>`}
@@ -377,7 +377,7 @@ Enunciado: Questão de Certo ou Errado, sem alternativas.
 Gabarito: Certo`;
 function openImp(){S.pi=null;S.sheet={k:'imp'};renderSheet()}
 function matchMat(s){const x=norm(s);if(/processual/.test(x))return MAT.DPT;if(/portugu/.test(x))return MAT.PT;if(/inform/.test(x))return MAT.INF;if(/constituc/.test(x))return MAT.CON;if(/administrat/.test(x))return MAT.ADM;if(/legisla|8\.?112|9\.?784|8\.?429|lgpd/.test(x))return MAT.LEG;if(/trabalh|clt/.test(x))return MAT.DT;return ''}
-function parseNiv(s){const x=norm(s);if(/^[123]$/.test(x.trim()))return +x.trim();if(/basic|facil|inici/.test(x))return 1;if(/avanc|dificil/.test(x))return 3;return 2}
+function parseNiv(s){const x=norm(s);if(/^[123]$/.test(x.trim()))return +x.trim();if(/basic|facil|inici/.test(x))return 1;if(/avanc|dificil/.test(x))return 3;if(/medi|intermed/.test(x))return 2;return 2}
 function suggest(m,as){if(!m||!as)return '';const w=new Set(norm(as).split(/[^a-z0-9]+/).filter(x=>x.length>=4));let best='',sc=0;
   for(const i of ED){if(i.m!==m)continue;const ws=norm(i.a+' '+i.s).split(/[^a-z0-9]+/).filter(x=>x.length>=4);const s=ws.filter(x=>w.has(x)).length;if(s>sc){sc=s;best=i.id}}return best}
 function parseBlock(b){const o={m:'',as:'',n:2,e:'',a:[],gs:'',c:'',src:''};let cur=null,m;
